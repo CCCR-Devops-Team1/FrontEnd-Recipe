@@ -1,12 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from "./pages/Home"
+import Signup from "./pages/Signup"
+import React from 'react';
+import {Routes, Route, Link} from "react-router-dom"
 
 /* 로그인 페이지 */
 
 function App() {
   return (
     <div className="App">
-      <div className='login-box'>
+
+      {/* <div className='login-box'>
         <h1>Food recommendation</h1>
 
         <div className='login-main'>
@@ -17,11 +21,23 @@ function App() {
         </div>
 
         <div className='login-footer'>
-          <span>Don’t have an account?</span>
+          <span>Don't have an account?</span>
           <a href='#'>Signup Now</a>
         </div>
 
-      </div>
+      </div> */}
+      
+      <nav>
+        
+
+      <Link to="Signup" className="Sig">Signup Now</Link>
+      <p></p>
+      <Link to="Home" className="Sig">Home</Link>      
+      </nav> 
+      <Routes>
+        <Route path='Signup' element={<Signup/>}/>
+        <Route path='Home' element={<Home/>}/>
+      </Routes>
     </div>
   );
 }
