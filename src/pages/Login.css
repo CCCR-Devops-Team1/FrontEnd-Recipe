@@ -3,20 +3,16 @@
   box-sizing: border-box;
 }
 
-html,body,.App{
+html,body{
   height: 100%;
 }
 
-body{
-  background-color: #1A73E8;
+.loginbody{
+  padding-top: 200px;
   display: grid;
-  place-items: center;
+  place-content: center;
 }
 
-.App {
-  display: grid;
-  justify-content: center;
-}
 
 .login-box{
   text-align: center;
@@ -24,7 +20,7 @@ body{
   width: 440px;
   height: 500px;
   border-radius: 1.25rem;
-  border:3px solid black; /*지우기*/
+  border:3px solid black; 
 }
 
 .login-box > h1{
