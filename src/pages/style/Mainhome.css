@@ -1,0 +1,13 @@
+*{padding: 0; margin: 0; box-sizing: border-box;}
+
+.home-body{
+    display: grid;
+    border: 1px solid red;
+    place-content: center;
+
+
+}
+
+.home-box{
+    border: 1px solid blue;
+}

@@ -1,9 +1,20 @@
 import React from "react";
-import "./Mainhome.css"
+import "./style/Mainhome.css"
 function Mainhome () {
     return(
-        <div className="Main-body">
-            <p>메인 화면 준비중입니다.</p>
+        <div className="home-body">
+
+            <div className="home-box">
+
+                <tr className="common-list">
+                    <td className="random-price">
+
+                    </td>
+                </tr>
+
+            </div>
+            
+
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import "./Signup.css" 
+import "./style/Signup.css" 
 import React from "react"
 
 function Signup(){
@@ -24,14 +24,8 @@ function Signup(){
 
                 </ul>
 
-                <div className='checkbox'>
 
-                    <input type='checkBox'></input>
-                    <input type='checkBox'></input>
-
-                </div>
-
-                <button>Submit</button>
+                <button className="check">Submit</button>
             </div>
 
 

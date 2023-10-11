@@ -3,13 +3,11 @@
   box-sizing: border-box;
 }
 
-
 .loginbody{
   padding-top: 200px;
   display: grid;
   place-content: center;
 }
-
 
 .login-box{
   text-align: center;
