@@ -1,0 +1,39 @@
+*{margin: 0; padding: 0; box-sizing:border-box;}
+
+.write-body{
+    border: 1px solid red;
+    display: grid;
+    justify-content: center;
+}
+
+
+.write-form{
+    border: 1px solid blue;
+    padding-top: 20px;
+    width: 540px; 
+    display: grid;
+}
+
+.naming{
+    display: inline;
+}
+.naming > input {
+    width: 370px;
+    margin-left: 65px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    
+}
+
+.contents{
+
+    display: grid;
+    position: inherit;
+}
+
+.write{
+    position:inherit;
+    display: grid;
+    justify-items: end;
+}

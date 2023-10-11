@@ -1,0 +1,55 @@
+*{margin: 0; padding: 0; box-sizing: border-box; }
+
+.Sign-body{
+    padding-top: 70px;
+    display: grid;
+    place-content: center; 
+}
+
+.Sign-chart{
+    border: 4px solid black;
+    height: 700px;
+    width: 580px;
+    display: grid;
+    place-items: center;
+    align-items: start;
+}
+
+.Sign-chart > h1{
+    text-align: center;
+    font-weight: bold;
+    font-size: 350%;
+    padding-bottom: 16px;
+    border-bottom: 1px solid orangered ;
+    width: 70%;
+}
+
+.Sign-chart > h3 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 135%;
+}
+
+.Sign-chart > ul {
+    font-size: small;
+    color: #878787;
+}
+
+.Sign-chart > ul >li {
+    padding-bottom: 7px;
+}
+
+.Sign-chart > ul > input {
+    padding: 3px;
+    margin-bottom: 15px;
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid black;
+    font-size: large;
+}
+
+.check {
+    padding: 10px 20px;
+    position: relative;
+    left: 140px;
+}
