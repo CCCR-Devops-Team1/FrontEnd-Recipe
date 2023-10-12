@@ -3,7 +3,7 @@ import React from "react"
 
 function Login(){
     return (
-        <div className='loginbody'>
+        <div className='login-body'>
             <div className='login-box'>
                 <h1>Food recommendation</h1>
 

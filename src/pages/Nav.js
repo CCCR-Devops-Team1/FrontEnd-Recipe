@@ -20,7 +20,6 @@ function Nav() {
         <Link to="Update" className="Sig"><span className="material-icons">edit_note</span>게시글 수정</Link>
 
     </nav>
-
     
     )
 }

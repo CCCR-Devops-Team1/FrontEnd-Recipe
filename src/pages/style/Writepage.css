@@ -6,9 +6,10 @@
 }
 
 .write-form{
-    padding-top: 20px;
+    padding-top: 60px;
     width: 900px; 
     display: grid;
+    gap: 45px
 }
 
 .naming{
@@ -40,7 +41,6 @@
     font-size: large;
     font-weight: 500;
     padding: 3px ;
-
 }
 
 .write{
@@ -59,7 +59,7 @@
     color: black;
 }
 
-.write > input:hover{
+.write > input:active{
     background-color: #FBFBFB;
     border: inset;
 }

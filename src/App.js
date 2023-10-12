@@ -7,7 +7,8 @@ import Mainhome from "./pages/Mainhome"
 import Write from './pages/Writepage';
 import Update from './pages/Updatepage';
 import Nav from './pages/Nav'
-import React from 'react';
+import Study from './pages/aixos-component';
+import React,{useState,useEffect} from 'react';
 import {Routes, Route } from "react-router-dom"
 
 
@@ -15,9 +16,13 @@ function App() {
   return (
     <div className="App">
       <Nav/>
+
+      
       {/* 페이지 라우팅 해주는 코드 path import 이름  element 링크 태그 사이 값*/}
 
+             
       <Routes>  
+        <Route path='study' element={<Study/>}/>
         <Route path='Signup' element={<Signup/>}/>
         <Route path='Login' element={<Login/>}/>
         <Route path='Failover' element={<Failover/>}/>
