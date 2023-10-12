@@ -1,39 +1,65 @@
 *{margin: 0; padding: 0; box-sizing:border-box;}
 
 .write-body{
-    border: 1px solid red;
     display: grid;
     justify-content: center;
 }
 
-
 .write-form{
-    border: 1px solid blue;
     padding-top: 20px;
-    width: 540px; 
+    width: 900px; 
     display: grid;
 }
 
 .naming{
     display: inline;
+    font-size: large;
+    padding-left: 6px;
 }
+
 .naming > input {
-    width: 370px;
+    width: 650px;
     margin-left: 65px;
     background: transparent;
     border: none;
     border-bottom: 1px solid;
-    
+    padding: 3px 0px 0px 7px;
+    font-size: large;
 }
 
 .contents{
-
     display: grid;
-    position: inherit;
+    font-size: large;
+}
+
+.contents > p{
+    padding-left: 10px;
+}   
+
+.contents > textarea{
+    font-size: large;
+    font-weight: 500;
+    padding: 3px ;
+
 }
 
 .write{
     position:inherit;
     display: grid;
     justify-items: end;
+    padding: 6px;
+}
+
+.write > input {
+    width: 110px;
+    height: 40px;
+    border-radius: 1.15vh;
+    background: none;
+    border: groove;
+    color: black;
+}
+
+.write > input:hover{
+    background-color: #FBFBFB;
+    border: inset;
 }

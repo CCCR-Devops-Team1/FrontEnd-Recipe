@@ -1,0 +1,40 @@
+*{margin: 0; padding: 0; box-sizing: border-box;}
+
+.update-body{
+    border: 1px solid red;
+    width: 100%;   
+    height: 100%;
+    display: grid;
+    justify-items: center;
+}
+
+.update-form{
+    border: 1px solid blue;
+    display: grid;
+    place-items: center;
+    width: 70%;
+    padding-top: 30px;
+}
+
+.update-form > table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+.update-form > table > tr{
+    width: 100%;
+    height: 100%;
+    border-bottom: 2px solid black;
+    margin-bottom: 1.5px;
+}
+
+.update-form > table > tr >td {
+    height: auto;
+    width: auto;
+    padding: 4px 2px;
+    
+}
+
+
+
+

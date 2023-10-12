@@ -6,7 +6,7 @@ function Write(){
             <form className="write-form">
 
                 <div className="naming">
-                    <span>작성자</span>
+                    <span>작성자 / (회원정보)</span>
                     <input placeholder="제목"></input>
                 </div>
                 
