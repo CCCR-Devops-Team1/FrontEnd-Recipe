@@ -16,7 +16,7 @@ nav{
   display: grid;
   width: 100%;
   border: 2px solid #686975;
-  box-shadow: 3px 5px 15px black inset;
+  box-shadow: 3px 5px 3px black ;
   padding: 15px 0px;
   background-color: #538CFF;
   margin: 25px 10px;

@@ -7,25 +7,27 @@ function Signup(){
         <div className="Sign-body">
 
             <div className="Sign-chart">
+                
                 <h1>Sign up</h1>
-
+                <hr style={{width : "inherit"}}/>
                 <h3>회원가입을 위해 정보를 입력해주세요</h3>
                 
-                <ul className='list'>
+                <div className='list'>
                     
-                    <li>회원아이디</li>
-                    <input type='text'></input>
+                        
+                        <div><input type='text' placeholder="아이디"></input></div>
 
-                    <li>비밀번호</li>
-                    <input type='password'></input>
+                        
+                        <div><input type='password' placeholder="비밀번호"></input></div>
 
-                    <li>비밀번호 확인</li>
-                    <input type='password'></input>
-
-                </ul>
+                       
+                        <div><input type='password' placeholder="비밀번호확인"></input> </div>
 
 
-                <form><button className="check">Submit</button></form>
+                        <div style={{display: "grid"}}><button className="check">회원가입</button></div>
+                </div>
+
+                
             </div>
 
 

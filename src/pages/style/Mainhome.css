@@ -1,11 +1,25 @@
-*{padding: 0; margin: 0; box-sizing: border-box;}
+*{padding: 0; margin: 0 ; box-sizing: border-box;}
 
 .home-body{
-    display: grid;
     border: 1px solid red;
-    place-content: center;
 }
 
 .home-box{
     border: 1px solid blue;
+}
+
+.common-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 70px;
+    gap: 5px;
+    align-items: center;
+}
+
+.common-list > ur {
+    position: inherit;
+    display: grid;
+    gap: 5px;
+    border: 1px solid #eaeaea;
 }

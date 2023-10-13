@@ -24,7 +24,9 @@ function Update () {
                 {posts.map(nami => (
                     
                     <td id="line">
+                        
                         <td><div className="list-name"><span id="number">{ nami.id }</span></div></td>
+
                         <td><div><span id='title'>{ nami.title }</span></div></td>
                     </td>
                     

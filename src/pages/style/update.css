@@ -36,17 +36,17 @@
 }
 
 #title{
-    padding-left: 4px;
-
+    padding-left: 10px;
+    border-left: 1px solid #bababa;
 }
 
 .list-name{
-    width: 50px;
+    width: 35px;
 }
 
 #number{
-    padding-right: 3%;
-    border-right: 1px solid black;
+    padding-right: 2%;
+    
 }
 
 
