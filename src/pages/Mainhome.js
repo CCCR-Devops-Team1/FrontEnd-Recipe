@@ -1,6 +1,7 @@
 //메인홈 (게시판)
 import React,{useState, useEffect} from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import "./style/Mainhome.css";
 
 function Mainhome () {
@@ -25,11 +26,15 @@ function Mainhome () {
                 <tr className="common-list">
                 사람들이 작성한 글
                     <ur>
-                        <li>
-                            {boardList.map((pso) => (
-                                <p>{pso.id}<hr/></p>
-                            ))}
+                  
+                        {boardList.map((board) => (
+                        <li style={{listStyle: 'none'} } key={board.id}>
+                            <Link style={{display: 'block'}} className="userlink" to={`/Board/:${board.id}`}>{board.title}</Link>
+                            <hr/>
                         </li>
+                        
+                        ))}
+                    
                         
                         <li>
                             아무 글 2
@@ -37,6 +42,8 @@ function Mainhome () {
                     </ur>
                                                                     
                 </tr>
+
+                <hr/>
 
                 <div>
                     <td className="random-price">

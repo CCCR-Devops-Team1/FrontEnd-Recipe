@@ -17,9 +17,22 @@
     align-items: center;
 }
 
-.common-list > ur {
+.common-list  > ul {
     position: inherit;
     display: grid;
     gap: 5px;
     border: 1px solid #eaeaea;
+}
+
+.common-list > ul > li{
+    position: inherit;
+    display: grid;
+    gap: 5px;
+    border: 1px solid #eaeaea;
+    list-style: none;
+}
+
+.userlink{
+    color:black ;
+    text-decoration: none;
 }

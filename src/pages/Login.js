@@ -63,11 +63,11 @@ function Login(){
                         ></input>
                     </form>
                     <ul>
-                        {users.map((board) => (
-                        <li key={board.id}>
-                            <Link to={`/Board/:${board.id}`}>{board.title}</Link>
+                        
+                        <li>
+                           
                         </li>
-                        ))}
+                        
                     </ul>
                     <div>
                         <button onClick={handlebuttonchange}>로그인</button>
