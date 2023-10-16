@@ -1,27 +1,28 @@
 //글 쓰기 (개인) {로그인}
 
 import React, { useState } from "react";
+import axios from "axios";
 import "./style/Writepage.css"
 
 function Write(){
 
-    const [useboard, setUseboard ] = useState ({
+    const [userwrite,setUserwrite] = useState ({
         title:'',
         contents:'',
     });
 
-    const {titlea, contentsa} = useboard;
+    const {title,contents} = userwrite;
 
     const onchange = (e) =>{
         const {value,name} = e.target;
-        setUseboard({
-            ...useboard,
+        setUserwrite({
+            ...userwrite,
             [name]:value,
         });
     };
-
-    const [save, Setsave] =useState ([])
     
+
+   
     return (
         <div className="write-body">
             <form className="write-form">
@@ -30,7 +31,7 @@ function Write(){
                     <span>작성자 / (회원정보)</span>
                     <input type = "text" placeholder="제목"
                     name="title"
-                    value={titlea}
+                    value={title}
                     onChange={onchange}
                     ></input>
                 </div>
@@ -38,16 +39,15 @@ function Write(){
                 <div className="contents">
 
                     <p style={{paddingBottom : "10px"}}>내용</p>
-                    <textarea placeholder="내용입력" style={{padding:"7px"}}
+                    <textarea placeholder="내용입력" style={{padding:"7px"}} rows="25"
                     name="contents"
-                    rows="25"
-                    value={contentsa}
+                    value={contents}
                     onChange={onchange}
                     ></textarea>
 
                 </div>
                 <div className="write">
-                    <input type="submit" onClick={() => Setsave(useboard)} ></input>
+                    <input type="submit" ></input>
                 </div>
             </form>
             

@@ -3,15 +3,20 @@ import React,{useState, useEffect} from "react";
 import axios from "axios";
 import "./style/Mainhome.css";
 
-
 function Mainhome () {
 
-    const getBoardList = async () => {
-        const resp = (await axios.get({/*백엔드 포트?*/})).data
-        console.log(resp.data)
-    }
+    const [boardList,setBoardList] = useState ([]);
 
-   
+    useEffect(() =>{
+        axios({
+            method:'GET',
+            url: 'https://jsonplaceholder.typicode.com/posts'
+        }).then(response => setBoardList(response.data))
+    })
+
+    
+
+       
     return(
         <div className="home-body">
 
@@ -21,7 +26,9 @@ function Mainhome () {
                 사람들이 작성한 글
                     <ur>
                         <li>
-                           아무 글 1
+                            {boardList.map((pso) => (
+                                <p>{pso.id}<hr/></p>
+                            ))}
                         </li>
                         
                         <li>

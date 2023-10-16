@@ -1,10 +1,11 @@
 //404 오류 페이지
 
 import React from "react";
-import './style/failover.css';
+import './style/NotFound.css';
 /** 404 failover 페이지 는 html 로 따로 하나의 페이지로 구성해야 할 것 같음 */
-function failover (){
+function NotFound (){
     return(
+        
         <div className="failbody">
 
             <div className="hand"><span id="hand" className="material-symbols-outlined">front_hand</span></div>
@@ -19,4 +20,4 @@ function failover (){
     )        
 }
 
-export default failover
+export default NotFound

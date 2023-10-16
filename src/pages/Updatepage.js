@@ -1,5 +1,3 @@
-//글 수정 (개인) {로그인}
-
 import React, {useEffect, useState} from "react";
 import './style/update.css'
 import axios from "axios";
@@ -14,6 +12,7 @@ function Update () {
             url: 'https://jsonplaceholder.typicode.com/posts'
         }).then(response => setPosts(response.data))
     })
+    
     return (
 
         <div className="update-body">

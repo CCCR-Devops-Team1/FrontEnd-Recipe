@@ -1,9 +1,47 @@
 //로그인
 
-import "./style/Login.css" 
-import React from "react"
+import axios from "axios";
+import React, { useEffect, useState } from "react"
+import { useCookies } from "react-cookie"
+import "./style/Login.css"
+import { Link } from "react-router-dom";
 
 function Login(){
+
+    const [users,setUsers] = useState([]);
+    
+    useEffect (() => {
+        axios ({
+            method: 'get',
+            url:'https://jsonplaceholder.typicode.com/posts'
+        }).then((Response) => setUsers(Response.data))
+    },[]);
+
+    
+
+    const [userId, setUserId] = useState('');
+    const [password, setPassword] = useState('');
+    
+    const handleUserIdChange = (e) => {
+    setUserId(e.target.value);
+    };
+    
+    const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    };
+        
+
+    const [count ,setCount] = useState(0);
+
+    const handlebuttonchange = (e) => {
+        setCount(count+1)
+    }
+    
+
+    
+
+
+
     return (
         <div className='login-body'>
             <div className='login-box'>
@@ -14,9 +52,26 @@ function Login(){
                     <h3>계정에 로그인하기 위해 세부 정보를 입력합니다.</h3>
 
                     <form>
-                        <input type='text' className='user' placeholder='| ID'></input>
-                        <input type='password' className='pass' placeholder='| PW'></input>
+                        <input type='text' className='user' placeholder='| ID'
+                        value={userId}
+                        onChange={handleUserIdChange}
+                        ></input>
+
+                        <input type='password' className='pass' placeholder='| PW'
+                        value={password}
+                        onChange={handlePasswordChange}
+                        ></input>
                     </form>
+                    <ul>
+                        {users.map((board) => (
+                        <li key={board.id}>
+                            <Link to={`/Board/:${board.id}`}>{board.title}</Link>
+                        </li>
+                        ))}
+                    </ul>
+                    <div>
+                        <button onClick={handlebuttonchange}>로그인</button>
+                    </div>
                 </div>
 
                 <div className='login-footer'>
