@@ -1,3 +1,5 @@
+// 네비게이션 바
+
 import React from "react"
 import "./style/Nav.css"
 import { Link } from "react-router-dom"

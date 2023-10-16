@@ -1,3 +1,5 @@
+//404 오류 페이지
+
 import React from "react";
 import './style/failover.css';
 /** 404 failover 페이지 는 html 로 따로 하나의 페이지로 구성해야 할 것 같음 */

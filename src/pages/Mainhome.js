@@ -1,9 +1,17 @@
+//메인홈 (게시판)
 import React,{useState, useEffect} from "react";
+import axios from "axios";
 import "./style/Mainhome.css";
 
 
 function Mainhome () {
-    
+
+    const getBoardList = async () => {
+        const resp = (await axios.get({/*백엔드 포트?*/})).data
+        console.log(resp.data)
+    }
+
+   
     return(
         <div className="home-body">
 
@@ -15,7 +23,7 @@ function Mainhome () {
                         <li>
                            아무 글 1
                         </li>
-                        <hr/>
+                        
                         <li>
                             아무 글 2
                         </li>

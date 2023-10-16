@@ -1,3 +1,5 @@
+//글 상세보기 
+
 import React , {useState,useEffect} from "react";
 import Write from "./Writepage";
 

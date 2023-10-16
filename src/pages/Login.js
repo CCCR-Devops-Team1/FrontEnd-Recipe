@@ -1,3 +1,5 @@
+//로그인
+
 import "./style/Login.css" 
 import React from "react"
 
@@ -18,7 +20,7 @@ function Login(){
                 </div>
 
                 <div className='login-footer'>
-                    <span>계정이 없으시다면 회원가입을 해주시기 바랍니다</span>
+                    <span>계정이 있다면 글을 작성할 수 있습니다.</span>
                 </div>
             </div>
         </div>

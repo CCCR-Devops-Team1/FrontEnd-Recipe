@@ -1,3 +1,5 @@
+//글 수정 (개인) {로그인}
+
 import React, {useEffect, useState} from "react";
 import './style/update.css'
 import axios from "axios";

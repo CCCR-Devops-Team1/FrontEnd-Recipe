@@ -1,3 +1,5 @@
+//글 쓰기 (개인) {로그인}
+
 import React, { useState } from "react";
 import "./style/Writepage.css"
 
@@ -19,9 +21,6 @@ function Write(){
     };
 
     const [save, Setsave] =useState ([])
-
-
-
     
     return (
         <div className="write-body">
