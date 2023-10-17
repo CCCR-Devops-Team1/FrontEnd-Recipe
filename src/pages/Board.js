@@ -9,7 +9,7 @@ const Board = () => {
 
     return(
         <div>
-            확인용 글
+            상세보기 확인용 글
             <p>{window.location.pathname}</p>
         </div>  
     )

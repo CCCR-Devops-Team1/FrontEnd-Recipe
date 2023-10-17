@@ -1,7 +1,7 @@
 //로그인
 
 import axios from "axios";
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useReducer } from "react"
 import { useCookies } from "react-cookie"
 import "./style/Login.css"
 import { Link } from "react-router-dom";
@@ -10,15 +10,7 @@ function Login(){
 
     const [users,setUsers] = useState([]);
     
-    useEffect (() => {
-        axios ({
-            method: 'get',
-            url:'https://jsonplaceholder.typicode.com/posts'
-        }).then((Response) => setUsers(Response.data))
-    },[]);
-
     
-
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
     
@@ -29,7 +21,16 @@ function Login(){
     const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     };
-        
+
+    
+    useEffect (() => {
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+        .then(function(response){
+            setUsers(response.data);
+        })
+    },[]);
+
+    
 
     const [count ,setCount] = useState(0);
 
@@ -39,8 +40,6 @@ function Login(){
     
 
     
-
-
 
     return (
         <div className='login-body'>

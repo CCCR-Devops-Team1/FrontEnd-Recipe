@@ -28,17 +28,12 @@ function Mainhome () {
                     <ur>
                   
                         {boardList.map((board) => (
-                        <li style={{listStyle: 'none'} } key={board.id}>
+                        <li style={{listStyle: 'none' , padding_top:'95px'} } key={board.id}>
                             <Link style={{display: 'block'}} className="userlink" to={`/Board/:${board.id}`}>{board.title}</Link>
                             <hr/>
-                        </li>
-                        
+                        </li> 
                         ))}
-                    
-                        
-                        <li>
-                            아무 글 2
-                        </li>
+                
                     </ur>
                                                                     
                 </tr>

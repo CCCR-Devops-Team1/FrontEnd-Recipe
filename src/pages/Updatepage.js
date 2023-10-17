@@ -22,13 +22,13 @@ function Update () {
 
                 <tr id="wra">
                     
-                {posts.map(nami => (
+                {posts.map(mom => (
                     
                     <td id="line">
                         
-                        <td><div className="list-name"><span id="number">{ nami.id }</span></div></td>
+                        <td><div className="list-name"><span id="number">{ mom.id }</span></div></td>
 
-                        <td><div><span id='title'>{ nami.title }</span></div></td>
+                        <td><div><span id='title'>{ mom.title }</span></div></td>
                     </td>
                     
                 ))}
