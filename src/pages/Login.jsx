@@ -1,18 +1,19 @@
 //로그인
 
 import axios from "axios";
-import React, { useEffect, useState, useReducer } from "react"
+import React, { useEffect, useState,} from "react"
 import { useCookies } from "react-cookie"
 import "./style/Login.css"
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Login(){
+const Login = () => {  
 
+    const navigate = useNavigate();
     const [users,setUsers] = useState([]);
-    
-    
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
+    const [cookies, setCookie] = useCookies(['user']);
+
     
     const handleUserIdChange = (e) => {
     setUserId(e.target.value);
@@ -21,7 +22,6 @@ function Login(){
     const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     };
-
     
     useEffect (() => {
         axios.get('https://jsonplaceholder.typicode.com/posts')
@@ -29,17 +29,21 @@ function Login(){
             setUsers(response.data);
         })
     },[]);
-
+   
+    const match = function usermatch() {
+        const user = users.find(user => user.title === userId && user.id.toString() === password);
+        if(user) {
+          console.log('로그인');
+          setCookie('user', user, { path: '/' }); // 쿠키에 유저 정보 저장
+          navigate('/');
+        } else {
+          console.log('실패');  
+        }
+      }
     
-
-    const [count ,setCount] = useState(0);
-
     const handlebuttonchange = (e) => {
-        setCount(count+1)
+        match();
     }
-    
-
-    
 
     return (
         <div className='login-body'>
@@ -78,7 +82,6 @@ function Login(){
                 </div>
             </div>
         </div>
-    
     )
 }
 

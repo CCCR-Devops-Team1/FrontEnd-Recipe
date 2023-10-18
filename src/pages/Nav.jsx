@@ -3,9 +3,11 @@
 import React from "react"
 import "./style/Nav.css"
 import { Link } from "react-router-dom"
-
+import { useCookies } from "react-cookie";
 
 function Nav() {
+    const [cookies, removeCookie] = useCookies(['user']);
+
     return (
     
     <nav className="Head">
@@ -21,6 +23,11 @@ function Nav() {
 
         <Link to="Update" className="Sig"><span className="material-icons">edit_note</span>게시글 수정</Link>
 
+        <div className="info">
+            <p>User ID: {cookies.user ? cookies.user.title : 'Not logged in'}</p>
+            <p>로그인 여부: {cookies.user ? 'Logged in' : 'Not logged in'}</p>
+            {cookies.user && <button onClick={() => removeCookie('user')}>로그아웃</button>}
+        </div>
     </nav>
     
     )

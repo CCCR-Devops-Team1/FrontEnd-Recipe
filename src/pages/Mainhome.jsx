@@ -4,8 +4,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style/Mainhome.css";
 
-function Mainhome () {
 
+function Mainhome () {
+    const [popular, setPopular] = useState([]);
     const [boardList,setBoardList] = useState ([]);
 
     useEffect(() =>{
@@ -15,15 +16,35 @@ function Mainhome () {
         }).then(response => setBoardList(response.data))
     })
 
+    useEffect(()=>{
+        getPopular();
+      },[])
+
+    const getPopular = async()=>{
+        // popular가 localstorage에 저장되어있는지 확인한다.
+        const check = localStorage.getItem('popular');
     
+        if(check){
+          // 저장되어있다면, fetching할 필요 없이 배열로 반환받는다.
+          setPopular(JSON.parse(check));
+        }else{
+          // 아무것도 없다면 fetching한다.
+          const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=179ea282a75149deb0d7f25e0e0211ef`);
+          const data = await api.json();
+    
+          localStorage.setItem('popular', JSON.stringify(data.recipes))
+          setPopular(data.recipes);
+          console.log(data.recipes);
+        }
+      } 
 
        
     return(
         <div className="home-body">
 
             <div className="home-box">
-
-                <tr className="common-list">
+                
+                    <tr className="common-list">
                 사람들이 작성한 글
                     <ur>
                   
@@ -43,6 +64,12 @@ function Mainhome () {
                 <div>
                     <td className="random-price">
                     음식 사진 혹은 정보
+                            
+                    <h3>Popular Picks</h3>
+                        <li >
+                           
+                        </li>
+                        
                     </td>
                 </div>  
 
