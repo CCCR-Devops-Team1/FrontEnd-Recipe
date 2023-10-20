@@ -1,5 +1,6 @@
 import './App.css'
 /* 전환할 페이지 가져오기 */
+
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Recipes from "./pages/Recipes"
@@ -8,9 +9,9 @@ import Write from './pages/Writepage'
 import Update from './pages/Updatepage'
 import Nav from './pages/Nav'
 import Board from './pages/Board'
-import Recipe from './pages/Recipes'
 import NotFound from './pages/NotFound'
-/*react*/ 
+
+/*react*/
 import React,{useState,useEffect} from 'react'
 import {Routes, Route } from "react-router-dom"
 
@@ -30,8 +31,8 @@ function App() {
           
           <Route path='Login' element={<Login/>}/>  {/*유저 로그인*/}
 
-          <Route path='Recipe' element={<Recipe/>}/> {/** 레시피 페이지 */}
-          <Route path='Recipe/id' element={<Recipe/>}/> {/** 레시피 상세 페이지 */}
+          <Route path='Recipes' element={<Recipes/>}/> {/** 레시피 페이지 */}
+          {/** 레시피 상 <Route path='Recipes/id' element={<Recipes/>}/>세 페이지 */}
 
           <Route path='Write' element={<Write/>}/> {/*글 쓰기 페이지*/}
 
