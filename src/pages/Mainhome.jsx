@@ -37,7 +37,6 @@ function Mainhome () {
           console.log(data.recipes);
         }
       } 
-
        
     return(
         <div className="home-body">
@@ -45,7 +44,7 @@ function Mainhome () {
             <div className="home-box">
                 
                     <tr className="common-list">
-                사람들이 작성한 글
+                    사람들이 작성한 글
                     <ur>
                   
                         {boardList.map((board) => (

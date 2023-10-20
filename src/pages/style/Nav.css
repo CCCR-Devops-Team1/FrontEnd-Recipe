@@ -1,7 +1,11 @@
 *{margin: 0; padding: 0; box-sizing: border-box; }
 
-body{
-  height: 100%;
+a {
+  text-decoration: none;
+}
+
+body::-webkit-scrollbar {
+  background: none; /* 스크롤바의 너비 */
 }
 
 nav{
@@ -10,6 +14,16 @@ nav{
   justify-content: space-around  
 }
 
+.logo{
+    display: grid;
+    align-content: space-evenly;
+    width: auto;
+}
+
+.tap {
+  display: flex;
+  width: 50%;
+}
 .Sig{
   text-align: center;
   align-items: center;
@@ -19,9 +33,10 @@ nav{
   box-shadow: 3px 5px 3px black ;
   padding: 15px 0px;
   background-color: #538CFF;
-  margin: 25px 10px;
+  margin: 25px 20px;
   border-radius: 1.75vh;
   font-weight: bold;
+  color: beige;
   font-size:large;
 }
 
@@ -29,14 +44,8 @@ nav{
   text-align: center;
   align-items: center;
   display: grid;
-  width: 60%;
+  width: auto;
   border: 2px solid #686975;
-}
-
-
-a {
-  color: beige;
-  text-decoration: none;
 }
 
 .Sig:hover{
