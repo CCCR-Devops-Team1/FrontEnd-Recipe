@@ -1,5 +1,5 @@
 FROM node:18
-MKDIR /app
+RUN mkdir /app
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
