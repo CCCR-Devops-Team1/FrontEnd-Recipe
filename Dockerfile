@@ -1,5 +1,5 @@
 # 첫 번째 빌드 스테이지
-FROM node:18.18.0 
+FROM node:18.18.0 AS build
 RUN mkdir /app
 WORKDIR /app
 COPY package*.json ./
