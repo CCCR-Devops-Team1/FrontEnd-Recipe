@@ -21,7 +21,6 @@ function App() {
       
       <Nav/>
 
-      
       {/* 페이지 라우팅 해주는 코드 path import 이름  element 링크 태그 사이 값*/}
       <Routes>
         
