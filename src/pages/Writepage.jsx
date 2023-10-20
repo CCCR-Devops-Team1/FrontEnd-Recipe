@@ -21,8 +21,6 @@ function Write(){
         });
     };
     
-
-   
     return (
         <div className="write-body">
             <form className="write-form">

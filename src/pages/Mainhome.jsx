@@ -61,15 +61,7 @@ function Mainhome () {
                 <hr/>
 
                 <div>
-                    <td className="random-price">
-                    음식 사진 혹은 정보
-                            
-                    <h3>Popular Picks</h3>
-                        <li >
-                           
-                        </li>
-                        
-                    </td>
+
                 </div>  
 
             </div>

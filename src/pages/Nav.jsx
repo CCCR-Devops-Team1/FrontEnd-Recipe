@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { useCookies } from "react-cookie";
 
 function Nav() {
+
     const [cookies, removeCookie] = useCookies(['user']);
 
     return (
@@ -16,6 +17,8 @@ function Nav() {
 
 
         <div className="logo">
+
+            <div></div>
             <Link to="/" className="main-logo"><span className="material-icons">other_houses</span>메인화면(로고)</Link> 
         </div>
 
