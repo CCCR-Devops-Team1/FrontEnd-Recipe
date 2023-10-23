@@ -1,6 +1,6 @@
 //로그인
 
-import React , {useState} from "react"
+import React , {useState,useEffect} from "react"
 import axios from "axios"
 import "./style/Signup.css" 
 
@@ -49,7 +49,7 @@ function Signup(){
                         type="text"
                         name="account"
                         placeholder="사용자 이름"
-                        value={formData.account}
+                        value={formData.ac}
                         onChange={handleChange}
                         />
                     </div>
