@@ -5,12 +5,9 @@ import React, { useEffect, useState,} from "react"
 import { useCookies } from "react-cookie"
 import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
-
+import { setCookie,getCookie,removeCookie } from "../testcookie";
 
 const Login = () => {  
-      
-
-    const [cookies, setCookie] = useCookies(['user']);
 
     const [logindata,setLogindata] = useState({
         account: '',
@@ -30,10 +27,16 @@ const Login = () => {
     
         try {
           const response = await axios.post({/**백엔드 api url 주소 */}, logindata);
+
           console.log('로그인 성공:', response.data);
-          const token =response.data.token
-          setCookie('user',token,{path: '/'})
+          const refreshToken = response.data.token 
+          if(refreshToken){
+            setCookie('refreshToken',refreshToken,{
+                path: '/',
+                secure: '/',
+            })}; //토큰 쿠키에 저장 path 가 '/' 일 경우 모든페이지에서 쿠키에 접근할 수 있다
           // 추가 작업 (예: 로그인 상태 업데이트, 리디렉션 등)
+
         } catch (error) {
           console.error('로그인 실패:', error);
           // 오류 처리 (예: 오류 메시지 표시)

@@ -5,6 +5,7 @@ import "./style/Nav.css"
 import { Link } from "react-router-dom"
 import { useCookies } from "react-cookie";
 import mainlogo from "../img/recipe-logo.png"
+import { setCookie,getCookie,removeCookie } from "../testcookie";
 
 function Nav() {
 
@@ -18,7 +19,7 @@ function Nav() {
 
         <div className="logo">
 
-            <Link to="/" className="main-logo"><img src={mainlogo} style={{height:50}}></img></Link> 
+            <Link to="/" className="main-logo"><img src={mainlogo} style={{height:63}}></img></Link> 
 
         </div>
 

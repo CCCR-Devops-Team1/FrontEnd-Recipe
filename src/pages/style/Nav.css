@@ -9,6 +9,7 @@ nav{
     display: grid;
     align-content: space-evenly;
     width: auto;
+    margin-left: 15px;
 }
 
 .tap {

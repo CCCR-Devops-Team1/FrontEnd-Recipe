@@ -26,6 +26,7 @@ const Recipes = ()=> {
 
             </div>
 
+
             <Pagination
                 activePage={page}
                 itemsCountPerPage={10}

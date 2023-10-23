@@ -5,6 +5,10 @@ a{
   text-decoration: none;
 }
 
-body::-webkit-scrollbar{
-  background: none;
-}
+body::-webkit-scrollbar,
+html::-webkit-scrollbar{
+    display: none;
+} 
+
+
+
