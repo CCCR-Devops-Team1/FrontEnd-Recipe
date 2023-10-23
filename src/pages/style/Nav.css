@@ -15,6 +15,7 @@ nav{
   display: flex;
   width: 50%;
 }
+
 .Sig{
   text-align: center;
   align-items: center;
@@ -39,7 +40,19 @@ nav{
   border: 2px solid #686975;
 }
 
-.Sig:hover{
+.login-button{
+  padding: 10px 0px;
+  font-weight: 600;
+  font-size: large;
+  color: #fff;
+  background-color: #538CFF;
+  margin: 0 5px;
+  border-radius: 4px;
+  transition: none;
+}
+
+.Sig:hover ,
+.login-button:hover{
   background-color: #212183;
   transition-duration: 0.7s;
 }

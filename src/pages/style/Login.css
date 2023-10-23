@@ -35,6 +35,17 @@
   margin-top: 30px;
 }
 
+.login-button{
+  padding: 10px 0px;
+  font-weight: 600;
+  font-size: large;
+  color: #fff;
+  background-color: #538CFF;
+  margin: 0 5px;
+  border-radius: 4px;
+  transition: none;
+}
+
 .login-footer{
   display:flex;
   justify-content: center;

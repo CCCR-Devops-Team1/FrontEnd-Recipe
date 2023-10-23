@@ -4,49 +4,46 @@ import axios from "axios";
 import React, { useEffect, useState,} from "react"
 import { useCookies } from "react-cookie"
 import "./style/Login.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
+
 
 const Login = () => {  
+      
 
-    const navigate = useNavigate();
-    const [users,setUsers] = useState([]);
-    const [userId, setUserId] = useState('');
-    const [password, setPassword] = useState('');
     const [cookies, setCookie] = useCookies(['user']);
 
-    
-    const handleUserIdChange = (e) => {
-    setUserId(e.target.value);
-    };
-    
-    const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    };
-    
-    useEffect (() => {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-        .then(function(response){
-            setUsers(response.data);
-        })
-    },[]);
-   
-    const match = function usermatch() {
-        const user = users.find(user => user.title === userId && user.id.toString() === password);
-        if(user) {
-          console.log('로그인');
-          setCookie('user', user, { path: '/' }); // 쿠키에 유저 정보 저장
-          navigate('/');
-        } else {
-          console.log('실패');  
-        }
-      }
-    
-    const handlebuttonchange = (e) => {
-        match();
-    }
+    const [logindata,setLogindata] = useState({
+        account: '',
+        pw: ''
+    });
 
+    const handleChange = (e) =>{
+        const {name,value} = e.target;
+        setLogindata({
+            ...logindata,
+            [name]: value,
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        try {
+          const response = await axios.post({/**백엔드 api url 주소 */}, logindata);
+          console.log('로그인 성공:', response.data);
+          const token =response.data.token
+          setCookie('user',token,{path: '/'})
+          // 추가 작업 (예: 로그인 상태 업데이트, 리디렉션 등)
+        } catch (error) {
+          console.error('로그인 실패:', error);
+          // 오류 처리 (예: 오류 메시지 표시)
+        }
+      };
+    
     return (
         <div className='login-body'>
+            
+
             <div className='login-box'>
                 <h1>Food recommendation</h1>
 
@@ -55,26 +52,25 @@ const Login = () => {
                     <h3>계정에 로그인하기 위해 세부 정보를 입력합니다.</h3>
 
                     <form>
-                        <input type='text' className='user' placeholder='| ID'
-                        value={userId}
-                        onChange={handleUserIdChange}
+                        <input
+                        type='text' 
+                        className='user' 
+                        placeholder='| ID'
+                        name="account"
+                        value={logindata.account}
+                        onChange={handleChange}
                         ></input>
 
-                        <input type='password' className='pass' placeholder='| PW'
-                        value={password}
-                        onChange={handlePasswordChange}
+                        <input 
+                        type='password' 
+                        className='pass' 
+                        placeholder='| PW'
+                        name='pw'
+                        value={logindata.pw}
+                        onChange={handleChange}
                         ></input>
                     </form>
-                    <ul>
-                        
-                        <li>
-                           
-                        </li>
-                        
-                    </ul>
-                    <div>
-                        <button onClick={handlebuttonchange}>로그인</button>
-                    </div>
+                    <button className="login-button" type="submit" onChange={handleSubmit}>로그인</button>
                 </div>
 
                 <div className='login-footer'>
