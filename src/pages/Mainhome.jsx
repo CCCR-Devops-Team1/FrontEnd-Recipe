@@ -35,7 +35,7 @@ function Mainhome () {
                         
                         <div className="board">
 
-                            <span style={{fontSize:30,fontWeight:"bold"}}> 자유 게시판 </span>
+                            <span style={{fontSize:28,fontWeight:"bold"}}> 자유 게시판 </span>
                         {
                             currentPost.map((board, index) => {
                             return (

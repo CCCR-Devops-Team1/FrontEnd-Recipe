@@ -18,10 +18,11 @@
 
 .board-line{
     align-items: center;
-    height: 65px;
+    height: 60px;
     width: 1120px;
     display: flex;
     padding-left:25px;
+    color: #353945;
     font-size: large;
     border-bottom: 1px solid #E6E8EC;
 }
