@@ -41,7 +41,7 @@ function Nav() {
             <p>User ID: {cookie ? cookie : 'Not Login'}</p>
             
             {cookie ? <button onClick={logout}>로그아웃</button> : <Link className="login-button" to="Login">로그인</Link>}
-            
+
         </div>
         
         

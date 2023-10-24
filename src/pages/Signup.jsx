@@ -43,7 +43,7 @@ function Signup(){
                 <hr style={{width : "inherit"}}/>
                 <h3>회원가입을 위해 정보를 입력해주세요</h3>
                                                 
-                <form className="list" onSubmit={handleSubmit}>
+                <form className="list">
                     <div>
                         <input
                         type="text"
@@ -73,7 +73,7 @@ function Signup(){
                     </div>
 
                     <div style={{display: "grid"}}>
-                        <button type="submit" className="check">회원가입</button>
+                        <form><button type="submit" className="check" onSubmit={handleSubmit}>회원가입</button></form>
                     </div>
                     
                 </form>     
