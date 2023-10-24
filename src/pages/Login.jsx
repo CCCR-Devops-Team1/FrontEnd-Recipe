@@ -9,6 +9,8 @@ import { setCookie,getCookie,removeCookie } from "../testcookie";
 
 const Login = () => {  
 
+    const navigate = useNavigate();
+
     const [logindata,setLogindata] = useState({
         account: '',
         pw: ''
@@ -29,13 +31,15 @@ const Login = () => {
           const response = await axios.post({/**백엔드 api url 주소 */}, logindata);
 
           console.log('로그인 성공:', response.data);
-          const refreshToken = response.data.token 
-          if(refreshToken){
-            setCookie('refreshToken',refreshToken,{
+
+          const accessToken = response.data.token 
+          if(accessToken){
+            setCookie('accessToken',`${accessToken}`,{
                 path: '/',
                 secure: '/',
             })}; //토큰 쿠키에 저장 path 가 '/' 일 경우 모든페이지에서 쿠키에 접근할 수 있다
           // 추가 작업 (예: 로그인 상태 업데이트, 리디렉션 등)
+            navigate('/');
 
         } catch (error) {
           console.error('로그인 실패:', error);
@@ -57,7 +61,6 @@ const Login = () => {
                     <form>
                         <input
                         type='text' 
-                        className='user' 
                         placeholder='| ID'
                         name="account"
                         value={logindata.account}
@@ -66,17 +69,20 @@ const Login = () => {
 
                         <input 
                         type='password' 
-                        className='pass' 
                         placeholder='| PW'
                         name='pw'
                         value={logindata.pw}
                         onChange={handleChange}
                         ></input>
+
                     </form>
-                    <button className="login-button" type="submit" onChange={handleSubmit}>로그인</button>
+                   
+                    <form><button type="submit" className="login-submit" onChange={handleSubmit}>로그인</button></form>
+
                 </div>
 
                 <div className='login-footer'>
+                   
                     <span>계정이 있다면 글을 작성할 수 있습니다.</span>
                 </div>
             </div>

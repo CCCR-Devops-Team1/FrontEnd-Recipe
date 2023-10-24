@@ -20,12 +20,12 @@ function App() {
   return (
     <div className="App">
       
-      <Nav/>
-
+      
+       
       {/* 페이지 라우팅 해주는 코드 path import 이름  element 링크 태그 사이 값*/}
-        
+      <Nav/>
         <Routes>    
-           
+  
           <Route exact path='/' element={<Mainhome/>}/> {/*게시판*/}  
 
           <Route path='Signup' element={<Signup/>}/> {/**회원가입 */}
@@ -35,7 +35,6 @@ function App() {
           
           
           <Route path='Recipes' element={<Recipes/>}/> {/** 레시피 페이지 */}
-
           
           {/** 레시피 상 <Route path='Recipes/id' element={<Recipes/>}/>세 페이지 */}
 
@@ -46,9 +45,9 @@ function App() {
           <Route path='Update' element={<Update/>}/> {/*글 유저마다 수정하기*/}
 
           <Route path='/*' element={<NotFound/>}/>
-                
+           
         </Routes>
-      
+        
 
     </div>
   )

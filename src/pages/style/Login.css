@@ -35,25 +35,30 @@
   margin-top: 30px;
 }
 
-.login-button{
-  padding: 10px 0px;
+.login-submit{
+  
+  padding: 10px 55px;
   font-weight: 600;
   font-size: large;
   color: #fff;
   background-color: #538CFF;
-  margin: 0 5px;
+  margin: 15px 0px;
   border-radius: 4px;
-  transition: none;
+  
 }
 
 .login-footer{
   display:flex;
   justify-content: center;
-  padding-top: 50px;
-  gap: 7px;
+  padding-top: 20px;
 }
 
-.login-main > input:hover{
-  border: 2px solid #10449A 
+input:focus,
+input:hover
+{
+  outline:2px solid #212183 ;
 }
 
+.login-submit:hover{
+  background-color: #212183 ;
+}

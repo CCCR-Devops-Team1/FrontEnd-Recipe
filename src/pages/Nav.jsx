@@ -2,14 +2,17 @@
 
 import React from "react"
 import "./style/Nav.css"
-import { Link } from "react-router-dom"
-import { useCookies } from "react-cookie";
+import { Link,Navigate } from "react-router-dom"
 import mainlogo from "../img/recipe-logo.png"
 import { setCookie,getCookie,removeCookie } from "../testcookie";
 
 function Nav() {
 
-    const [cookies, removeCookie] = useCookies(['user']);
+    const logout = removeCookie('accessToken');
+
+    const cookie = getCookie('accessToken');
+
+    const navigate = Navigate('/Login')
 
     return (
     
@@ -26,24 +29,22 @@ function Nav() {
         <div className="tap">
             <Link to="Signup" className="Sig"><span className="material-icons">person_add</span>회원가입</Link>
 
-            <Link to="Write" className="Sig"><span className="material-icons">edit</span>게시글 작성</Link>
+            <Link to={cookie ? 'Write' : 'Login' } className="Sig"><span className="material-icons">edit</span>게시글 작성</Link> 
 
-            <Link to="Update" className="Sig"><span className="material-icons">edit_note</span>게시글 수정</Link>
+            <Link to={cookie ? 'Update' : 'Login'} className="Sig"><span className="material-icons">edit_note</span>게시글 수정</Link>
 
-            <Link to="Recipes" className="Sig"><span className="material-icons">edit_note</span>레시피</Link>
+            <Link to="Recipes" className="Sig"><span className="material-icons">menu_book</span>레시피</Link>
         </div>
 
         <div className="info">
 
-            <p>User ID: {cookies.user ? cookies.user.title : 'Not logged in'}</p>
-            <p>로그인 여부: {cookies.user ? 'Logged in' : 'Not logged in'}</p>
+            <p>User ID: {cookie ? cookie : 'Not Login'}</p>
             
-            <Link className="login-button" to="Login">로그인</Link>
-            
-            {cookies.user && <button onClick={() => removeCookie('user')}>로그아웃</button>}
+            {cookie ? <button onClick={logout}>로그아웃</button> : <Link className="login-button" to="Login">로그인</Link>}
             
         </div>
-
+        
+        
     </nav>
     
     )

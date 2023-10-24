@@ -4,7 +4,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style/Mainhome.css";
 
-
 function Mainhome () {
     const [popular, setPopular] = useState([]);
     const [boardList,setBoardList] = useState ([]);
@@ -44,7 +43,7 @@ function Mainhome () {
             <div className="home-box">
                 
                     <tr className="common-list">
-                    사람들이 작성한 글
+                    <p> 자유 게시판 </p>
                     <ur>
                   
                         {boardList.map((board) => (

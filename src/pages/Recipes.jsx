@@ -15,8 +15,8 @@ const Recipes = ()=> {
             
             <div>
                 <input type="text" placeholder="레시피 찾기"></input>
+                <button type="submit">찾기</button>
             </div>
-
 
             <div>
 
@@ -25,19 +25,17 @@ const Recipes = ()=> {
                 <span>글쓴이</span>
 
             </div>
-
-
-            <Pagination
-                activePage={page}
-                itemsCountPerPage={10}
-                totalItemsCount={450}
-                pageRangeDisplayed={5}
-                prevPageText={"‹"}
-                nextPageText={"›"}
-                onChange={handlePageChange}
-            />
-
-
+            <div>
+                <Pagination
+                    activePage={page}
+                    itemsCountPerPage={10}
+                    totalItemsCount={450}
+                    pageRangeDisplayed={5}
+                    prevPageText={"‹"}
+                    nextPageText={"›"}
+                    onChange={handlePageChange}
+                />
+            </div>
         </div>
     )
 }
