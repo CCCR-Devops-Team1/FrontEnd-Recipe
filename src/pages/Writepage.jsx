@@ -3,8 +3,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./style/Writepage.css"
+import { getCookie } from "../cookie";
 
 function Write(){
+
+    const cookie = getCookie('accessToken')
+    
 
     const [userwrite,setUserwrite] = useState ({
         title:'',

@@ -1,70 +1,62 @@
 //메인홈 (게시판)
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect,useCallback} from "react";
+import Paging from "../Paging";
+import Apiget from "../testapiget";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style/Mainhome.css";
 
 function Mainhome () {
-    const [popular, setPopular] = useState([]);
-    const [boardList,setBoardList] = useState ([]);
 
-    useEffect(() =>{
-        axios({
-            method:'GET',
-            url: 'https://jsonplaceholder.typicode.com/posts'
-        }).then(response => setBoardList(response.data))
-    })
+    const userdata = Apiget();
+    const [currentPost, setCurrentPost] = useState(userdata)
+    const [page, setPage] = useState(1);
 
-    useEffect(()=>{
-        getPopular();
-      },[])
+    const postPerPage = 10
+    const indexOfLastPost = page * postPerPage
+    const indexOfFirstPost = indexOfLastPost - postPerPage
 
-    const getPopular = async()=>{
-        // popular가 localstorage에 저장되어있는지 확인한다.
-        const check = localStorage.getItem('popular');
+    const boardLength = userdata.length
+
+    const handlePageChange = (page) => {
+      setPage(page);
+    };
     
-        if(check){
-          // 저장되어있다면, fetching할 필요 없이 배열로 반환받는다.
-          setPopular(JSON.parse(check));
-        }else{
-          // 아무것도 없다면 fetching한다.
-          const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=179ea282a75149deb0d7f25e0e0211ef`);
-          const data = await api.json();
+    useEffect(() => {
+        setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
+      }, [userdata, page])
     
-          localStorage.setItem('popular', JSON.stringify(data.recipes))
-          setPopular(data.recipes);
-          console.log(data.recipes);
-        }
-      } 
-       
     return(
         <div className="home-body">
 
             <div className="home-box">
                 
-                    <tr className="common-list">
-                    <p> 자유 게시판 </p>
-                    <ur>
-                  
-                        {boardList.map((board) => (
-                        <li style={{listStyle: 'none' , padding_top:'95px'} } key={board.id}>
-                            <Link style={{display: 'block'}} className="userlink" to={`/Board/:${board.id}`}>{board.title}</Link>
-                            <hr/>
-                        </li> 
-                        ))}
-                
-                    </ur>
+                    <div className="common-list">
+                        
+                        <div className="board">
+
+                            <span style={{fontSize:30,fontWeight:"bold"}}> 자유 게시판 </span>
+                        {
+                            currentPost.map((board, index) => {
+                            return (
+                                <Link to={`/board/${board.id}`}>
+                                    <div className="board-line">
+                                        
+                                        <div>{index + 1}</div>
+                                        <span>{board.title}</span>
+                                        
+                                    </div>
+                                </Link>
+                                )
+                            })
+                        }
+
+                        </div>    
                                                                     
-                </tr>
-
-                <hr/>
-
-                <div>
-
-                </div>  
+                    </div>             
 
             </div>
-           
+            <Paging page={page} postPage={postPerPage} count={boardLength} setPage={handlePageChange}/>
         </div>
     )
 }

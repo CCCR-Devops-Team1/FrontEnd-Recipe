@@ -1,19 +1,11 @@
 
-
-.home-body{
-    border: 1px solid red;
-}
-
-.home-box{
-    border: 1px solid blue;
-}
-
 .common-list{
     display: flex;
     flex-direction: column;
     width: 100%;
     min-height: 70px;
-    gap: 5px;
+    padding-top: 25px;  
+    margin-bottom: 45px;
     align-items: center;
 }
 
@@ -24,12 +16,28 @@
     border: 1px solid #eaeaea;
 }
 
-.userlink{
-    padding: 3px;
+.board-line{
+    align-items: center;
+    height: 65px;
+    width: 1120px;
+    display: flex;
+    padding-left:25px;
+    font-size: large;
+    border-bottom: 1px solid #E6E8EC;
 }
 
+.board-line > div{
+    width:50px;
+    margin-right: 10px;
+    border: 1px solid #949494a9;
+    border-radius: 45px;
+    text-align: center;
+}
 
-.userlink{
-    color:black ;
-    text-decoration: none;
+.board-line > span {
+    font-weight: bold;
+}
+
+.board-line:hover {
+    background-color: #F9F9F9;
 }

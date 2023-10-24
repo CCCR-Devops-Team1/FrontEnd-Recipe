@@ -5,7 +5,7 @@ import React, { useEffect, useState,} from "react"
 import { useCookies } from "react-cookie"
 import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
-import { setCookie,getCookie,removeCookie } from "../testcookie";
+import { setCookie,getCookie,removeCookie } from "../cookie";
 
 const Login = () => {  
 
@@ -36,7 +36,7 @@ const Login = () => {
           if(accessToken){
             setCookie('accessToken',`${accessToken}`,{
                 path: '/',
-                secure: '/',
+                secure: false,
             })}; //토큰 쿠키에 저장 path 가 '/' 일 경우 모든페이지에서 쿠키에 접근할 수 있다
           // 추가 작업 (예: 로그인 상태 업데이트, 리디렉션 등)
             navigate('/');
@@ -60,7 +60,8 @@ const Login = () => {
 
                     <form>
                         <input
-                        type='text' 
+                        type='text'
+                        className="input-user" 
                         placeholder='| ID'
                         name="account"
                         value={logindata.account}
@@ -69,6 +70,7 @@ const Login = () => {
 
                         <input 
                         type='password' 
+                        className="input-user"
                         placeholder='| PW'
                         name='pw'
                         value={logindata.pw}

@@ -4,7 +4,7 @@ import React from "react"
 import "./style/Nav.css"
 import { Link,Navigate } from "react-router-dom"
 import mainlogo from "../img/recipe-logo.png"
-import { setCookie,getCookie,removeCookie } from "../testcookie";
+import { setCookie,getCookie,removeCookie } from "../cookie";
 
 function Nav() {
 
