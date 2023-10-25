@@ -32,7 +32,6 @@ function Write(){
         alert('등록되었습니다.');
         navigate('/');
         });
-        
     };
     
     return (

@@ -46,8 +46,7 @@ const SimpleSlider = () => {
         ))}    
         
       </Slider>
-        
-      
+              
     );
   }
 export default SimpleSlider;
