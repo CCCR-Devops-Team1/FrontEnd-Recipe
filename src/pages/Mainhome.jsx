@@ -1,7 +1,7 @@
 //메인홈 (게시판)
 import React,{useState, useEffect,useCallback} from "react";
-import Paging from "../Paging";
-import Apiget from "../testapiget";
+import Paging from "../component/Paging";
+import Apiget from "../component/testapiget";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style/Mainhome.css";

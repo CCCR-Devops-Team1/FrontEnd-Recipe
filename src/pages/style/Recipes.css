@@ -1,0 +1,35 @@
+.recipe-search{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0 ;
+}
+
+
+.recipe-searchWrite{
+    padding: 9px 3px 9px 7px;
+    border: none;
+    background: transparent;
+    border: 1px solid rgb(187, 183, 183);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.recipe-searchbutton{
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #538CFF;
+    color: azure;
+}
+
+
+.recipe-searchbutton:hover{
+    background-color: #212183;
+}
+
+.recipe-searchbutton:active{
+    background-color: #212183;
+    
+}

@@ -5,7 +5,7 @@ import React, { useEffect, useState,} from "react"
 import { useCookies } from "react-cookie"
 import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
-import { setCookie,getCookie,removeCookie } from "../cookie";
+import { setCookie,getCookie,removeCookie } from "../component/cookie";
 
 const Login = () => {  
 
@@ -52,7 +52,7 @@ const Login = () => {
             
 
             <div className='login-box'>
-                <h1>Food recommendation</h1>
+                <h1>Recipe</h1>
 
                 <div className='login-main'>
 

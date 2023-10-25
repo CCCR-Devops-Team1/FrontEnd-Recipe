@@ -49,7 +49,7 @@ function Signup(){
                         type="text"
                         name="account"
                         placeholder="사용자 이름"
-                        value={formData.ac}
+                        value={formData.account}
                         onChange={handleChange}
                         />
                     </div>

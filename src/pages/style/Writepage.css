@@ -43,23 +43,25 @@
     padding: 3px ;
 }
 
-.write{
+.writeSave{
     position:inherit;
     display: grid;
     justify-items: end;
     padding: 6px;
 }
 
-.write > input {
-    width: 110px;
-    height: 40px;
-    border-radius: 1.15vh;
-    background: none;
-    border: groove;
-    color: black;
+.writeSave > button {
+    padding: 10px 55px;
+    font-weight: 600;
+    font-size: large;
+    color: #fff;
+    background-color: #538CFF;
+    margin: 15px 0px;
+    border-radius: 4px;
 }
 
-.write > input:active{
-    background-color: #FBFBFB;
+.writeSave > button:active{
+    background-color: #212183;
     border: inset;
 }
+

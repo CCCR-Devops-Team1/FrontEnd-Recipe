@@ -10,6 +10,7 @@ import Update from './pages/Updatepage'
 import Nav from './pages/Nav'
 import Board from './pages/Board'
 import NotFound from './pages/NotFound'
+import Mypage from './pages/Mypage'
 
 /*react*/
 import React,{useState,useEffect} from 'react'
@@ -19,20 +20,17 @@ function App() {
 
   return (
     <div className="App">
-      
-      
        
       {/* 페이지 라우팅 해주는 코드 path import 이름  element 링크 태그 사이 값*/}
       <Nav/>
+
         <Routes>    
   
           <Route exact path='/' element={<Mainhome/>}/> {/*게시판*/}  
 
-          <Route path='Signup' element={<Signup/>}/> {/**회원가입 */}
-            
+          <Route path='Signup' element={<Signup/>}/> {/**회원가입 */}      
           
           <Route path='Login' element={<Login/>}/>  {/*유저 로그인*/}
-          
           
           <Route path='Recipes' element={<Recipes/>}/> {/** 레시피 페이지 */}
           
@@ -43,6 +41,8 @@ function App() {
           <Route path='Board/:id' element={<Board/>}/> {/*글 유저마다 상세보기*/}
 
           <Route path='Update' element={<Update/>}/> {/*글 유저마다 수정하기*/}
+
+          <Route path='Mypage' element={<Mypage/>}/> {/**개인정보 수정및 보기창 */}
 
           <Route path='/*' element={<NotFound/>}/>
            

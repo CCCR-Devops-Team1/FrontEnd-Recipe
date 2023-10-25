@@ -1,15 +1,17 @@
 //글 쓰기 (개인) {로그인}
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style/Writepage.css"
-import { getCookie } from "../cookie";
+import { getCookie } from "../component/cookie";
 
 function Write(){
 
-    const cookie = getCookie('accessToken')
-    
+    const navigate = useNavigate();
 
+    const cookie = getCookie('accessToken');
+    
     const [userwrite,setUserwrite] = useState ({
         title:'',
         contents:'',
@@ -23,6 +25,14 @@ function Write(){
             ...userwrite,
             [name]:value,
         });
+    };
+
+    const saveBoard = async () => {
+        await axios.post(`/notice`,userwrite).then((res) => {
+        alert('등록되었습니다.');
+        navigate('/');
+        });
+        
     };
     
     return (
@@ -48,8 +58,8 @@ function Write(){
                     ></textarea>
 
                 </div>
-                <div className="write">
-                    <input type="submit" ></input>
+                <div className="writeSave">
+                    <button type='submit' onClick={() => saveBoard}>글저장</button>
                 </div>
             </form>
             
