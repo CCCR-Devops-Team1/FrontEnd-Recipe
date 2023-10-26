@@ -10,8 +10,9 @@ function Write(){
 
     const navigate = useNavigate();
 
-    const cookie = getCookie('accessToken');
-    
+    const cookie = getCookie("Token");
+    const nickname = getCookie("info");
+
     const [userwrite,setUserwrite] = useState ({
         title:'',
         contents:'',
@@ -27,11 +28,22 @@ function Write(){
         });
     };
 
-    const saveBoard = async () => {
-        await axios.post(`/notice`,userwrite).then((res) => {
-        alert('등록되었습니다.');
-        navigate('/');
-        });
+    const saveBoard = async (e) => {
+        e.preventDefault();
+        
+        try{
+            await axios.post(`/notice`,
+            {userwrite}
+            ,{  headers:{
+                    'Authorization': `Bearer ${cookie}`,
+                },
+            });
+            
+        }   
+        catch (err){
+            console.log("작성 실패",err);
+        
+        }
     };
     
     return (
@@ -39,7 +51,7 @@ function Write(){
             <form className="write-form">
 
                 <div className="naming">
-                    <span>작성자 / (회원정보)</span>
+                    <span>{nickname}</span>
                     <input type = "text" placeholder="제목"
                     name="title"
                     value={title}

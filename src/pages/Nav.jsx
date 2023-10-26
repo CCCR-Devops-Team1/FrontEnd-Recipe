@@ -4,18 +4,24 @@ import React,{useState} from "react"
 import "./style/Nav.css"
 import { Link,Navigate} from "react-router-dom"
 import mainlogo from "../img/recipe-logo.png"
-import { setCookie,getCookie,removeCookie } from "../component/cookie";
+import { getCookie,removeCookie } from "../component/cookie";
 import ModalBasic from "../component/Modal";
 import Dropdown from "../component/DropDown";
+import axios from "axios";
 function Nav() {
 
-    const logout = removeCookie('accessToken');
+    const logout = removeCookie('Token');
 
-    const cookie = getCookie('accessToken');
+    const cookie = getCookie('Token');
+    const nickname = getCookie('info');
+
+
+
 
     const modal = ModalBasic();
    
     const [view, setView] = useState(false); 
+
 
     return (
     
@@ -41,13 +47,11 @@ function Nav() {
 
         <div className="info">
 
-            <p>User ID: {cookie ? cookie : 'Not Login'}</p>
+            <p>User ID: {cookie ? nickname : 'Not Login'}</p>
             
             {cookie ? <button className="login-button" onClick={logout}>로그아웃</button> 
             
             : <Link className="login-button" to="Login">로그인</Link>}
-
-            
                       
             {cookie ? <ul onClick={() => {setView(!view)}}>
                 {/* ul 클릭하면 view 상태를 반대로반가워요, nickname 님!{" "} */}

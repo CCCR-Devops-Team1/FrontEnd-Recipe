@@ -1,4 +1,5 @@
 import React,{useState,useRef} from "react";
+import Recipes from "../pages/Recipes";
 
 function ModalBasic() {
     // 모달 끄기 

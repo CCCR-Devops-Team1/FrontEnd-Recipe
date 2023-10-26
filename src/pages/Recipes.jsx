@@ -1,46 +1,60 @@
-import React,{useEffect, useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import SimpleSlider from "../component/carousel";
+
 import './style/Recipes.css'
 
-const Recipes = ()=> {
+const Recipes = () => {
+  const [keyword, setKeyword] = useState('');
 
-    const [searchWrite , setSearchWrite] = useState([]);
+  const [menu,setMenu] = useState('');
 
-    const onChange = (e) =>{
-        const {name,value} = e.target;
-        setSearchWrite({
-            ...searchWrite,
-            [name]:value,
-        });
-    };
-    
-    const slide = SimpleSlider();
+  const onChange = (e) => {
+    setKeyword(e.target.value);
+  };
 
-    return(
-        <div className="recipe-body">
-            <form>
-                <div className="recipe-search">
-                    <input className="recipe-searchWrite"
-                     name="searchWrite" 
-                     value={searchWrite.value} 
-                     type="text" 
-                     placeholder="레시피 찾기"
-                     onChange={onChange}/>
-                    <button className="recipe-searchbutton" type="submit">찾기</button>
-                </div>
-            </form>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-            <div>
-                
-            </div>
+    try {
+      const response = await axios.post(`recipe?keyword=${keyword}`, { keyword });
+      menu = response.data
+
+
+    } catch (error) {
+      console.error('레시피 검색 실패:', error);
+    }
+
+  }
+
+  const slide = SimpleSlider();
+
+  return (
+    <div className="recipe-body">
+      <form onSubmit={handleSubmit}>
+        <div className="recipe-search">
+            <input className="recipe-searchWrite"
+                name="keyword"
+                value={keyword}
+                type="text"
+                placeholder="레시피 찾기"
+                onChange={onChange} />
+            <button className="recipe-searchbutton" type="submit">찾기</button>
             
-                {slide}
-
-            <div>
-                
-            </div>
         </div>
-    )
+      </form>
+
+      <div>
+
+      </div>
+
+      {slide}
+
+      <div>
+
+      </div>
+    </div>
+  )
 }
+
 export default Recipes

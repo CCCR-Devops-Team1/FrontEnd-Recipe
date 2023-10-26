@@ -15,8 +15,8 @@ const SimpleSlider = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-        setEvent(response.data);
+        const response = await axios.get('');
+          setEvent(response.data);
       } catch (error) {
         console.error(error);
       }
@@ -28,25 +28,30 @@ const SimpleSlider = () => {
     const settings = {
       dots: false,
       infinite: true,
-      speed: 500,
+      centerMode: true,
+      draggable:true,
+      speed: 300,
       slidesToShow: 1,
       slidesToScroll: 1,
+      
     };
     
     return (
-      
+      <>
       <Slider {...settings}>
 
       {
-        data.map(recipes => (
+        event.map(recipes => (
           <div>
-            <h2>{recipes.title}</h2>
+            <img src={recipes.thumbnailUrl}/>
           </div> 
           
         ))}    
         
       </Slider>
-              
+  
+        
+      </>
     );
   }
 export default SimpleSlider;

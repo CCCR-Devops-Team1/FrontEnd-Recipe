@@ -28,17 +28,24 @@ const Login = () => {
         e.preventDefault();
     
         try {
-          const response = await axios.post({/**백엔드 api url 주소 */}, logindata);
+            const response = await axios.post("/notice", logindata);
 
-          console.log('로그인 성공:', response.data);
+            console.log('로그인 성공:', response.data);
 
-          const accessToken = response.data.token 
-          if(accessToken){
-            setCookie('accessToken',`${accessToken}`,{
-                path: '/',
-                secure: false,
-            })}; //토큰 쿠키에 저장 path 가 '/' 일 경우 모든페이지에서 쿠키에 접근할 수 있다
-          // 추가 작업 (예: 로그인 상태 업데이트, 리디렉션 등)
+            const accessToken = response.data.token 
+                if(accessToken){
+                setCookie('Token',`${accessToken}`,{
+                    path: '/',
+                    secure: false,
+                })};
+
+            const userinfo = response.account
+                setCookie("info",{userinfo},{
+                    path: '/',
+                    secure: false,
+                });
+                //토큰 쿠키에 저장 path 가 '/' 일 경우 모든페이지에서 쿠키에 접근할 수 있다
+            // 추가 작업 (예: 로그인 상태 업데이트, 리디렉션 등)
             navigate('/');
 
         } catch (error) {
@@ -49,7 +56,6 @@ const Login = () => {
     
     return (
         <div className='login-body'>
-            
 
             <div className='login-box'>
                 <h1>Recipe</h1>

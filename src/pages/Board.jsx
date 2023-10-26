@@ -2,6 +2,9 @@
 
 import React , {useState,useEffect } from "react";
 import { Route,Router } from "react-router-dom";
+
+import { getCookie } from "../component/cookie";
+import axios from "axios";
 import Write from "./Writepage";
 
 
@@ -9,8 +12,9 @@ const Board = () => {
 
     return(
         <div>
-            상세보기 확인용 글
+            
             <p>{window.location.pathname}</p>
+            
         </div>  
     )
 }

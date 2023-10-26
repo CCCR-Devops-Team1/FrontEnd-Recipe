@@ -20,6 +20,7 @@ function Update () {
             <form className="update-form">
 
                 <tr id="wra">
+                    <h2>작성목록</h2>
                     
                 {posts.map(monso => (
                     
@@ -28,6 +29,7 @@ function Update () {
                         <td><div className="list-name"><span id="number">{ monso.id }</span></div></td>
 
                         <td><div><span id='title'>{ monso.title }</span></div></td>
+
                     </td>
                     
                 ))}
