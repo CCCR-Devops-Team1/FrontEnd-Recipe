@@ -8,8 +8,10 @@ import { getCookie,removeCookie } from "../component/cookie";
 import ModalBasic from "../component/Modal";
 import Dropdown from "../component/DropDown";
 import axios from "axios";
+import ApiGet from "../component/testapiget";
 function Nav() {
-
+    const loginfo = ApiGet('');
+    
     const logout = removeCookie('Token');
 
     const cookie = getCookie('Token');

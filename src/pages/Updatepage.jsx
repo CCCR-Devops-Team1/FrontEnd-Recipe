@@ -36,7 +36,7 @@ function Update() {
           <thead>
             <tr>
               <th colSpan="2">
-                <h2>작성목록</h2>
+                <h2 style={{margin: 20}}>작성목록</h2>
               </th>
             </tr>
           </thead>
