@@ -10,7 +10,7 @@ import Write from "./Writepage";
 const Board = () => {
 
 
-    const textdata = axios.get("",)
+    <p>미리보기 방지</p>
 
 
     return(
