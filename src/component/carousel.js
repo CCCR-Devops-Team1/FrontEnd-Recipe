@@ -15,7 +15,7 @@ const SimpleSlider = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('');
+        const response = await axios.get('https://jsonplaceholder.typicode.com/photos');
           setEvent(response.data);
       } catch (error) {
         console.error(error);
@@ -28,7 +28,7 @@ const SimpleSlider = () => {
     const settings = {
       dots: false,
       infinite: true,
-      centerMode: true,
+      centerMode: false,
       draggable:true,
       speed: 300,
       slidesToShow: 1,

@@ -18,6 +18,21 @@ function Updownpunk(){
         contents:'',
     });
 
+    const [imageSrc, setImageSrc]= useState(null);
+
+    const onUpload = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        return new Promise((resolve) => { 
+            reader.onload = () => {	
+                setImageSrc(reader.result || null); // 파일의 컨텐츠
+                resolve();
+            };
+        });
+    }
+
     const {title,contents} = userwrite;
 
     const onchange = (e) =>{
@@ -59,6 +74,26 @@ function Updownpunk(){
                     ></input>
                 </div>
                 <hr/>
+
+                <div>
+
+                    <span>
+                        안녕하세여
+                    </span>
+                    <span>
+                        
+                    <input 
+                        accept="image/*" 
+                        multiple type="file"
+                        onChange={e => onUpload(e)}
+                    />
+                    <img 
+                        width={'70%'} 
+                        src={imageSrc} 
+                    />
+                    </span>
+                </div>
+
                 <div className="contents">
 
                     <p style={{paddingBottom : "10px"}}>내용</p>

@@ -31,30 +31,29 @@ function Mainhome () {
 
             <div className="home-box">
                 
-                    <div className="common-list">
-                        
-                        <div className="board">
+                <div className="common-list">
+                    
+                    <div className="board">
 
-                            <span style={{fontSize:28,fontWeight:"bold"}}> 자유 게시판 </span>
-                        {
-                            currentPost.map((board, index) => {
-                            return (
-                                <Link to={`/board/${board.id}`}>
-                                    <div className="board-line">
-                                        
-                                        <div>{index + 1}</div>
-                                        <span>{board.title}</span>
-                                        
-                                    </div>
-                                </Link>
-                                )
-                            })
-                        }
+                        <span style={{fontSize:28,fontWeight:"bold"}}> 자유 게시판 </span>
+                    {
+                        currentPost.map((board, index) => {
+                        return (
+                            <Link to={`/board/${board.id}`}>
+                                <div className="board-line">
+                                    
+                                    <div>{index + 1}</div>
+                                    <span>{board.title}</span>
+                                    
+                                </div>
+                            </Link>
+                            )
+                        })
+                    }
 
-                        </div>    
-                                                                    
-                    </div>             
-
+                    </div>    
+                                                                
+                </div>             
             </div>
             <Paging page={page} postPage={postPerPage} count={boardLength} setPage={handlePageChange}/>
         </div>

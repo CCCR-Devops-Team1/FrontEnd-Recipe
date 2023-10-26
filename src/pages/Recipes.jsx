@@ -33,6 +33,7 @@ const Recipes = () => {
     <div className="recipe-body">
       <form onSubmit={handleSubmit}>
         <div className="recipe-search">
+            
             <input className="recipe-searchWrite"
                 name="keyword"
                 value={keyword}
