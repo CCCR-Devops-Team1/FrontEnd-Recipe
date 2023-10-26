@@ -11,6 +11,7 @@ import Nav from './pages/Nav'
 import Board from './pages/Board'
 import NotFound from './pages/NotFound'
 import Mypage from './pages/Mypage'
+import Updownpunk from './pages/updownpunk'
 
 /*react*/
 import React,{useState,useEffect} from 'react'
@@ -41,6 +42,7 @@ function App() {
           <Route path='Board/:id' element={<Board/>}/> {/*글 유저마다 상세보기*/}
 
           <Route path='Update' element={<Update/>}/> {/*글 유저마다 수정하기*/}
+          <Route path='updownpunk' element={<Updownpunk/>}/> {/*글 유저마다 수정하기*/}
 
           <Route path='Mypage' element={<Mypage/>}/> {/**개인정보 수정및 보기창 */}
 

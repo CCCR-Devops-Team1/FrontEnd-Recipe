@@ -1,10 +1,31 @@
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 import './style/Update.css'
 import axios from "axios";
+import Paging from "../component/Paging";
 
 function Update () {
 
     const [posts, setPosts] = useState([]);
+   
+    const [page,setPage] = useState(1);
+
+    const [currentPost, setCurrentPost] = useState(posts)
+
+    const postPerPage = 10
+    const indexOfLastPost = page * postPerPage
+    const indexOfFirstPost = indexOfLastPost - postPerPage
+
+    const boardLength = posts.length
+
+    const handlePageChange = (page) => {
+        setPage(page)
+    }
+
+    useEffect(() => {
+        setCurrentPost(posts.slice(indexOfFirstPost, indexOfLastPost))
+      }, [posts, page])
+      
 
     useEffect(() => {
         axios ({
@@ -22,19 +43,32 @@ function Update () {
                 <tr id="wra">
                     <h2>작성목록</h2>
                     
-                {posts.map(monso => (
+                
                     
-                    <td id="line">
-                        
-                        <td><div className="list-name"><span id="number">{ monso.id }</span></div></td>
-
-                        <td><div><span id='title'>{ monso.title }</span></div></td>
-
-                    </td>
+                <td id="line">
                     
-                ))}
+                    {
+                        currentPost.map((board, index) => {
+                        return (
+                            <Link to={`/board/${board.id}`}>
+                                <div className="board-line">
+                                    
+                                    <div>{index + 1}</div>
+                                    <span>{board.title}</span>
+                                    
+                                </div>
+                            </Link>
+                            )
+                        })
+                    }
+
+                </td>
+                    
+                
                 </tr>    
-                 
+
+
+                <Paging page={page} postPage={postPerPage} count={boardLength} setPage={handlePageChange}/>
             </form>
             
         </div>

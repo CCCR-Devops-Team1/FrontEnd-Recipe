@@ -15,9 +15,6 @@ function Nav() {
     const cookie = getCookie('Token');
     const nickname = getCookie('info');
 
-
-
-
     const modal = ModalBasic();
    
     const [view, setView] = useState(false); 
