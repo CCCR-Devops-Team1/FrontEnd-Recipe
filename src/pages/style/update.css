@@ -1,0 +1,44 @@
+
+.common-list{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 70px;
+    padding-top: 25px;  
+    margin-bottom: 45px;
+    align-items: center;
+}
+
+.common-list  > ul {
+    position: inherit;
+    display: grid;
+    gap: 5px;
+    border: 1px solid #eaeaea;
+}
+
+.underline{
+    align-items: center;
+    height: 60px;
+    width: 1120px;
+    display: flex;
+    padding-left:25px;
+    color: #353945;
+    font-size: large;
+    border-bottom: 1px solid #E6E8EC;
+}
+
+.underline > div{
+    width:50px;
+    margin-right: 10px;
+    border: 1px solid #949494a9;
+    border-radius: 45px;
+    text-align: center;
+}
+
+.underline > span {
+    font-weight: bold;
+}
+
+.underline:hover {
+    background-color: #F9F9F9;
+}
