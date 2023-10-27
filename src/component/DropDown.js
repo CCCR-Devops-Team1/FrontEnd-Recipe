@@ -1,26 +1,26 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
-function Dropdown() {
+import React from 'react';
+import './DropDown.css'
+const Dropdown = props => {
+    const [visibilityAnimation, setVisibilityAnimation] = React.useState(false);
+    const [repeat, setRepeat] = React.useState(null);
 
-  const navigate = useNavigate();
+    React.useEffect(() => {
+        if (props.visibility) {
+            clearTimeout(repeat);
+            setRepeat(null);
+            setVisibilityAnimation(true);
+        } else {
+            setRepeat(setTimeout(() => {
+                setVisibilityAnimation(false);
+            }, 400));
+        }
+    }, [props.visibility]);
 
-  const [logout,setLogout] = useState();
+    return (
+        <article className={`components-dropdown ${props.visibility ? 'slide-fade-in-dropdown' : 'slide-fade-out-dropdown'}`}>
+            { visibilityAnimation && props.children }
+        </article>
+    )
+};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    axios.put("url",{
-      
-    })
-    
-  };
-
-  return (
-    <>
-      <button onClick={() => navigate('Mypage')}>내정보</button>
-      <li>로그아웃</li>
-    </>
-  );
-}
-
-  export default Dropdown;
+export default Dropdown;

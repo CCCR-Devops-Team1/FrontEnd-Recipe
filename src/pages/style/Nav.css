@@ -58,6 +58,8 @@ nav{
   transition-duration: 0.7s;
 }
 
+
+
 @media screen and (max-width: 992px){
    .Sig,nav{
     padding: 8px 10px;

@@ -17,6 +17,8 @@ function Nav() {
     const cookie = getCookie('Token');
     const nickname = getCookie('info');
 
+    const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
+
     const modal = ModalBasic();
    
     const [view, setView] = useState(false); 
@@ -48,17 +50,25 @@ function Nav() {
 
             <p>User ID: {cookie ? nickname : 'Not Login'}</p>
             
-            {cookie ? <button className="login-button" onClick={logout}>로그아웃</button> 
+            {/* <button type="submit" className="login-button" onClick={logout}>로그아웃</button>  */}
             
-            : <Link className="login-button" to="Login">로그인</Link>}
-                      
-            {cookie ? <ul onClick={() => {setView(!view)}}>
-                {/* ul 클릭하면 view 상태를 반대로반가워요, nickname 님!{" "} */}
-                {view ? '⌃' : '⌄'} 
-                {/* -> view가 true면 올리는 아이콘, false면 내리는 아이콘 보여줌 */}
-                {view && <Dropdown />}
-                {/* -> view가 true일 때만 Dropdown 컴포넌트 렌더링 */}
-            </ul> : false}
+            <Link className="login-button" to="Login">로그인</Link>
+                
+            <button onClick={e => setDropdownVisibility(!dropdownVisibility)}>
+                {
+                    dropdownVisibility
+                        ? 'Close'
+                        : 'Open'
+                }
+            </button>
+            <Dropdown visibility={dropdownVisibility}>
+                <ul>
+                    <li>item 1</li>
+                    <li>item 2</li>
+                    <li>item 3</li>
+                    <li>item 4</li>
+                </ul>
+            </Dropdown>
 
         </div>
 

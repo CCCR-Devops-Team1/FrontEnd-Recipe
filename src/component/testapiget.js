@@ -8,7 +8,7 @@ const ApiGet = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/user/login');
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
         setEvent(response.data);
       } catch (error) {
         console.error(error);
