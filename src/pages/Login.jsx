@@ -28,7 +28,7 @@ const Login = () => {
         e.preventDefault();
     
         try {
-            const response = await axios.post("/notice", logindata);
+            const response = await axios.post("/user/login", logindata);
 
             console.log('로그인 성공:', response.data);
 

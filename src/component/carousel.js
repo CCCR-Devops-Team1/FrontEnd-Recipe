@@ -15,7 +15,7 @@ const SimpleSlider = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        const response = await axios.get('https://picsum.photos/v2/list?page=2&limit=50​');
           setEvent(response.data);
       } catch (error) {
         console.error(error);
@@ -43,8 +43,8 @@ const SimpleSlider = () => {
       {
         event.map(recipes => (
           <div>
-            {/* <img src={recipes.thumbnailUrl}/> */}
-            <h2>{recipes.title}</h2>
+            { <img src={recipes.thumbnailUrl} alt="잘못됨"/> }
+            <h2>{recipes.id}</h2>
           </div> 
           
         ))}    

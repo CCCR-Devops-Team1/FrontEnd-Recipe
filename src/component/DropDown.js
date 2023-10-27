@@ -1,7 +1,19 @@
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
+import axios from "axios";
 function Dropdown() {
+
   const navigate = useNavigate();
+
+  const [logout,setLogout] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    axios.put("url",{
+      
+    })
+    
+  };
 
   return (
     <>

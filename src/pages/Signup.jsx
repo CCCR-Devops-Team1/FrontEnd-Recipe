@@ -24,7 +24,7 @@ function Signup(){
         e.preventDefault();
     
         try {
-          const response = await axios.post('http://your-backend-api-url/signup', formData);
+          const response = await axios.post('/user/signup', formData);
           console.log('회원가입 성공:', response.data);
           // 추가 작업 (예: 리디렉션, 사용자 알림 등)
         } catch (error) {
