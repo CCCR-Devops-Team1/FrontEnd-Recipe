@@ -2,19 +2,22 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import ApiGet from "../component/testapiget";
 import { getCookie } from "../component/cookie";
+
 const Mypage = () => {
     
-    const myinfomaiton  = getCookie('Token');
+    const myToken  = getCookie('Token');
+    const myinfomaiton  =("")
 
-    useEffect(() => {
-        axios.get('/user',myinfomaiton)
-        .then((response) =>{
-            console.log(response.data);
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
-    })
+    const info = async () => {
+     try{myinfomaiton= await axios.get('url',myToken)
+
+
+    } catch(error){  
+        console.log(error);
+
+     }
+
+    }
 
     return(
         <>

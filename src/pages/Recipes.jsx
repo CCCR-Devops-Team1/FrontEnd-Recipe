@@ -17,9 +17,8 @@ const Recipes = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`recipe?keyword=${keyword}`, { keyword });
-      menu = response.data
-
+      const response = await axios.get('url',{keyword});
+      console.log(response);
 
     } catch (error) {
       console.error('레시피 검색 실패:', error);

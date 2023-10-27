@@ -29,11 +29,11 @@ function Write(){
     }
 
     const [userwrite,setUserwrite] = useState ({
-        title:'',
+        subject:'',
         contents:'',
     });
 
-    const {title,contents} = userwrite;
+    const {subject,contents} = userwrite;
 
     const onchange = (e) =>{
         const {value,name} = e.target;
@@ -47,17 +47,11 @@ function Write(){
         e.preventDefault();
         
         try{
-            await axios.post(`/notice`,
-            {userwrite}
-            ,{  headers:{
-                    'Authorization': `Bearer ${cookie}`,
-                },
-            });
-            
+            const res = await axios.post("url",userwrite)
+            console.log(res.data);
         }   
         catch (err){
             console.log("작성 실패",err);
-        
         }
     };
     
@@ -69,8 +63,8 @@ function Write(){
                 <div className="naming">
                     <span>{nickname}</span>
                     <input type = "text" placeholder="제목"
-                    name="title"
-                    value={title}
+                    name="subject"
+                    value={subject}
                     onChange={onchange}
                     ></input>
                 </div>
