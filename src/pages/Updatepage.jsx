@@ -43,11 +43,11 @@ function Update() {
           <tbody>
             <tr>
               <td colSpan="2" >
-                {currentPost.map((board, index) => (
-                  <Link to={`/board/${board.id}`} key={board.id}>
+                {currentPost.map((Myboard, index) => (
+                  <Link to={`/Myboard/${Myboard.id}`} key={Myboard.id}>
                     <div className="underline">
                       <div>{index + 1}</div>
-                      <span>{board.title}</span>
+                      <span>{Myboard.title}</span>
                     </div>
                   </Link>
                 ))}

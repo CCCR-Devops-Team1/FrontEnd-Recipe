@@ -9,6 +9,7 @@ import Write from './pages/Writepage'
 import Update from './pages/Updatepage'
 import Nav from './pages/Nav'
 import Board from './pages/Board'
+import Myboard from './pages/Myboard'
 import NotFound from './pages/NotFound'
 import Mypage from './pages/Mypage'
 import Updownpunk from './pages/updownpunk'
@@ -16,6 +17,7 @@ import Updownpunk from './pages/updownpunk'
 /*react*/
 import React,{useState,useEffect} from 'react'
 import {BrowserRouter,Routes, Route,Outlet } from "react-router-dom"
+
 
 function App() {
 
@@ -40,6 +42,7 @@ function App() {
           <Route path='Write' element={<Write/>}/> {/*글 쓰기 페이지*/}
 
           <Route path='Board/:id' element={<Board/>}/> {/*글 유저마다 상세보기*/}
+          <Route path='Myboard/:id' element={<Myboard/>}/>
 
           <Route path='Update' element={<Update/>}/> {/*글 유저마다 수정하기*/}
           <Route path='updownpunk' element={<Updownpunk/>}/> {/*글 유저마다 수정하기*/}
