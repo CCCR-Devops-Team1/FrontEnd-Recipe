@@ -8,8 +8,8 @@ import "./style/Mainhome.css";
 
 function Mainhome () {
 
-    const userdata = Apiget();
-    const [currentPost, setCurrentPost] = useState(userdata)
+    const [userdata , setuserData] = useState([]);
+    const [currentPost, setCurrentPost] = useState(userdata);
     const [page, setPage] = useState(1);
 
     const postPerPage = 10
@@ -25,6 +25,19 @@ function Mainhome () {
     useEffect(() => {
         setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
       }, [userdata, page])
+
+    useEffect(() => {
+        const fetchData = async () => {
+
+        try {
+            const response = await axios.get('http://www.recipetips.net/notice');
+            setuserData(response.data);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+},[])
     
     return(
         <div className="home-body">
@@ -57,7 +70,7 @@ function Mainhome () {
             </div>
             <Paging page={page} postPage={postPerPage} count={boardLength} setPage={handlePageChange}/>
         </div>
-    )
-}
+    );
+};
 
 export default Mainhome
