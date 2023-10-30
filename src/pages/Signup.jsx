@@ -4,8 +4,10 @@ import React , {useState,useRef} from "react"
 import axios from "axios"
 import "./style/Signup.css" 
 import { useNavigate } from "react-router-dom";
+import { setCookie } from "../component/cookie";
 
 function Signup(){
+
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
@@ -13,6 +15,14 @@ function Signup(){
     pw: '',
     confirm_pw: '',
   });
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const inputRef1 = useRef(null);
   const inputRef2 = useRef(null);
@@ -27,29 +37,29 @@ function Signup(){
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+  const handleSubmit = async (e) =>{
+    try{
+    const response = await axios.post("http://recipetips.net/user/signup",formData);
+    
+    setCookie("accessToken",response.token.accessToken,{
+      path:'/',
+      secure:false,
+      maxAge:3000
     });
+    setCookie("refreshToken",response.token.refreshToken,{
+      path:'/',
+      secure:false,
+      maxAge:10000
+    });
+
+    alert('회원가입 성공');
+    navigate('/');
+
+  }catch(error){
+    console.error(error);
+    alert('회원가입 실패', error);
+  }
   };
-
-  const handleSubmit = async (e) => {
-      e.preventDefault();
-  
-      try {
-        const response = await axios.post('http://www.recipetips.net/user/signup', formData);
-        console.log('회원가입 성공:', response.data);
-        navigate('/');
-        // 추가 작업 (예: 리디렉션, 사용자 알림 등)
-      } catch (error) {
-        alert("회원가입 실패")
-        console.error(error);
-
-        // 오류 처리 (예: 오류 메시지 표시)
-      }
-    };
 
   return (
 
@@ -72,7 +82,6 @@ function Signup(){
                   onChange={handleChange}
                   onKeyDown={(e) => handleKeyDown(e, inputRef2)}
                   ref={inputRef1}
-                  
                   />
               </div>
               <div>
@@ -98,9 +107,10 @@ function Signup(){
                   />
               </div>
               
-          </form>   
+          </form>
+             
           <div style={{display: "grid"}}>
-            <button onClick={handleSubmit} type="submit" className="check" >회원가입</button>
+            <input onClick={handleSubmit} type="button" className="check" value='회원가입' />
           </div>  
                           
       </div>

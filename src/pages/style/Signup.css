@@ -47,12 +47,14 @@
 
 .check {
     width: -webkit-fill-available;
-    margin: 50px 0px 15px 0px;
+    margin: 25px 0px 15px 0px;
     padding: 13px;
     background-color: #538CFF;
     font-size: large;
+    text-align: center;
     color: azure;
     cursor: pointer;
+    width: 229px;
     border: none;
     border-radius: 8px;
 }

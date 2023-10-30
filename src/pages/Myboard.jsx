@@ -13,8 +13,6 @@ const Myboard = () => {
 
     const login = getCookie("Token");
 
-
-
     const navigate = useNavigate();
 
     const cookie = getCookie("Token");

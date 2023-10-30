@@ -10,17 +10,17 @@ import './style/Board.css'
 
 const Board = () => {
 
-    const searchTest = async()=>{
-        try{
-            const response = await axios.get(`http://www.recipetips.net/notice/${article_id}`,{   
-            article_id : id
-            })
+    // const searchTest = async()=>{
+    //     try{
+    //         const response = await axios.get(`http://www.recipetips.net/notice/${article_id}`,{   
+    //         article_id : id
+    //         })
 
-        }catch(error){
-            console.error(error);
-        }
+    //     }catch(error){
+    //         console.error(error);
+    //     }
     
-    }
+    // }
 
 
     useEffect(()=> {
