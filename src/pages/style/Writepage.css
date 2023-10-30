@@ -27,7 +27,6 @@
     padding: 3px 0px 0px 7px;
     font-size: large;
 }
-
 .contents{
     display: grid;
     font-size: large;
@@ -35,8 +34,8 @@
 
 .contents > p{
     padding-left: 10px;
-}   
-
+}  
+ 
 .contents > textarea{
     font-size: large;
     font-weight: 500;

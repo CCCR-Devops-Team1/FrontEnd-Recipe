@@ -38,7 +38,7 @@ const Login = () => {
         e.preventDefault();
     
         try {
-            const response = await axios.post("/user/login", logindata);
+            const response = await axios.post("http://www.recipetips.net/user/login", logindata);
             if(response.status===200){
             let accessToken = response.headers['authorization']
             let refreshToken = response.headers['refresh']
@@ -53,8 +53,9 @@ const Login = () => {
             navigate('/');
 
         } catch (error) {
-          console.error('로그인 실패:', error);
-          
+          console.error(error);
+          alert("로그인 실패");
+          console.log('로그인 실패');
         }
       };
     
@@ -68,7 +69,7 @@ const Login = () => {
 
                     <h3>계정에 로그인하기 위해 세부 정보를 입력합니다.</h3>
 
-                    <form>
+                    <form id="login">
                         
                         <input
                         type='text'
@@ -91,10 +92,10 @@ const Login = () => {
                         onKeyDown={(e) => handleKeyDown(e, null)}
                         ref={inputRef1}
                         ></input>
-
+                        
                     </form>
                    
-                    <form><button type="submit" className="login-submit" onChange={handleSubmit}>로그인</button></form>
+                    <button form="login" type="submit" className="login-submit" onClick={handleSubmit}>로그인</button>
 
                 </div>
 

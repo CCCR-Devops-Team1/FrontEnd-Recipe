@@ -39,7 +39,7 @@ function Signup(){
       e.preventDefault();
   
       try {
-        const response = await axios.post('/user/signup', formData);
+        const response = await axios.post('http://www.recipetips.net/user/signup', formData);
         console.log('회원가입 성공:', response.data);
         navigate('/');
         // 추가 작업 (예: 리디렉션, 사용자 알림 등)

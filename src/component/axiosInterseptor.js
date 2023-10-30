@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const useAxiosWithAuth = () => {
   
  const accessToken = getCookie("acessToken")
-    
+ const refreshToken = getCookie("refreshToken")
   const navigate = useNavigate();
 
   const createAxiosInstance = () => {
@@ -23,9 +23,7 @@ const useAxiosWithAuth = () => {
       if (statusCode === 419 || statusCode === 401) {
         try {
           const refreshResponse = await axios.post(
-            "{refresh token 발급 API URL}",
-            { refresh: accessToken }
-          );
+            "/auth/reissue",refreshToken);
           console.log(refreshResponse);
           const newToken = refreshResponse.data.accessToken;
           setCookie("accessToken", newToken);
