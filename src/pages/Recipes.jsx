@@ -7,7 +7,7 @@ import './style/Recipes.css'
 const Recipes = () => {
   const [keyword, setKeyword] = useState('');
 
-  const [menu,setMenu] = useState('');
+  const [menu,setMenu] = useState([]);
 
   const onChange = (e) => {
     setKeyword(e.target.value);
@@ -17,8 +17,9 @@ const Recipes = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get('/recipe?keword=',{keyword});
+      const response = await axios.get('http://www.recipetips.nets/recipe?keword=',{keyword});
       console.log(response);
+      setMenu(response.code) 
 
     } catch (error) {
       console.error('레시피 검색 실패:', error);
@@ -45,7 +46,7 @@ const Recipes = () => {
       </form>
 
       <div className="carrol">
-
+        {}
       </div>
      
     </div>
