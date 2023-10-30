@@ -62,6 +62,7 @@ function Signup(){
           <h3>회원가입을 위해 정보를 입력해주세요</h3>
                                           
           <form className="list" onSubmit={handleSubmit}>
+            
               <div>
                   <input
                   type="text"
@@ -96,12 +97,11 @@ function Signup(){
                   ref={inputRef3}
                   />
               </div>
-
-              <div style={{display: "grid"}}>
-                  <button type="submit" className="check" >회원가입</button>
-              </div>
               
-          </form>     
+          </form>   
+          <div style={{display: "grid"}}>
+            <button onClick={handleSubmit} type="submit" className="check" >회원가입</button>
+          </div>  
                           
       </div>
 

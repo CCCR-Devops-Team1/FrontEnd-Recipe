@@ -44,8 +44,19 @@ const Login = () => {
             let refreshToken = response.headers['refresh']
             console.log('accessToken',accessToken);
             console.log('refreshToken',refreshToken);
-            setCookie('accessToken',accessToken);
-            setCookie('refreshToken',refreshToken);
+            setCookie('accessToken',accessToken,
+            {
+                path:'/',
+                secure:false,
+                maxAge:3000
+
+            });
+            setCookie('refreshToken',refreshToken,
+            {
+                path:'/',
+                secure:false,
+                maxAge:3000
+            });
             axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 
             console.log('로그인 성공:', response.data);
@@ -69,7 +80,7 @@ const Login = () => {
 
                     <h3>계정에 로그인하기 위해 세부 정보를 입력합니다.</h3>
 
-                    <form id="login">
+                    <form method="POST" id="login">
                         
                         <input
                         type='text'
