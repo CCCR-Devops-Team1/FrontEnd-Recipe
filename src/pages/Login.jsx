@@ -39,21 +39,17 @@ const Login = () => {
     
         try {
             const response = await axios.post("http://www.recipetips.net/user/login", logindata);
+            if(response.status===200){
+            let accessToken = response.headers['authorization']
+            let refreshToken = response.headers['refresh']
+            console.log('accessToken',accessToken);
+            console.log('refreshToken',refreshToken);
+            setCookie('accessToken',accessToken);
+            setCookie('refreshToken',refreshToken);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 
             console.log('로그인 성공:', response.data);
-
-            const accessToken = response.data.token 
-                if(accessToken){
-                setCookie('Token',`${accessToken}`,{
-                    path: '/',
-                    secure: false,
-                })};
-
-            const userinfo = response.account
-                setCookie("info",{userinfo},{
-                    path: '/',
-                    secure: false,
-                });
+        }
             navigate('/');
 
         } catch (error) {

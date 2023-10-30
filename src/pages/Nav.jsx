@@ -10,14 +10,19 @@ import Dropdown from "../component/DropDown";
 import axios from "axios";
 import ApiGet from "../component/testapiget";
 function Nav() {
-    const loginfo = ApiGet('');
     
-    const logout = removeCookie('Token');
-
+    const accessToken = getCookie('accessToken');
+    const refreshToken = getCookie('refreshToken');
+    
     const logoutsubmit = async (e) =>{
         try{
-           const response = await axios.put("/user/logout",logout)
-            console.log(response.data);
+           const response = await axios.put("/user/logout",{
+            headers:{
+                Authorization: `Bearer ${accessToken},${refreshToken}`        
+            }
+        }) 
+        const accessToken = removeCookie("accessToken")
+        const refreshToken = removeCookie("refreshToken")
         }
         catch(error){
             console.error(error);
@@ -32,10 +37,6 @@ function Nav() {
     const modal = ModalBasic();
    
     const [view, setView] = useState(false); 
-
-    function toggleActive(button) {
-        button.classList.toggle('active');
-      }
 
     return (
     
@@ -67,7 +68,7 @@ function Nav() {
             
             <Link className="login-button" to="Login">로그인</Link> 
 
-           {cookie ? <button type="submit" className="login-button" onClick={logout}>로그아웃</button> : false }
+           {cookie ? <button type="submit" className="login-button" onClick={logoutsubmit}>로그아웃</button> : false }
             
             {/*드롭다운 버튼*/}
 

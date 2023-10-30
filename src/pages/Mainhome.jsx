@@ -45,10 +45,11 @@ function Mainhome () {
             <div className="home-box">
                 
                 <div className="common-list">
-                    
+                
                     <div className="board">
-
-                        <span style={{fontSize:28,fontWeight:"bold"}}> 자유 게시판 </span>
+                    <span style={{fontSize:28,fontWeight:"bold"}}> 자유 게시판 </span>
+                    <hr/>
+                        
                     {
                         currentPost.map((board, index) => {
                         return (

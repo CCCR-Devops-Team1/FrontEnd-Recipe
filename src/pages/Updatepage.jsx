@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './style/Update.css';
+import ApiGet from "../component/testapiget";
 import axios from "axios";
 import Paging from "../component/Paging";
 
 function Update() {
+
+  const myinfo = ApiGet();
+
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [currentPost, setCurrentPost] = useState(posts);
@@ -23,12 +27,18 @@ function Update() {
   }, [posts, page]);
 
   useEffect(() => {
-    axios({
-      method: 'GET',
-      url: 'https://jsonplaceholder.typicode.com/posts'
-    }).then(response => setPosts(response.data));
-  }, []);
+    const myPost = async () =>{
+      try{
+          const response = await axios("http://localhost:3000/user",myinfo)
+          setPosts (response.data)
 
+        }catch(error){
+        console.error(error);
+      }
+
+    }    
+  },[])
+  
   return (
     <div className="update-body">
       <form className="update-form">

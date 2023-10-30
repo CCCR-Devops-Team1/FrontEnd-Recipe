@@ -1,14 +1,15 @@
 import axios from "axios";
-import { setCookie } from "react-cookie";
+import { setCookie,getCookie } from "./cookie";
 import { useState, useEffect } from "react";
 
 const ApiGet = () => {
   const [event, setEvent] = useState([]);
+  const Token = getCookie("Token");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        const response = await axios.get("http://localhost:3000/user",Token);
         setEvent(response.data);
       } catch (error) {
         console.error(error);
@@ -20,5 +21,7 @@ const ApiGet = () => {
 
   return event; // 또는 원하는 JSX 컴포넌트나 UI를 반환합니다.
 };
-
 export default ApiGet;
+
+
+ 
