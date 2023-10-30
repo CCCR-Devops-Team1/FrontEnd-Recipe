@@ -1,6 +1,6 @@
 //로그인
 
-import React , {useState,useEffect} from "react"
+import React , {useState,useRef} from "react"
 import axios from "axios"
 import "./style/Signup.css" 
 
@@ -11,6 +11,19 @@ function Signup(){
       pw: '',
       confirm_pw: '',
     });
+
+    const inputRef1 = useRef(null);
+    const inputRef2 = useRef(null);
+    const inputRef3 = useRef(null);
+
+    const handleKeyDown = (event, ref) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        if (ref && ref.current) {
+          ref.current.focus();
+        }
+      }
+    };
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -24,7 +37,7 @@ function Signup(){
         e.preventDefault();
     
         try {
-          const response = await axios.post('/user/signup', formData);
+          const response = await axios.post('http://www.recipetips.net/user/signup', formData);
           console.log('회원가입 성공:', response.data);
           // 추가 작업 (예: 리디렉션, 사용자 알림 등)
         } catch (error) {
@@ -48,9 +61,12 @@ function Signup(){
                         <input
                         type="text"
                         name="account"
-                        placeholder="사용자 이름"
+                        placeholder="사용할 이름"
                         value={formData.account}
                         onChange={handleChange}
+                        onKeyDown={(e) => handleKeyDown(e, inputRef2)}
+                        ref={inputRef1}
+                        
                         />
                     </div>
                     <div>
@@ -60,6 +76,8 @@ function Signup(){
                         placeholder="비밀번호"
                         value={formData.pw}
                         onChange={handleChange}
+                        onKeyDown={(e) => handleKeyDown(e, inputRef3)}
+                        ref={inputRef2}
                         />
                     </div>
                     <div>
@@ -69,6 +87,9 @@ function Signup(){
                         placeholder="비밀번호 확인"
                         value={formData.confirm_pw}
                         onChange={handleChange}
+                        onKeyDown={(e) => handleKeyDown(e, null)} // 마지막 입력란인 경우에는 다음 인풋으로 넘어가지 않도록 null 전달
+                        ref={inputRef3}
+                        
                         />
                     </div>
 

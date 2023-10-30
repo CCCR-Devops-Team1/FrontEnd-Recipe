@@ -1,15 +1,25 @@
 //로그인
-
 import axios from "axios";
-import React, { useEffect, useState,} from "react"
-import { useCookies } from "react-cookie"
+import React, { useEffect, useState,useRef} from "react"
 import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
-import { setCookie,getCookie,removeCookie } from "../component/cookie";
+import { setCookie,getCookie,removeCookie} from "../component/cookie";
 
 const Login = () => {  
 
     const navigate = useNavigate();
+
+    const inputRef1 = useRef(null);
+    const inputRef2 = useRef(null);
+
+    const handleKeyDown = (event, ref) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          if (ref && ref.current) {
+            ref.current.focus();
+          }
+        }
+      };
 
     const [logindata,setLogindata] = useState({
         account: '',
@@ -28,7 +38,7 @@ const Login = () => {
         e.preventDefault();
     
         try {
-            const response = await axios.post("/user/login", logindata);
+            const response = await axios.post("http://www.recipetips.net/user/login", logindata);
 
             console.log('로그인 성공:', response.data);
 
@@ -44,13 +54,11 @@ const Login = () => {
                     path: '/',
                     secure: false,
                 });
-                //토큰 쿠키에 저장 path 가 '/' 일 경우 모든페이지에서 쿠키에 접근할 수 있다
-            // 추가 작업 (예: 로그인 상태 업데이트, 리디렉션 등)
             navigate('/');
 
         } catch (error) {
           console.error('로그인 실패:', error);
-          // 오류 처리 (예: 오류 메시지 표시)
+          
         }
       };
     
@@ -65,6 +73,7 @@ const Login = () => {
                     <h3>계정에 로그인하기 위해 세부 정보를 입력합니다.</h3>
 
                     <form>
+                        
                         <input
                         type='text'
                         className="input-user" 
@@ -72,6 +81,8 @@ const Login = () => {
                         name="account"
                         value={logindata.account}
                         onChange={handleChange}
+                        onKeyDown={(e) => handleKeyDown(e, inputRef1)}
+                        ref={inputRef2}
                         ></input>
 
                         <input 
@@ -81,6 +92,8 @@ const Login = () => {
                         name='pw'
                         value={logindata.pw}
                         onChange={handleChange}
+                        onKeyDown={(e) => handleKeyDown(e, null)}
+                        ref={inputRef1}
                         ></input>
 
                     </form>

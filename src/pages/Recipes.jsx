@@ -17,7 +17,7 @@ const Recipes = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get('url',{keyword});
+      const response = await axios.get('/recipe?keword=',{keyword});
       console.log(response);
 
     } catch (error) {
@@ -44,12 +44,10 @@ const Recipes = () => {
         </div>
       </form>
 
-      <div>
+      <div className="carrol">
 
       </div>
-
-      {slide}
-
+ 
       <div>
 
       </div>

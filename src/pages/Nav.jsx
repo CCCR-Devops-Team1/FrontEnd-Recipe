@@ -14,6 +14,16 @@ function Nav() {
     
     const logout = removeCookie('Token');
 
+    const logoutsubmit = async (e) =>{
+        try{
+           const response = await axios.put("/user/logout",logout)
+            console.log(response.data);
+        }
+        catch(error){
+            console.error(error);
+        }
+    }
+
     const cookie = getCookie('Token');
     const nickname = getCookie('info');
 
@@ -23,6 +33,9 @@ function Nav() {
    
     const [view, setView] = useState(false); 
 
+    function toggleActive(button) {
+        button.classList.toggle('active');
+      }
 
     return (
     
@@ -45,35 +58,42 @@ function Nav() {
 
             <Link to="Recipes" className="Sig"><span className="material-icons">menu_book</span>레시피</Link>
         </div>
+        
 
         <div className="info">
 
             <p>User ID: {cookie ? nickname : 'Not Login'}</p>
             
-            {/* <button type="submit" className="login-button" onClick={logout}>로그아웃</button>  */}
             
-            <Link className="login-button" to="Login">로그인</Link>
-                
-            <button onClick={e => setDropdownVisibility(!dropdownVisibility)}>
-                {
-                    dropdownVisibility
-                        ? 'Close'
-                        : 'Open'
-                }
-            </button>
+            <Link className="login-button" to="Login">로그인</Link> 
+
+           {cookie ? <button type="submit" className="login-button" onClick={logout}>로그아웃</button> : false }
+            
+            {/*드롭다운 버튼*/}
+
+            {cookie ? <button class="material-symbols-outlined" onClick={e => setDropdownVisibility(!dropdownVisibility)}>
+            more_vert
+            
+            </button> : false}
+            
+
+        
+            {/** 드롭다운 내용 */}
+              
             <Dropdown visibility={dropdownVisibility}>
                 <ul>
-                    <li>item 1</li>
-                    <li>item 2</li>
+                    <li>
+                        <button onClick={logoutsubmit}  onclick="toggleActivetoggleActive(this)">로그아웃</button>
+                    </li>
+                    <li><Link to="Mypage"><button>내정보</button></Link></li>
                     <li>item 3</li>
                     <li>item 4</li>
                 </ul>
-            </Dropdown>
-
-        </div>
+            </Dropdown> 
+            
+        </div>    
 
     </nav>
-    
     )
 }
 export default Nav;
