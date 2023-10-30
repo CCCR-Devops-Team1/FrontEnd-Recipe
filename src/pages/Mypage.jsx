@@ -13,17 +13,15 @@ const Mypage = () => {
 
     const [changepw,setChangepw] = useState();
 
-
     const onChange = (e) => {
         setChangepw(e.target.value);
     };
     
-    
     const info = async () => {
-        try{myinfomaiton= await axios.get('http://www.recipetips.net/user',{
+        try{myinfomaiton= await axios.get('/user',{
             headers:{
                 Authorization: `Bearer ${accessToken}`
-            }
+            },
         })
 
         } catch(error){  

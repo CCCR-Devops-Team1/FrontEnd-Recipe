@@ -39,12 +39,13 @@ function Signup(){
       e.preventDefault();
   
       try {
-        const response = await axios.post('http://localhost:3000/user/signup', formData);
+        const response = await axios.post('/user/signup', formData);
         console.log('회원가입 성공:', response.data);
         navigate('/');
         // 추가 작업 (예: 리디렉션, 사용자 알림 등)
       } catch (error) {
         alert("회원가입 실패")
+        console.error(error);
 
         // 오류 처리 (예: 오류 메시지 표시)
       }
@@ -60,7 +61,7 @@ function Signup(){
           <hr style={{width : "inherit"}}/>
           <h3>회원가입을 위해 정보를 입력해주세요</h3>
                                           
-          <form className="list">
+          <form className="list" onSubmit={handleSubmit}>
               <div>
                   <input
                   type="text"
@@ -97,7 +98,7 @@ function Signup(){
               </div>
 
               <div style={{display: "grid"}}>
-                  <form><button type="submit" className="check" onSubmit={handleSubmit}>회원가입</button></form>
+                  <button type="submit" className="check" >회원가입</button>
               </div>
               
           </form>     

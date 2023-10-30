@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const useAxiosWithAuth = () => {
   
-  const removeCookie = removeCookie();
+ const accessToken = getCookie("acessToken")
     
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const useAxiosWithAuth = () => {
         try {
           const refreshResponse = await axios.post(
             "{refresh token 발급 API URL}",
-            { refresh: cookies.accessToken }
+            { refresh: accessToken }
           );
           console.log(refreshResponse);
           const newToken = refreshResponse.data.accessToken;
