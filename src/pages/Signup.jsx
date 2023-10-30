@@ -37,28 +37,16 @@ function Signup(){
     }
   };
 
-  const handleSubmit = async (e) =>{
+  const handleSubmit = async () =>{
     try{
     const response = await axios.post("http://recipetips.net/user/signup",formData);
-    
-    setCookie("accessToken",response.token.accessToken,{
-      path:'/',
-      secure:false,
-      maxAge:3000
-    });
-    setCookie("refreshToken",response.token.refreshToken,{
-      path:'/',
-      secure:false,
-      maxAge:10000
-    });
-
     alert('회원가입 성공');
     navigate('/');
-
-  }catch(error){
+    
+    }catch(error){
     console.error(error);
     alert('회원가입 실패', error);
-  }
+    }
   };
 
   return (

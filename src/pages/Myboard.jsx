@@ -73,7 +73,9 @@ const Myboard = () => {
                     onChange={onchange}
                     ></input>
                 </div>
+
                 <hr/>
+
                 <div>
 
                     <span>
@@ -90,7 +92,7 @@ const Myboard = () => {
                         width={'70%'} 
                         src={imageSrc} 
                     />
-                    
+
                     </span>
                 </div>
 

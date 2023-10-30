@@ -34,30 +34,28 @@ const Login = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
     
         try {
-            const response = await axios.post("http://www.recipetips.net/user/login", logindata);
+            const response = await axios.post("http://www.recipetips.net/user/login",logindata);
             if(response.status===200){
-            let accessToken = response.headers['authorization']
-            let refreshToken = response.headers['refresh']
-            console.log('accessToken',accessToken);
-            console.log('refreshToken',refreshToken);
-            setCookie('accessToken',accessToken,
-            {
-                path:'/',
-                secure:false,
-                maxAge:3000
+            let accessToken = response.headers.authorization;
+            let refreshToken = response.headers.refresh;
+            console.log('accessToken :',accessToken);
+            console.log('refreshToken :',refreshToken);
 
-            });
-            setCookie('refreshToken',refreshToken,
-            {
-                path:'/',
-                secure:false,
-                maxAge:3000
-            });
             axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+            setCookie("accessToken",response.token.accessToken,{
+            path:'/',
+            secure:false,
+            maxAge:3000
+            });
+            setCookie("refreshToken",response.token.refreshToken,{
+            path:'/',
+            secure:false,
+            maxAge:10000
+            });
 
             console.log('로그인 성공:', response.data);
         }
@@ -106,12 +104,11 @@ const Login = () => {
                         
                     </form>
                    
-                    <button form="login" type="submit" className="login-submit" onClick={handleSubmit}>로그인</button>
+                    <input form="login" type="button" className="login-submit" onClick={handleSubmit} value='로그인'/>
 
                 </div>
 
                 <div className='login-footer'>
-                   
                     <span>계정이 있다면 글을 작성할 수 있습니다.</span>
                 </div>
             </div>

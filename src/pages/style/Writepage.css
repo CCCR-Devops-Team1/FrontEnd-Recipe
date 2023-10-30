@@ -27,6 +27,27 @@
     padding: 3px 0px 0px 7px;
     font-size: large;
 }
+
+.fileremover{
+    display:inline-block;
+    background-color:transparent;
+    border: transparent;
+    margin-right: 5px;
+    border-radius: 47%;
+}
+.fileremover:hover{
+    background-color: #DfDfDf;
+}    
+
+.fileremover:after {
+    display: inline-block;
+    content: "\00d7";
+    font-size:20px;
+    margin: 0 3px 0 3px;
+    padding: 1px;
+}
+
+
 .contents{
     display: grid;
     font-size: large;

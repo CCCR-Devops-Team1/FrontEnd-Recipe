@@ -27,17 +27,16 @@ function Mainhome () {
       }, [userdata, page])
 
     useEffect(() => {
-        const fetchData = async () => {
+        const postedText = async() =>{
+            try{
+                const response = await axios.get(`http://notice?page=${page}&size={size}`) //분할해서 페이징 해야하는데 사이즈? 그냥 전부 렌더 해서 그걸 프론트 쪽에서 나눠 보여주는게 낮지 않나?
+            }catch(error){
+                console.error(error);
+            };
+        };
+    },[]);
 
-        try {
-            const response = await axios.get('http://www.recipetips.net/notice');
-            setuserData(response.data);
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
-},[])
+    
     
     return(
         <div className="home-body">

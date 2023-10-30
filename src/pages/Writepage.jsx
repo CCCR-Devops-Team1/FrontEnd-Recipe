@@ -28,6 +28,14 @@ function Write(){
         });
     }
 
+    const handleChange = (e) => {
+
+        e.preventDefault();
+        
+        setImageSrc(null)
+
+    }
+
     const [userwrite,setUserwrite] = useState ({
         subject:'',
         contents:'',
@@ -72,20 +80,22 @@ function Write(){
                 <div>
 
                     <span>
-                        안녕하세여
+                        <button className="fileremover" onClick={handleChange}></button>
                     </span>
-                    <span>
-                        
+                    <span> 
                     <input 
+                        id="img"
                         accept="image/*" 
                         multiple type="file"
                         onChange={e => onUpload(e)}
+                        onClick={(event)=> { 
+                            event.target.value = null
+                          }}
                     />
                     <img 
-                        width={'70%'} 
+                        width={'15%'} 
                         src={imageSrc} 
                     />
-                    
                     </span>
                 </div>
 

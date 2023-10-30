@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import ApiGet from "../component/testapiget";
 import ModalBasic from "../component/Modal";
+import "./style/Mypage.css"
 import { getCookie } from "../component/cookie";
 
 
@@ -70,26 +71,29 @@ const Mypage = () => {
     return(
         <div className="mypage-body">
             
-            <div>
+            <div className="userinfo">
+
                 <ul>
                     <li>{myinfomaiton}</li>
                 </ul>
+
+
+                <form className="infosubmit" onSubmit={handleSubmit}> 
+                
+                    <button type="submit" onClick={escape}>회원탈퇴</button>  
+
+                    <input type="password" 
+                    name="changepw" 
+                    value={changepw} 
+                    placeholder="변경할 비밀번호"
+                    onChange={onChange}
+                    ></input>
+                    <button type="submit" onClick={changePW}>변경확인</button>
+
+                </form>
                 
             </div>
-                
-            <form onSubmit={handleSubmit}> 
-            
-                <button type="submit" onClick={escape}>회원탈퇴</button>  
 
-                <input type="password" 
-                name="changepw" 
-                value={changepw} 
-                placeholder="변경할 비밀번호"
-                onChange={onChange}
-                ></input>
-                <button type="submit" onClick={changePW}>변경확인</button>
-
-            </form>
 
         </div>
     );

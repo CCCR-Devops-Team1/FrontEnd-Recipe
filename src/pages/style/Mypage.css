@@ -1,0 +1,20 @@
+.mypage-body{
+    display: grid;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.userinfo{
+    width: 500px;
+    height: 450px;
+    background-color: blanchedalmond;
+    display: grid;
+}
+
+.infosubmit{
+    align-items: flex-end;
+    display: flex;
+    margin: 20px;
+    gap:30px
+}
+
