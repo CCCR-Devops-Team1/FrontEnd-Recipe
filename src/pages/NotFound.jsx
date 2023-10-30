@@ -8,7 +8,7 @@ function NotFound (){
         
         <div className="failbody">
 
-            <div className="hand"><span id="hand" className="material-symbols-outlined">front_hand</span></div>
+            <div className="hand-box"><span id="hand" className="material-symbols-outlined">front_hand</span></div>
             <h1 className="err-no">404</h1>        
             <div className="err1">원하시는 페이지를 찾을수 없습니다</div>
             <p className="err2">죄송합니다, 요청한 페이지가 현재 사용할 수 없거나 존재하지 않습니다.</p>

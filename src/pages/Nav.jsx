@@ -21,8 +21,8 @@ function Nav() {
                 Authorization: `Bearer ${accessToken},${refreshToken}`        
             }
         }) 
-        const accessToken = removeCookie("accessToken")
-        const refreshToken = removeCookie("refreshToken")
+        removeCookie("accessToken")
+        removeCookie("refreshToken")
         }
         catch(error){
             console.error(error);
@@ -43,7 +43,6 @@ function Nav() {
     <nav className="Head">
             {/* 라우팅 할 링크 위에  Link to =import 이름 class는 아무 의미없는 글로 통일해둠
             태그 사이에 값은 display 표시할 글 */}
-
         <div className="logo">
 
             <Link to="/" className="main-logo"><img src={mainlogo} style={{height:63}}></img></Link> 
@@ -76,8 +75,6 @@ function Nav() {
             more_vert
             
             </button> : false}
-            
-
         
             {/** 드롭다운 내용 */}
               

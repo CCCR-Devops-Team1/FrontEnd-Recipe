@@ -8,7 +8,7 @@ import { getCookie } from "../component/cookie";
 const Mypage = () => {
     
     const modal = ModalBasic('');
-    const Token  = getCookie('Token');
+    const accessToken  = getCookie('accessToken');
     const myinfomaiton  =("");
 
     const [changepw,setChangepw] = useState();
@@ -20,7 +20,11 @@ const Mypage = () => {
     
     
     const info = async () => {
-        try{myinfomaiton= await axios.get('url',Token)
+        try{myinfomaiton= await axios.get('http://www.recipetips.net/user',{
+            headers:{
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
 
         } catch(error){  
             
@@ -42,7 +46,11 @@ const Mypage = () => {
        
         console.log("안뇽");
         try{
-            const response = await axios.delete('http://www.recipetips.net/user',Token)
+            const response = await axios.delete('http://www.recipetips.net/user',{
+                headers:{
+                    Authorization:`Bearer ${accessToken}`
+                }
+            })
             console.log("회원탈퇴 ",response.data);
         }
         catch(error){
@@ -53,7 +61,7 @@ const Mypage = () => {
 
     const changePW = async (e) =>{
         try{
-            const response = await axios.put('http://www.recipetips.net/user',changepw)
+            const response = await axios.put('http://www.recipetips.net/user',{})
             console.log("skskks");
         }
         catch(error){
@@ -65,7 +73,10 @@ const Mypage = () => {
         <div className="mypage-body">
             
             <div>
-                <p>{myinfomaiton}</p>
+                <ul>
+                    <li>{myinfomaiton}</li>
+                </ul>
+                
             </div>
                 
             <form onSubmit={handleSubmit}> 

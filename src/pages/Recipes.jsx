@@ -47,10 +47,7 @@ const Recipes = () => {
       <div className="carrol">
 
       </div>
- 
-      <div>
-
-      </div>
+     
     </div>
   )
 }

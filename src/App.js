@@ -10,7 +10,7 @@ import Update from './pages/Updatepage'
 import Nav from './pages/Nav'
 import Board from './pages/Board'
 import Myboard from './pages/Myboard'
-import NotFound from './pages/NotFound'
+// import NotFound from './pages/NotFound'
 import Mypage from './pages/Mypage'
 import Updownpunk from './pages/updownpunk'
 
@@ -49,7 +49,7 @@ function App() {
 
           <Route path='Mypage' element={<Mypage/>}/> {/**개인정보 수정및 보기창 */}
 
-          <Route path='/*' element={<NotFound/>}/>
+          {/* <Route path='/*' element={<NotFound/>}/> */}
            
         </Routes>
         

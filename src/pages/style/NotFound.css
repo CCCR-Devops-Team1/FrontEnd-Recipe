@@ -1,15 +1,16 @@
 
 
-.hand{
+.hand-box{
     padding-top: 70px;
     display: grid;
+    justify-content: center;
     place-items: center;
-
+    
 }
 
 #hand{
-    fill: 0;
     font-size: 245px;
+    display: contents;
 }
 
 .err-no{

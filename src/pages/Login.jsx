@@ -38,7 +38,7 @@ const Login = () => {
         e.preventDefault();
     
         try {
-            const response = await axios.post("http://www.recipetips.net/user/login", logindata);
+            const response = await axios.post("/user/login", logindata);
             if(response.status===200){
             let accessToken = response.headers['authorization']
             let refreshToken = response.headers['refresh']
