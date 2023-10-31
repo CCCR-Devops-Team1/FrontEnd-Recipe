@@ -32,7 +32,7 @@ function Mainhome () {
             try{
                 const response = await axios.get(`http://localhost:8082/notice?page=${page}&size=${size}`) 
                 setCurrentPost(response.data.result);
-                console.log("페이지 받음");
+                console.log("dododo");
             }catch(error){
                 console.error(error);
             };
