@@ -17,6 +17,7 @@ import Updownpunk from './pages/updownpunk'
 /*react*/
 import React,{useState,useEffect} from 'react'
 import {BrowserRouter,Routes, Route,Outlet } from "react-router-dom"
+import { Axios } from 'axios'
 
 
 function App() {

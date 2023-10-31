@@ -9,7 +9,9 @@ import './style/Board.css'
 
 
 const Board = () => {
+    const article_id = 1;
 
+    const [text , setText] =useState([]);
     // const searchTest = async()=>{
     //     try{
     //         const response = await axios.get(`http://www.recipetips.net/notice/${article_id}`,{   
@@ -27,8 +29,9 @@ const Board = () => {
         
         const Bulletin= async() =>{
             try{
-                const response = await axios.get("/notice",{    
-                })  
+                const response = await axios.get(`http://localhost:8082/notice/${article_id}`)   
+                setText(response.data.result)
+                
                 console.log("게시글");
 
             }catch(error){
@@ -37,8 +40,8 @@ const Board = () => {
             }
 
         }
-
-    })
+        Bulletin();
+    },[])
     
     return(
         <div style={{display:'grid' , justifyItems:'center'}}>
@@ -47,12 +50,12 @@ const Board = () => {
                 <input type="text" placeholder="글찾기"></input>
                 
                 <div className="board-head">
-                    <h1>게시글 제목</h1>
-                    <h4>작성자 이름</h4>
+                    <h1>{text.subject}</h1>
+                    <h4>{text.memberId}</h4>
                 </div>
 
                 <div className="board-body">
-                    <span>작성된 여러 글</span>
+                    <span>{text.content}</span>
                     <img src="" alt="이미지 공간"/>
                     <p>{window.location.pathname}</p>
                 </div>

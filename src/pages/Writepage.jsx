@@ -10,7 +10,7 @@ function Write(){
 
     const navigate = useNavigate();
 
-    const cookie = getCookie("Token");
+    const access_token = getCookie("access_token");
     const nickname = getCookie("info");   
 
     const [imageSrc, setImageSrc]= useState(null);
@@ -41,7 +41,7 @@ function Write(){
         contents:'',
     });
 
-    const {subject,contents} = userwrite;
+    const {subject,content} = userwrite;
 
     const onchange = (e) =>{
         const {value,name} = e.target;
@@ -52,16 +52,27 @@ function Write(){
     };
 
     const saveBoard = async (e) => {
-        e.preventDefault();
-        
         try{
-            const res = await axios.post("url",userwrite)
-            console.log(res.data);
-        }   
-        catch (err){
-            console.log("작성 실패",err);
+        const response = await axios.post("http://localhost:8082/notice",userwrite,{
+           headers:{
+            Authorization:`Bearer ${access_token}`,
+            "Content-Type": "multipart/form-data"
+           }
+        })
+        if(response.data.code ==200){
+            console.log("통신ㅇ");
+
         }
-    };
+        else{
+            console.log("통신x");
+        }
+
+        }catch(error){
+            console.error(error);
+        }
+
+    }
+
     
     return (
         <div className="write-body">
@@ -99,20 +110,21 @@ function Write(){
                     </span>
                 </div>
 
-                <div className="contents">
+                <div className="content">
 
                     <p style={{paddingBottom : "10px"}}>내용</p>
                     <textarea placeholder="내용입력" style={{padding:"7px"}} rows="25"
-                    name="contents"
-                    value={contents}
+                    name="content"
+                    value={content}
                     onChange={onchange}
                     ></textarea>
 
                 </div>
-                <div className="writeSave">
-                    <button type='submit' onClick={() => saveBoard}>글저장</button>
-                </div>
+                
             </form>
+            <div className="writeSave">
+                    <button type='submit' onClick={saveBoard}>글저장</button>
+            </div>
             
         </div>
     )

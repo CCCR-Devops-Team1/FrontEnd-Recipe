@@ -9,9 +9,10 @@ import "./style/Mainhome.css";
 function Mainhome () {
 
     const [userdata , setuserData] = useState([]);
-    const [currentPost, setCurrentPost] = useState(userdata);
+    const [currentPost, setCurrentPost] = useState([]);
     const [page, setPage] = useState(1);
-
+    const [size, setSize] = useState(6);
+    const [testlist, setTestlist] = useState([]);
     const postPerPage = 10
     const indexOfLastPost = page * postPerPage
     const indexOfFirstPost = indexOfLastPost - postPerPage
@@ -29,11 +30,14 @@ function Mainhome () {
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`http://notice?page=${page}&size={size}`) //분할해서 페이징 해야하는데 사이즈? 그냥 전부 렌더 해서 그걸 프론트 쪽에서 나눠 보여주는게 낮지 않나?
+                const response = await axios.get(`http://localhost:8082/notice?page=${page}&size=${size}`) 
+                setCurrentPost(response.data.result);
+                console.log("페이지 받음");
             }catch(error){
                 console.error(error);
             };
         };
+        postedText()
     },[]);
 
     
@@ -46,7 +50,7 @@ function Mainhome () {
                 <div className="common-list">
                 
                     <div className="board">
-                    <span style={{fontSize:28,fontWeight:"bold"}}> 자유 게시판 </span>
+                    <span style={{fontSize:28,fontWeight:"bold"}}> 최근 게시판 </span>
                     <hr/>
                         
                     {
@@ -64,6 +68,18 @@ function Mainhome () {
                         })
                     }
 
+                    {currentPost.map((list)=>{
+                        return(
+                            <ul>
+                                <li key={list.id}>
+                                    <div>{list.subject}</div>
+                                </li>
+                            </ul>
+                        )
+                    }
+                        
+                            )}
+                    
                     </div>    
                                                                 
                 </div>             

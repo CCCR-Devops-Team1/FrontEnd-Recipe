@@ -48,16 +48,16 @@
 }
 
 
-.contents{
+.content{
     display: grid;
     font-size: large;
 }
 
-.contents > p{
+.content > p{
     padding-left: 10px;
 }  
  
-.contents > textarea{
+.content > textarea{
     font-size: large;
     font-weight: 500;
     padding: 3px ;

@@ -39,9 +39,16 @@ function Signup(){
 
   const handleSubmit = async () =>{
     try{
-    const response = await axios.post("http://recipetips.net/user/signup",formData);
-    alert('회원가입 성공');
-    navigate('/');
+    const response = await axios.post("http://localhost:8081/user/signup",formData);
+
+      if(response.data.code === 200){
+        console.log(response.data);
+        navigate('/login');
+      }
+      
+      else{
+        alert('회원가입 실패');
+      }
     
     }catch(error){
     console.error(error);

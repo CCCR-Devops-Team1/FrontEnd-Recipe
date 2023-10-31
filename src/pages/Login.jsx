@@ -4,11 +4,12 @@ import React, { useEffect, useState,useRef} from "react"
 import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
 import { setCookie,getCookie,removeCookie} from "../component/cookie";
+import { Cookies } from "react-cookie";
 
 const Login = () => {  
 
     const navigate = useNavigate();
-
+    
     const inputRef1 = useRef(null);
     const inputRef2 = useRef(null);
 
@@ -37,8 +38,8 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post("http://www.recipetips.net/user/login",logindata);
-            if(response.status===200){
+            const response = await axios.post("http://localhost:8081/user/login",logindata);
+            if(response.data.code===200){
             let accessToken = response.headers.authorization;
             let refreshToken = response.headers.refresh;
             console.log('accessToken :',accessToken);
@@ -46,20 +47,30 @@ const Login = () => {
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 
-            setCookie("accessToken",response.token.accessToken,{
+            setCookie("access_token",response.data.result.access_token,{
             path:'/',
             secure:false,
             maxAge:3000
             });
-            setCookie("refreshToken",response.token.refreshToken,{
+            console.log(response.data.result.access_token);
+            console.log(getCookie('access_token')); 
+
+            setCookie("refresh_token",response.data.result.refresh_token,{
             path:'/',
             secure:false,
             maxAge:10000
             });
-
+            console.log(response.data.result.refresh_token);
+            removeCookie("refresh_token")
+            console.log(getCookie("refresh_token"));
             console.log('로그인 성공:', response.data);
-        }
             navigate('/');
+        }
+        else{
+            console.log("로그인 실패");
+            
+        }
+            
 
         } catch (error) {
           console.error(error);
