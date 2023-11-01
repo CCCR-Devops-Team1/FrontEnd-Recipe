@@ -45,7 +45,7 @@ const Mypage = () => {
        
         console.log("안뇽");
         try{
-            const response = await axios.delete('http://www.recipetips.net/user',{
+            const response = await axios.delete('http://www.resipetips.net/member/user',{
                 headers:{
                     Authorization:`Bearer ${accessToken}`
                 }

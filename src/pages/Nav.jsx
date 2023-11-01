@@ -45,7 +45,7 @@ function Nav() {
     useEffect (() => {
         const userid = async () => {
             try{
-            const response = await axios.get('http://www.resipetips.net/user',{
+            const response = await axios.get('http://www.resipetips.net/member/user',{
                 headers:{
                     Authorization:`Bearer ${access_token}`
                 }

@@ -33,7 +33,7 @@ function Update() {
   useEffect(() => {
     const myPost = async () =>{
       try{
-        const response = await axios.get(`http://www.resipetips.net/notice/${member}`)
+        const response = await axios.get(`http://www.resipetips.net/notice/notice/${member}`)
         setuserData(response.data.result)
 
       }catch(error){

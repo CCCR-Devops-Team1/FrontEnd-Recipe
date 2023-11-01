@@ -10,7 +10,7 @@ const useAxiosWithAuth = () => {
 
   const createAxiosInstance = () => {
     return axios.create({
-      baseURL: "http://www.resipetips.net",
+      baseURL: "http://www.resipetips.net/member/net",
     });
   };
 

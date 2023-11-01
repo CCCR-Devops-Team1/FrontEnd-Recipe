@@ -54,7 +54,7 @@ function Write(){
 
     const saveBoard = async (e) => {
         try{
-        const response = await axios.post("http://www.resipetips.net/notice",userwrite,{
+        const response = await axios.post("http://www.resipetips.net/notice/notice",userwrite,{
            headers:{
             Authorization:`Bearer ${access_token}`,
             "Content-Type": "multipart/form-data"

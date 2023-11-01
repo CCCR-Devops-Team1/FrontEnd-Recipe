@@ -9,7 +9,7 @@ export const ApiGet = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://www.resipetips.net/user", {
+        const response = await axios.get("http://www.resipetips.net/member/user", {
           headers: {
             Authorization: `Bearer ${access_token}`,
             "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const ApiGet = () => {
     };
 
     fetchData();
-  }, []);
+  }, [access_token]);
 
   return userinfo;
 };
@@ -34,11 +34,11 @@ export const Article = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://www.resipetips.net/notice", {
+        const response = await axios.get("http://www.resipetips.net/member/notice", {
           headers: {
-            Authorization: `cleBearer ${access_token}`,
+            Authorization: `Bearer ${access_token}`,
             "Content-Type": "application/json",
-          }
+          },
         });
         setUserinfo(response.data.result.memberId);
       } catch (error) {
@@ -47,7 +47,7 @@ export const Article = () => {
     };
 
     fetchData();
-  }, []);
+  }, [access_token]);
 
   return userinfo;
 };

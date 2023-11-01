@@ -30,7 +30,7 @@ function Mainhome () {
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`http://www.resipetips.net/notice?page=${page}&size=${size}`) 
+                const response = await axios.get(`http://www.resipetips.net/notice/notice?page=${page}&size=${size}`) 
                 setuserData(response.data.result);
                 
             }catch(error){
