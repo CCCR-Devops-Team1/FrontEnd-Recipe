@@ -25,15 +25,15 @@ function Update() {
     setPage(page);
   };
 
-  useEffect(() => {
-    setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
-  }, [userdata, page])
+  // useEffect(() => {
+  //   setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
+  // }, [userdata, page])
 
 
   useEffect(() => {
     const myPost = async () =>{
       try{
-        const response = await axios.get(`http://www.recipetips.net/notice:8082/notice/${member}`)
+        const response = await axios.get(`http://www.recipetips.net/notice:8082/`)
         setuserData(response.data.result)
 
       }catch(error){
@@ -61,7 +61,15 @@ function Update() {
       
        <h2 style={{margin: 20}}>작성목록</h2>
       <p>{article_id}</p>
-      {
+
+
+      <ul>
+        <li key={userdata.id}>
+          {userdata.memberId}
+          {userdata.subject}
+        </li>
+      </ul>
+      {/* {
         currentPost.map((board, index) => {
           return (
             <Link to={`/board/${board.id}`}>
@@ -80,7 +88,7 @@ function Update() {
             </Link>
             )
           })
-          }
+          } */}
         <Paging page={page} postPage={size} count={boardLength} setPage={handlePageChange} />
       </form>
     </div>

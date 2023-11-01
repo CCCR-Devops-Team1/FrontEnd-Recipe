@@ -10,7 +10,7 @@ const useAxiosWithAuth = () => {
 
   const createAxiosInstance = () => {
     return axios.create({
-      baseURL: "http://www.resipetips.net/member:8081",
+      baseURL: "http://www.recipetips.net/member:8081",
     });
   };
 

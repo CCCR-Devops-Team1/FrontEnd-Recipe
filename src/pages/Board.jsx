@@ -18,7 +18,7 @@ const Board = () => {
         
         const Bulletin= async() =>{
             try{
-                const response = await axios.get(`http://recipetips.net/notice:8082/notice/${nick}`)   
+                const response = await axios.get(`http://www.recipetips.net/notice:8082/${nick}`)   
                 setText(response.data.result)
                 
                 console.log("게시글");
