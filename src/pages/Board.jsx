@@ -33,7 +33,7 @@ const Board = () => {
                 setText(response.data.result)
                 
                 console.log("게시글");
-
+                console.log(response.data.result);
             }catch(error){
                 console.error(error);
 

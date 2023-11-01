@@ -9,38 +9,14 @@ import ModalBasic from "../component/Modal";
 import Dropdown from "../component/DropDown";
 import axios from "axios";
 import userinfo from "../component/testapiget";
+import ApiGet from "../component/testapiget";
 
 function Nav() {
     const navigate = useNavigate();
 
-    const [nick,setNick] = useState();
+    const userId = ApiGet();
     const access_token = getCookie('access_token');
     const refresh_token = getCookie('refresh_token');
-
-    const logoutsubmit = async (e) =>{
-        // try{
-        //    const response = await axios.put("http://localhost:8081/user/logout",{
-        //     header:{
-        //         Authorization: `Bearer ${access_token}`
-        //     },
-        //     body:{
-        //         refresh_token:refresh_token
-        //     }  
-        // }) 
-       
-            removeCookie("access_token");
-            removeCookie("refresh_token");
-            navigate('/');
-        
-        // else{
-        //     console.log("로그아웃 실패 잠시 후 다시 실행");
-        // }
-    //     }catch(error){
-    //         console.error(error);
-    //     }
-    //
-    }
-
 
     useEffect (() => {
         const userid = async () => {
@@ -51,7 +27,7 @@ function Nav() {
                 }
             })
             console.log(response.data.result.account);
-            setNick(response.data.result.account);
+            
 
             }catch(error){
                 console.error(error);
@@ -59,14 +35,43 @@ function Nav() {
         }
         userid();
     },[])
-  
 
-    const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
-    // const modal = ModalBasic();
-    const [view, setView] = useState(false); 
-
-    return (
     
+    // const modal = ModalBasic();
+    
+
+   
+
+        const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
+
+        const logoutsubmit = async () =>{
+            try{
+                const response = await axios.put('http://localhost:8081/user/logout',[],{
+                    headers:{
+                        Authorization:`Bearer ${access_token}`   
+                    },
+                    data:{
+                        refresh_token:refresh_token
+                    }
+                    
+                })
+                if(response.data.code== 400){
+                    removeCookie('access_token')
+                    removeCookie('refresh_token')
+                    navigate('/');
+                    console.log("로그아웃 성공 code 400");
+                }
+                else{
+                    console.log('로그아웃 실패 code확인 통신O');
+                }
+        
+            }catch(err){
+                console.error(err);
+            }
+
+        }
+
+    return(
     <nav className="Head">
             
         <div className="logo">
@@ -88,7 +93,7 @@ function Nav() {
         
         <div className="info">
 
-            <p>User ID: { access_token !== undefined ? nick : 'Not Login'}</p>
+            <p>User ID: { access_token !== undefined ? userId : 'Not Login'}</p>
             
             {access_token==undefined ? <Link className="login-button" to="Login">로그인</Link> : false}
             
@@ -114,5 +119,6 @@ function Nav() {
     </nav>
     )
 }
+
 export default Nav;
 

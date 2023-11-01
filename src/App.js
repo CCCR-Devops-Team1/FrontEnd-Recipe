@@ -12,7 +12,7 @@ import Board from './pages/Board'
 import Myboard from './pages/Myboard'
 // import NotFound from './pages/NotFound'
 import Mypage from './pages/Mypage'
-import Updownpunk from './pages/updownpunk'
+// import Updownpunk from './pages/updownpunk'
 
 /*react*/
 import React,{useState,useEffect} from 'react'
@@ -43,10 +43,11 @@ function App() {
           <Route path='Write' element={<Write/>}/> {/*글 쓰기 페이지*/}
 
           <Route path='Board/:id' element={<Board/>}/> {/*글 유저마다 상세보기*/}
-          <Route path='Myboard/:id' element={<Myboard/>}/>
+          <Route path='Myboard/:id' element={<Myboard/>}/>{/**내 정보보기 창 */}
 
-          <Route path='Update' element={<Update/>}/> {/*글 유저마다 수정하기*/}
-          <Route path='updownpunk' element={<Updownpunk/>}/> {/*글 유저마다 수정하기*/}
+          <Route path='Update' element={<Update/>}/> {/*유저가 작성한 글 리스트*/}
+
+          {/* <Route path='updownpunk' element={<Updownpunk/>}/> 글 유저마다 수정하기 */}
 
           <Route path='Mypage' element={<Mypage/>}/> {/**개인정보 수정및 보기창 */}
 

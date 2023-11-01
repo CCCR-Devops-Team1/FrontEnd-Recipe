@@ -68,6 +68,8 @@ nav{
   margin: 0 5px;
   border-radius: 4px;
   transition: none;
+  display: grid;
+  align-content: space-around;
 }
 
 .Sig:hover ,

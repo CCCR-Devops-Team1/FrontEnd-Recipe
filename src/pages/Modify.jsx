@@ -1,4 +1,4 @@
-//글 쓰기 (개인) {로그인}
+//글 쓰기 (수정) {로그인}
 
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";

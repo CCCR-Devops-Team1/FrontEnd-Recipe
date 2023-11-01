@@ -5,43 +5,22 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style/Writepage.css"
 import { getCookie } from "../component/cookie";
+import ApiGet from "../component/testapiget";
 
 function Write(){
 
     const navigate = useNavigate();
 
     const access_token = getCookie("access_token");
-    const nickname = getCookie("info");   
+    const nickname = ApiGet();
 
-    const [imageSrc, setImageSrc]= useState(null);
-
-    const onUpload = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        return new Promise((resolve) => { 
-            reader.onload = () => {	
-                setImageSrc(reader.result || null); // 파일의 컨텐츠
-                resolve();
-            };
-        });
-    }
-
-    const handleChange = (e) => {
-
-        e.preventDefault();
-        
-        setImageSrc(null)
-
-    }
+    const [file,setFile] = useState()
+  
 
     const [userwrite,setUserwrite] = useState ({
         subject:'',
-        contents:'',
+        contents:''
     });
-
-    const {subject,content} = userwrite;
 
     const onchange = (e) =>{
         const {value,name} = e.target;
@@ -51,36 +30,63 @@ function Write(){
         });
     };
 
-    const saveBoard = async (e) => {
-        try{
-        const response = await axios.post("http://localhost:8082/notice",userwrite,{
-           headers:{
-            Authorization:`Bearer ${access_token}`,
-            "Content-Type": "multipart/form-data"
-           }
-        })
-        if(response.data.code ==200){
-            console.log("통신ㅇ");
-
+    const onChangeImg = (e) => {
+        e.preventDefault();
+        const photoList = new FormData();
+        
+        
+        if(e.target.files){
+          photoList = e.target.files[0]
+        //   photoList.append('file',photoList)
+          setFile(photoList)
+          console.log(photoList)
+          console.log('===useState===')
+          console.log(file)
+          
         }
-        else{
-            console.log("통신x");
-        }
+      }
 
-        }catch(error){
-            console.error(error);
-        }
-
+    const removeButton = (e) =>{
+        e.preventDefault();
     }
 
+
+    const {subject,content} = userwrite;
+
+    // const [files, setFiles] = useState(null)
     
+    // const [imageSrc, setImageSrc] = useState(null);
+
+    // const onUpload = (e) => {
+    //     setFiles(e.target.files[0])
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(files);
+
+    //     return new Promise((resolve) => { 
+    //         reader.onload = () => {	
+    //             setImageSrc(reader.result || null); // 파일의 컨텐츠
+    //             resolve();
+    //         };
+    //     });
+    // }                  
+
+    const saveBoard = () => {
+        axios.post('http://localhost:8082/notice',userwrite,{
+            headers:{
+                Authorization: `Bearer ${access_token}`
+            }
+        }).then((res) => console.log("저장"),navigate('/'))
+        .catch((error) => console.error(error))
+    }
+    
+
     return (
         <div className="write-body">
             
             <form className="write-form">
                
                 <div className="naming">
-                    <span>{nickname}</span>
+                    <span style={{borderBottom:'1px solid black'}}>작성자 : {nickname} </span>
                     <input type = "text" placeholder="제목"
                     name="subject"
                     value={subject}
@@ -89,24 +95,23 @@ function Write(){
                 </div>
                 <hr/>
                 <div>
-
                     <span>
-                        <button className="fileremover" onClick={handleChange}></button>
+                        <button
+                        
+                        onClick={removeButton}
+                        >X</button>
                     </span>
+
                     <span> 
                     <input 
                         id="img"
                         accept="image/*" 
-                        multiple type="file"
-                        onChange={e => onUpload(e)}
+                        type="file"
+                        onChange={onChangeImg}
                         onClick={(event)=> { 
                             event.target.value = null
                           }}
-                    />
-                    <img 
-                        width={'15%'} 
-                        src={imageSrc} 
-                    />
+                    />       
                     </span>
                 </div>
 
@@ -123,7 +128,7 @@ function Write(){
                 
             </form>
             <div className="writeSave">
-                    <button type='submit' onClick={saveBoard}>글저장</button>
+                <button type='submit' onClick={saveBoard}>글저장</button>
             </div>
             
         </div>
