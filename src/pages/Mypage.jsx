@@ -45,7 +45,7 @@ const Mypage = () => {
        
         console.log("안뇽");
         try{
-            const response = await axios.delete('http://www.resipetips.net/member/user',{
+            const response = await axios.delete('http://www.recipetips.net/member:8081/user',{
                 headers:{
                     Authorization:`Bearer ${accessToken}`
                 }
@@ -60,7 +60,7 @@ const Mypage = () => {
 
     const changePW = async (e) =>{
         try{
-            const response = await axios.put('http://www.recipetips.net/user',{})
+            const response = await axios.put('http://www.recipetips.net/member:8081/user',{})
             console.log("skskks");
         }
         catch(error){

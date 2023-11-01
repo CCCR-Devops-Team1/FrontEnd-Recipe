@@ -9,7 +9,7 @@ export const ApiGet = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://www.resipetips.net/member/user", {
+        const response = await axios.get("http://www.recipetips.net/member:8081/user", {
           headers: {
             Authorization: `Bearer ${access_token}`,
             "Content-Type": "application/json",
@@ -34,7 +34,7 @@ export const Article = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://www.resipetips.net/member/notice", {
+        const response = await axios.get("http://www.recipetips.net/notice:8082/notice", {
           headers: {
             Authorization: `Bearer ${access_token}`,
             "Content-Type": "application/json",

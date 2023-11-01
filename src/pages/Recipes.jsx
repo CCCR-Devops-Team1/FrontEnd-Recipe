@@ -19,7 +19,7 @@ const Recipes = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get(`http://www.resipetips.net/member/recommand${id}`,{id});
+      const response = await axios.get(`http://www.recipetips.net/member:8081/recommand${id}`,{id});
       
       console.log(response.data);
 

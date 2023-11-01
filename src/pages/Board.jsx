@@ -13,23 +13,12 @@ const Board = () => {
     const nick = ApiGet();
 
     const [text , setText] =useState([]);
-    // const searchTest = async()=>{
-    //     try{
-    //         const response = await axios.get(`http://www.recipetips.net/notice/${article_id}`,{   
-    //         article_id : id
-    //         })
-
-    //     }catch(error){
-    //         console.error(error);
-    //     }
-    
-    // }
 
     useEffect(()=> {
         
         const Bulletin= async() =>{
             try{
-                const response = await axios.get(`http://localhost:8082/notice/${nick}`)   
+                const response = await axios.get(`http://recipetips.net/notice:8082/notice/${nick}`)   
                 setText(response.data.result)
                 
                 console.log("게시글");
