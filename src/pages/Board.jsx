@@ -4,32 +4,21 @@ import React , {useState,useEffect } from "react";
 import { Route,Router } from "react-router-dom";
 import { getCookie } from "../component/cookie";
 import axios from "axios";
+import {ApiGet} from "../component/testapiget";
 
 import './style/Board.css'
 
 
 const Board = () => {
-    const article_id = 1;
+    const nick = ApiGet();
 
     const [text , setText] =useState([]);
-    // const searchTest = async()=>{
-    //     try{
-    //         const response = await axios.get(`http://www.recipetips.net/notice/${article_id}`,{   
-    //         article_id : id
-    //         })
-
-    //     }catch(error){
-    //         console.error(error);
-    //     }
-    
-    // }
-
 
     useEffect(()=> {
         
         const Bulletin= async() =>{
             try{
-                const response = await axios.get(`http://localhost:8082/notice/${article_id}`)   
+                const response = await axios.get(`http://www.recipetips.net/notice:8082/${nick}`)   
                 setText(response.data.result)
                 
                 console.log("게시글");
@@ -47,8 +36,6 @@ const Board = () => {
         <div style={{display:'grid' , justifyItems:'center'}}>
             <div className="board">
 
-                <input type="text" placeholder="글찾기"></input>
-                
                 <div className="board-head">
                     <h1>{text.subject}</h1>
                     <h4>{text.memberId}</h4>
@@ -57,7 +44,7 @@ const Board = () => {
                 <div className="board-body">
                     <span>{text.content}</span>
                     <img src="" alt="이미지 공간"/>
-                    <p>{window.location.pathname}</p>
+
                 </div>
 
                 <div className="board-footer">

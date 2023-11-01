@@ -1,71 +1,95 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './style/Update.css';
-import ApiGet from "../component/testapiget";
+import {ApiGet,Article} from "../component/testapiget";
 import axios from "axios";
 import Paging from "../component/Paging";
 
 function Update() {
 
   const myinfo = ApiGet();
+  const article_id = Article();
 
-  const [posts, setPosts] = useState([]);
+  const member = 1;
+  const [userdata , setuserData] = useState([]);
+  const [currentPost, setCurrentPost] = useState([]);
   const [page, setPage] = useState(1);
-  const [currentPost, setCurrentPost] = useState(posts);
+  const size = 10
+  
+  const indexOfLastPost = page * size
+  const indexOfFirstPost = indexOfLastPost - size
 
-  const postPerPage = 10;
-  const indexOfLastPost = page * postPerPage;
-  const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const boardLength = posts.length;
+  const boardLength = userdata.length
 
   const handlePageChange = (page) => {
     setPage(page);
   };
 
-  useEffect(() => {
-    setCurrentPost(posts.slice(indexOfFirstPost, indexOfLastPost));
-  }, [posts, page]);
+  // useEffect(() => {
+  //   setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
+  // }, [userdata, page])
+
 
   useEffect(() => {
     const myPost = async () =>{
       try{
-          const response = await axios("http://localhost:3000/user",myinfo)
-          setPosts (response.data)
+        const response = await axios.get(`http://www.recipetips.net/notice:8082/`)
+        setuserData(response.data.result)
 
-        }catch(error){
-        console.error(error);
+      }catch(error){
+      console.error(error);
       }
 
     }    
+    myPost();
   },[])
+
+
+  function time(a) { //a에는 UTC시간이 담겨져 있음. 
+   
+    const kor = new Date(a);
+    
+    kor.setHours(kor.getHours()+9);
+    
+    return kor.toLocaleString();
+   }
+
   
   return (
     <div className="update-body">
       <form className="update-form">
-        <table>
-          <thead>
-            <tr>
-              <th colSpan="2">
-                <h2 style={{margin: 20}}>작성목록</h2>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colSpan="2" >
-                {currentPost.map((Myboard, index) => (
-                  <Link to={`/Myboard/${Myboard.id}`} key={Myboard.id}>
-                    <div className="underline">
-                      <div>{index + 1}</div>
-                      <span>{Myboard.title}</span>
-                    </div>
-                  </Link>
-                ))}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <Paging page={page} postPage={postPerPage} count={boardLength} setPage={handlePageChange} />
+      
+       <h2 style={{margin: 20}}>작성목록</h2>
+      <p>{article_id}</p>
+
+
+      <ul>
+        <li key={userdata.id}>
+          {userdata.memberId}
+          {userdata.subject}
+        </li>
+      </ul>
+      {/* {
+        currentPost.map((board, index) => {
+          return (
+            <Link to={`/board/${board.id}`}>
+                <div className="board-line">
+                    
+                    <div>{index + 1}</div>
+                    <span style={{width:'49%'}}>{board.subject}</span>
+                    
+                    <span style={{
+                    textAlign:"right",
+                    width:'49%',
+                    fontSize: 'medium'}}>                                   
+                    
+                    { (board.updateDate) ? time(board.updateDate) : time(board.createDate)}</span>
+                </div>
+            </Link>
+            )
+          })
+          } */}
+        <Paging page={page} postPage={size} count={boardLength} setPage={handlePageChange} />
       </form>
     </div>
   );

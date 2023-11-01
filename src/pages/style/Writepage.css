@@ -19,9 +19,9 @@
 }
 
 .naming > input {
-    width: 650px;
-    margin-left: 65px;
-    background: transparent;
+    width: 500px;
+    display: inline;
+    margin-left: 60px;
     border: none;
     border-bottom: 1px solid;
     padding: 3px 0px 0px 7px;
@@ -83,5 +83,10 @@
 .writeSave > button:active{
     background-color: #212183;
     border: inset;
+}
+
+.preview-img{
+    border: 1px solid black;
+    padding: 5px;
 }
 

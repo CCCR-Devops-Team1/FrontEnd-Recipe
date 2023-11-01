@@ -1,36 +1,30 @@
 import axios from "axios";
-import { setCookie,getCookie } from "./cookie";
+import { setCookie, getCookie } from "./cookie";
 import { useState, useEffect } from "react";
 
-export const ApiGet = () => {
+const ApiGet = () => {
   
   const [userinfo,setUserinfo]= useState();
+  const testval = ('');
   const access_token = getCookie("access_token");
-    
-  useEffect (() => {
-    const userid = async () => {
-        try{
-        const response = await axios.get('http://localhost:8081/user',{
-            headers:{
-                Authorization:`Bearer ${access_token}`
-            }
-        })
-        console.log(response.data.result.account);
-        setUserinfo(response.data.result.account);
-
-        }catch(error){
-            console.error(error);
+  
+  useEffect(() => {
+    const test = async () =>{
+      const response = await axios.get('http://localhost:8081/user',{
+        headers:{
+          'Authorization':`Bearer ${access_token}`, 
+          'Content-Type':'application/json'
         }
-    }
-    userid();
-},[])
+      }).then((response)=> {console.log(response.result)})
+      .catch((Error)=>{console.log(Error)})
 
-  return (
-    <>
-      {userinfo}
-    </>
-  )
-  }  
+    }
+    test();
+  },[])
+
+  return userinfo
+   
+};
 export default ApiGet;
 
 

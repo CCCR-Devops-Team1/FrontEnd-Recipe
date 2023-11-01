@@ -21,7 +21,7 @@ function Nav() {
     useEffect (() => {
         const userid = async () => {
             try{
-            const response = await axios.get('http://localhost:8081/user',{
+            const response = await axios.get('http://www.recipetips.net/member:8081/user',{
                 headers:{
                     Authorization:`Bearer ${access_token}`
                 }
