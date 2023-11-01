@@ -1,92 +1,153 @@
-
-
-.write-body{
+.write-body {
+    background-color: #f2f2f2;
     display: grid;
     justify-content: center;
-}
-
-.write-form{
+    padding: 20px;
+  }
+  
+  .write-form {
     padding-top: 60px;
-    width: 900px; 
+    width: 1120px;
     display: grid;
-    gap: 45px
-}
-
-.naming{
-    display: inline;
-    font-size: large;
-    padding-left: 6px;
-}
-
-.naming > input {
-    width: 500px;
-    display: inline;
-    margin-left: 60px;
+    gap: 45px;
+  }
+  
+  .naming {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid black;
+    font-size: larger;
+    font-weight: bold;
+  }
+  
+  .naming input {
+    flex: 1;
+    padding: 5px;
+    margin-left: 10px;
     border: none;
-    border-bottom: 1px solid;
-    padding: 3px 0px 0px 7px;
+    border-bottom: 1px solid #ccc;
+    outline: none;
     font-size: large;
-}
-
-.fileremover{
-    display:inline-block;
-    background-color:transparent;
+  }
+  
+  .fileremover {
+    display: inline-block;
+    background-color: transparent;
     border: transparent;
     margin-right: 5px;
     border-radius: 47%;
-}
-.fileremover:hover{
-    background-color: #DfDfDf;
-}    
-
-.fileremover:after {
+  }
+  
+  .fileremover:hover {
+    background-color: #dfdfdf;
+  }
+  
+  .fileremover:after {
     display: inline-block;
     content: "\00d7";
-    font-size:20px;
-    margin: 0 3px 0 3px;
+    font-size: 20px;
+    margin: 0 3px;
     padding: 1px;
-}
-
-
-.content{
+  }
+  
+  .file-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+  }
+  
+  .file-input {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 1020px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+  }
+  
+  .file-input input[type="file"] {
+    position: absolute;
+    width: 1020px;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .file-label {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .file-label:hover {
+    background-color: #0056b3;
+  }
+  
+  .content {
     display: grid;
     font-size: large;
-}
-
-.content > p{
+  }
+  
+  .content > p {
     padding-left: 10px;
-}  
- 
-.content > textarea{
+  }
+  
+  .content > textarea {
     font-size: large;
     font-weight: 500;
-    padding: 3px ;
-}
-
-.writeSave{
-    position:inherit;
+    padding: 3px;
+  }
+  
+  .writeSave {
+    position: inherit;
     display: grid;
     justify-items: end;
     padding: 6px;
-}
-
-.writeSave > button {
+  }
+  
+  .writeSave > button {
     padding: 10px 55px;
     font-weight: 600;
     font-size: large;
     color: #fff;
-    background-color: #538CFF;
+    background-color: #538cff;
     margin: 15px 0px;
     border-radius: 4px;
-}
-
-.writeSave > button:active{
+  }
+  
+  .writeSave > button:active {
     background-color: #212183;
     border: inset;
-}
-
-.preview-img{
+  }
+  
+  .preview-img {
     border: 1px solid black;
     padding: 5px;
-}
-
+  }
+  
+  .title {
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .title:hover {
+    background-color: #ddd;
+    color: #000;
+  }
+  

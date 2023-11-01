@@ -11,11 +11,10 @@ function Mainhome () {
     const [userdata , setuserData] = useState([]);
     const [currentPost, setCurrentPost] = useState([]);
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(6);
-    const [testlist, setTestlist] = useState([]);
-    const postPerPage = 10
-    const indexOfLastPost = page * postPerPage
-    const indexOfFirstPost = indexOfLastPost - postPerPage
+    const [size, setSize] = useState(10);
+    
+    const indexOfLastPost = page * size
+    const indexOfFirstPost = indexOfLastPost - size
 
     const boardLength = userdata.length
 
@@ -31,7 +30,7 @@ function Mainhome () {
         const postedText = async() =>{
             try{
                 const response = await axios.get(`http://localhost:8082/notice?page=${page}&size=${size}`) 
-                setCurrentPost(response.data.result);
+                setuserData(response.data.result);
                 console.log("페이지 받음");
             }catch(error){
                 console.error(error);
@@ -62,7 +61,7 @@ function Mainhome () {
                     <input type="text" placeholder="글찾기"></input>
                         
                     {
-                        currentPost.map((board, index) => {
+                        userdata.map((board, index) => {
                         return (
                             <Link to={`/board/${board.id}`}>
                                 <div className="board-line">

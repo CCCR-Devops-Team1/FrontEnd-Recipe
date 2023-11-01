@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './style/Update.css';
-import {ApiGet,Article} from "../component/testapiget";
+import ApiGet from "../component/testapiget";
 import axios from "axios";
 import Paging from "../component/Paging";
 
 function Update() {
 
   const myinfo = ApiGet();
-  const article_id = Article();
+  
 
   const member = 1;
   const [userdata , setuserData] = useState([]);
@@ -60,7 +60,7 @@ function Update() {
       <form className="update-form">
       
        <h2 style={{margin: 20}}>작성목록</h2>
-      <p>{article_id}</p>
+      <p>{userdata.id}</p>
 
 
       <ul>

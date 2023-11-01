@@ -2,7 +2,7 @@ import "./slick.css";
 import "./slick-theme.css"; 
 import React from "react";
 import Slider from "react-slick";
-import {ApiGet} from "./testapiget";
+import ApiGet from "./testapiget";
 import { useState,useEffect } from "react";
 import axios from "axios";
 

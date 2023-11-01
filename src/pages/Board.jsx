@@ -4,7 +4,7 @@ import React , {useState,useEffect } from "react";
 import { Route,Router } from "react-router-dom";
 import { getCookie } from "../component/cookie";
 import axios from "axios";
-import {ApiGet} from "../component/testapiget";
+import ApiGet from "../component/testapiget";
 
 import './style/Board.css'
 

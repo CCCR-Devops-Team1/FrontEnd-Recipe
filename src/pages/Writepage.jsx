@@ -1,15 +1,11 @@
 //글 쓰기 (개인) {로그인}
 
-import React, { useState,useRef } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style/Writepage.css"
 import { getCookie } from "../component/cookie";
-<<<<<<< HEAD
 import ApiGet from "../component/testapiget";
-=======
-import {ApiGet} from "../component/testapiget";
->>>>>>> 69efbc23751fa1d0faad6a1e0b289dcf0db109c8
 
 function Write(){
 
@@ -18,33 +14,8 @@ function Write(){
     const access_token = getCookie("access_token");
     const nickname = ApiGet();
 
-<<<<<<< HEAD
     const [file,setFile] = useState()
   
-=======
-    const [imageSrc, setImageSrc]= useState(null);
-
-    const onUpload = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);   
-        
-        return new Promise((resolve) => { 
-            reader.onload = () => {	
-                setImageSrc(reader.result || null);// 파일의 컨텐츠
-                resolve();
-            };
-        });
-    }
-
-    const fileInput=useRef();
- 
-    const onClearAttachment=(e)=>{
-           e.preventDefault();
-           setImageSrc(null);
-           fileInput.current.value = "";
-       };
->>>>>>> 69efbc23751fa1d0faad6a1e0b289dcf0db109c8
 
     const [userwrite,setUserwrite] = useState ({
         subject:'',
@@ -59,7 +30,6 @@ function Write(){
         });
     };
 
-<<<<<<< HEAD
     const onChangeImg = (e) => {
         e.preventDefault();
         const photoList = new FormData();
@@ -110,92 +80,37 @@ function Write(){
     }
     
 
-=======
-    const saveBoard = async (e) => {
-        try{
-        const response = await axios.post("http://www.recipetips.net/notice:8082/",userwrite,{
-           headers:{
-            Authorization:`Bearer ${access_token}`,
-            "Content-Type": "multipart/form-data"
-           },
-           
-        })
-        if(response.data.code ==200){
-            console.log("통신ㅇ");
-           
-            navigate('/');
-        }
-        else{
-            console.log("통신x");
-        }
-        }catch(error){
-            console.error(error);
-        }
-    }
-
- 
->>>>>>> 69efbc23751fa1d0faad6a1e0b289dcf0db109c8
     return (
         <div className="write-body">
             
             <form className="write-form">
                
                 <div className="naming">
-<<<<<<< HEAD
-                    <span style={{borderBottom:'1px solid black'}}>작성자 : {nickname} </span>
-=======
-                    <span style={{borderBottom: '1px solid black'}}>작성자 : {nickname} |</span>
->>>>>>> 69efbc23751fa1d0faad6a1e0b289dcf0db109c8
+                    <span>작성자 : {nickname} </span>
                     <input type = "text" placeholder="제목"
                     name="subject"
+                    className="title"
                     value={subject}
                     onChange={onchange}
                     ></input>
                 </div>
-                
-                <div>
-                    <span>
-<<<<<<< HEAD
-                        <button
-                        
-                        onClick={removeButton}
-                        >X</button>
-                    </span>
-
-                    <span> 
+               
+                <div class="file-input-container">
+                <div class="file-input">
                     <input 
-                        id="img"
-                        accept="image/*" 
-                        type="file"
-                        onChange={onChangeImg}
-                        onClick={(event)=> { 
-                            event.target.value = null
-                          }}
-                    />       
-=======
-                        <button className="fileremover" onClick={onClearAttachment}></button>
-                    </span>
-                    <span>
-
-                    <input 
-                        id="img"
-                        accept="image/*" 
-                        ref={fileInput}
-                        multiple type="file"
-                        onChange={e => onUpload(e)}
-                        onClick={(event)=> { 
-                            event.target.value = null
-                          }}
-                    />
-                    <img 
-                        width={'25%'} 
-                        src={imageSrc} 
-                        className="preview-img"
-                    />
->>>>>>> 69efbc23751fa1d0faad6a1e0b289dcf0db109c8
-                    </span>
-
+                    id="upload"
+                    accept="image/*" 
+                    type="file"
+                    className="file-upload"
+                    onChange={onChangeImg}
+                    onClick={(event)=> { 
+                        event.target.value = null
+                    }}
+                    />     
+                <span id="file-name">파일을 선택하세요.</span>
                 </div>
+            <label for="upload" class="file-label">파일 선택</label>
+            </div>
 
                 <div className="content">
 

@@ -5,21 +5,16 @@ import { useState, useEffect } from "react";
 const ApiGet = () => {
   
   const [userinfo,setUserinfo]= useState();
-  const testval = ('');
+  
   const access_token = getCookie("access_token");
   
   useEffect(() => {
-    const test = async () =>{
-      const response = await axios.get('http://localhost:8081/user',{
+      axios.get('http://localhost:8081/user',{
         headers:{
-          'Authorization':`Bearer ${access_token}`, 
-          'Content-Type':'application/json'
+          Authorization:`Bearer ${access_token}`
         }
-      }).then((response)=> {console.log(response.result)})
-      .catch((Error)=>{console.log(Error)})
-
-    }
-    test();
+      }).then((res) => setUserinfo(res.data.result.account))
+      .catch((err) => console.error(err))
   },[])
 
   return userinfo

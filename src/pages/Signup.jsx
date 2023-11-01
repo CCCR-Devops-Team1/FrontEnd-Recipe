@@ -39,7 +39,7 @@ function Signup(){
 
   const handleSubmit = async () =>{
     try{
-    const response = await axios.post("http://www.recipetips.net/member:8081/user/signup",formData);
+    const response = await axios.post("http://localhost:8081/user/signup",formData);
 
       if(response.data.code === 200){
         console.log(response.data);

@@ -35,12 +35,8 @@ function Nav() {
         }
         userid();
     },[])
-
     
     // const modal = ModalBasic();
-    
-
-   
 
         const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
 
