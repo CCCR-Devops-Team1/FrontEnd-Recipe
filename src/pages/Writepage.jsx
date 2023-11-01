@@ -1,40 +1,41 @@
 //글 쓰기 (개인) {로그인}
 
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style/Writepage.css"
 import { getCookie } from "../component/cookie";
+import {ApiGet} from "../component/testapiget";
 
 function Write(){
 
     const navigate = useNavigate();
 
     const access_token = getCookie("access_token");
-    const nickname = getCookie("info");   
+    const nickname = ApiGet();
 
     const [imageSrc, setImageSrc]= useState(null);
 
     const onUpload = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
-        reader.readAsDataURL(file);
-
+        reader.readAsDataURL(file);   
+        
         return new Promise((resolve) => { 
             reader.onload = () => {	
-                setImageSrc(reader.result || null); // 파일의 컨텐츠
+                setImageSrc(reader.result || null);// 파일의 컨텐츠
                 resolve();
             };
         });
     }
 
-    const handleChange = (e) => {
-
-        e.preventDefault();
-        
-        setImageSrc(null)
-
-    }
+    const fileInput=useRef();
+ 
+    const onClearAttachment=(e)=>{
+           e.preventDefault();
+           setImageSrc(null);
+           fileInput.current.value = "";
+       };
 
     const [userwrite,setUserwrite] = useState ({
         subject:'',
@@ -53,50 +54,51 @@ function Write(){
 
     const saveBoard = async (e) => {
         try{
-        const response = await axios.post("http://localhost:8082/notice",userwrite,{
+        const response = await axios.post("http://www.resipetips.net/notice",userwrite,{
            headers:{
             Authorization:`Bearer ${access_token}`,
             "Content-Type": "multipart/form-data"
-           }
+           },
+           
         })
         if(response.data.code ==200){
             console.log("통신ㅇ");
-
+           
+            navigate('/');
         }
         else{
             console.log("통신x");
         }
-
         }catch(error){
             console.error(error);
         }
-
     }
 
-    
+ 
     return (
         <div className="write-body">
             
             <form className="write-form">
                
                 <div className="naming">
-                    <span>{nickname}</span>
+                    <span style={{borderBottom: '1px solid black'}}>작성자 : {nickname} |</span>
                     <input type = "text" placeholder="제목"
                     name="subject"
                     value={subject}
                     onChange={onchange}
                     ></input>
                 </div>
-                <hr/>
+                
                 <div>
-
                     <span>
-                        <button className="fileremover" onClick={handleChange}></button>
+                        <button className="fileremover" onClick={onClearAttachment}></button>
                     </span>
-                    <span> 
+                    <span>
+
                     <input 
                         id="img"
                         accept="image/*" 
+                        ref={fileInput}
                         multiple type="file"
                         onChange={e => onUpload(e)}
                         onClick={(event)=> { 
@@ -104,10 +106,12 @@ function Write(){
                           }}
                     />
                     <img 
-                        width={'15%'} 
+                        width={'25%'} 
                         src={imageSrc} 
+                        className="preview-img"
                     />
                     </span>
+
                 </div>
 
                 <div className="content">

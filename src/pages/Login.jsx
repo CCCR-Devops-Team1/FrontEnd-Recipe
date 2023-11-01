@@ -38,7 +38,7 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post("http://localhost:8081/user/login",logindata);
+            const response = await axios.post("http://www.resipetips.net/user/login",logindata);
             if(response.data.code===200){
             let accessToken = response.headers.authorization;
             let refreshToken = response.headers.refresh;
@@ -67,6 +67,7 @@ const Login = () => {
             navigate('/');
         }
         else{
+            console.log({logindata});
             console.log("로그인 실패");
             
         }

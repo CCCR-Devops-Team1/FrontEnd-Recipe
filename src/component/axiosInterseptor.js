@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 const useAxiosWithAuth = () => {
   
- const accessToken = getCookie("acessToken")
- const refreshToken = getCookie("refreshToken")
+ const access_token = getCookie("accesstoken")
+ const refresh_token = getCookie("refreshtoken")
   const navigate = useNavigate();
 
   const createAxiosInstance = () => {
     return axios.create({
-      baseURL: "http://www.recipetips.net/",
+      baseURL: "http://www.resipetips.net",
     });
   };
 
@@ -23,15 +23,15 @@ const useAxiosWithAuth = () => {
       if (statusCode === 419 || statusCode === 401) {
         try {
           const refreshResponse = await axios.post(
-            "/auth/reissue",refreshToken);
+            "/auth/reissue",refresh_token);
           console.log(refreshResponse);
-          const newToken = refreshResponse.data.accessToken;
-          setCookie("accessToken", newToken);
+          const newToken = refreshResponse.data.access_token;
+          setCookie("access_token", newToken);
           axiosInstance = createAxiosInstance();
           error.config.headers["Authorization"] = `Bearer ${newToken}`;
           return axiosInstance(error.config);
         } catch (refreshError) {
-          removeCookie("accessToken");
+          removeCookie("access_token");
           navigate("/");
           return Promise.reject(refreshError);
         }

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import SimpleSlider from "../component/carousel";
-
+import ApiGet from "../component/testapiget";
 import './style/Recipes.css'
 
 const Recipes = () => {
   const [keyword, setKeyword] = useState('');
 
   const [menu,setMenu] = useState([]);
+  const nick = (1);
+  const [id ,setId] = useState(nick);
 
   const onChange = (e) => {
     setKeyword(e.target.value);
@@ -17,8 +19,10 @@ const Recipes = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get('http://www.recipetips.nets/recipe?keword=',{keyword});
-      console.log(response);
+      const response = await axios.get(`http://www.resipetips.net/recommand${id}`,{id});
+      
+      console.log(response.data);
+
       setMenu(response.code) 
 
     } catch (error) {

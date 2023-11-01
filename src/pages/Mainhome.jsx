@@ -11,11 +11,11 @@ function Mainhome () {
     const [userdata , setuserData] = useState([]);
     const [currentPost, setCurrentPost] = useState([]);
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(6);
-    const [testlist, setTestlist] = useState([]);
-    const postPerPage = 10
-    const indexOfLastPost = page * postPerPage
-    const indexOfFirstPost = indexOfLastPost - postPerPage
+    const size = 10
+    
+
+    const indexOfLastPost = page * size
+    const indexOfFirstPost = indexOfLastPost - size
 
     const boardLength = userdata.length
 
@@ -30,9 +30,9 @@ function Mainhome () {
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`http://localhost:8082/notice?page=${page}&size=${size}`) 
-                setCurrentPost(response.data.result);
-                console.log("dododo");
+                const response = await axios.get(`http://www.resipetips.net/notice?page=${page}&size=${size}`) 
+                setuserData(response.data.result);
+                
             }catch(error){
                 console.error(error);
             };
@@ -40,7 +40,15 @@ function Mainhome () {
         postedText()
     },[]);
 
-    
+
+    function time(a) { //a에는 UTC시간이 담겨져 있음. 
+   
+        const kor = new Date(a);
+        
+        kor.setHours(kor.getHours()+9);
+        
+        return kor.toLocaleString();
+       }
     
     return(
         <div className="home-body">
@@ -51,7 +59,7 @@ function Mainhome () {
                 
                     <div className="board">
                     <span style={{fontSize:28,fontWeight:"bold"}}> 최근 게시판 </span>
-                    <hr/>
+                    <input type="text" placeholder="글찾기"></input>
                         
                     {
                         currentPost.map((board, index) => {
@@ -60,31 +68,24 @@ function Mainhome () {
                                 <div className="board-line">
                                     
                                     <div>{index + 1}</div>
-                                    <span>{board.title}</span>
+                                    <span style={{width:'49%'}}>{board.subject}</span>
                                     
+                                    <span style={{
+                                    textAlign:"right",
+                                    width:'49%',
+                                    fontSize: 'medium'}}>                                   
+                                    
+                                    { (board.updateDate) ? time(board.updateDate) : time(board.createDate)}</span>
                                 </div>
                             </Link>
                             )
                         })
                     }
-
-                    {currentPost.map((list)=>{
-                        return(
-                            <ul>
-                                <li key={list.id}>
-                                    <div>{list.subject}</div>
-                                </li>
-                            </ul>
-                        )
-                    }
-                        
-                            )}
                     
-                    </div>    
-                                                                
+                    </div>                                              
                 </div>             
             </div>
-            <Paging page={page} postPage={postPerPage} count={boardLength} setPage={handlePageChange}/>
+            <Paging page={page} postPage={size} count={boardLength} setPage={handlePageChange}/>
         </div>
     );
 };
