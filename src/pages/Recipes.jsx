@@ -3,6 +3,7 @@ import axios from "axios";
 import SimpleSlider from "../component/carousel";
 import ApiGet from "../component/testapiget";
 import './style/Recipes.css'
+import { MEMBERLOCAL } from "../component/url";
 
 const Recipes = () => {
   const [keyword, setKeyword] = useState('');
@@ -19,7 +20,7 @@ const Recipes = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get(`http://www.recipetips.net/member:8081/recommand`,);
+      const response = await axios.get(`${MEMBERLOCAL}/recommand`,);
       
       console.log(response.data);
 

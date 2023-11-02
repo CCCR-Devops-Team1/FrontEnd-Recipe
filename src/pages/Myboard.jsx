@@ -99,7 +99,7 @@ const Myboard = () => {
                 <div className="contents">
 
                     <p style={{paddingBottom : "10px"}}>내용</p>
-                    <textarea placeholder="내용입력" style={{padding:"7px"}} rows="25"
+                    <textarea placeholder="내er 용입력" style={{padding:"7px"}} rows="25"
                     name="contents"
                     value={contents}
                     onChange={onchange}

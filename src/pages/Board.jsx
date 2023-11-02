@@ -5,26 +5,31 @@ import { Route,Router, useParams } from "react-router-dom";
 import { getCookie } from "../component/cookie";
 import axios from "axios";
 import ApiGet from "../component/testapiget";
-import { NOTICEPROD } from "../component/url";
+import { NOTICELOCAL, NOTICEPROD } from "../component/url";
 
 import './style/Board.css'
 
 
 const Board = () => {
-    const nick = ApiGet();
 
     const [text , setText] =useState([]);
 
+    const access_token = getCookie('access_token')
     const param =useParams();
+    const [content ,setContent] = useState ([]);
+
+    const onChangecontent = () =>{
+        setContent(content)
+    }
+    
 
     useEffect(() => {
 
         const postPage = async (e) =>{
             try{
-
-                const res = await axios.get(`${NOTICEPROD}/notice/${param.id}`)
-                
+                const res = await axios.get(`${NOTICELOCAL}/notice/${param.id}`)
                 setText(res.data.result)
+                console.log(res.data.result.photoList.uniqueName);
                 console.log(param.id);
             }
             catch(err){
@@ -33,7 +38,23 @@ const Board = () => {
         }
         postPage();
     },[])
-    
+
+
+    const handleSubmitcoment = async(e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post(`${NOTICELOCAL}/notice/${param.id}`,content,{
+                headers:{
+                    Authorization:`Bearer ${access_token}`
+                }
+            })
+            console.log(res.data);
+        }catch(err){
+            console.error(err);
+        }
+    }
+
+
 
 
     return(
@@ -48,18 +69,28 @@ const Board = () => {
                 <div className="board-body">
                     <span>{text.content}</span>
                     <img src="" alt="이미지 공간"/>
-
+                    <ul>
+                        <li>
+                        
+                        </li>
+                    </ul>
                 </div>
 
                 <div className="board-footer">
                     <form>
-                        <textarea placeholder="댓글을 작성하려면 로그인 해주세요">
+                        <textarea
+                        id="content"
+                        value={content}
+                        onChange={onChangecontent}
+                         placeholder="댓글을 작성하려면 로그인 해주세요">
                         
                         </textarea>
                         
                     </form>
 
-                    <button>
+                    <button 
+                    onClick={handleSubmitcoment}
+                    type="submit">
                         글 쓰기
                     </button>
                 </div>   

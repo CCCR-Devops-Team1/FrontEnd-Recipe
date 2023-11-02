@@ -13,7 +13,7 @@ import Myboard from './pages/Myboard'
 // import NotFound from './pages/NotFound'
 import Mypage from './pages/Mypage'
 // import Updownpunk from './pages/updownpunk'
-
+import useAxiosWithAuth from './component/axiosInterseptor'
 /*react*/
 import React,{useState,useEffect} from 'react'
 import {BrowserRouter,Routes, Route,Outlet } from "react-router-dom"
@@ -22,8 +22,10 @@ import { Axios } from 'axios'
 
 function App() {
 
+  const axiosInstance = useAxiosWithAuth();
+
   return (
-    <div className="App">
+    <div axiosInstance={axiosInstance} className="App">
        
       {/* 페이지 라우팅 해주는 코드 path import 이름  element 링크 태그 사이 값*/}
       <Nav/>

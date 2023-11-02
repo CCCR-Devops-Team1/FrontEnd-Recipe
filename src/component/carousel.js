@@ -15,7 +15,7 @@ const SimpleSlider = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://picsum.photos/v2/list?page=1&limit=20​');
+        const response = await axios.get('');
           setEvent(response.data);
       } catch (error) {
         console.error(error);

@@ -1,11 +1,10 @@
-import {  getCookie, removeCookie, setCookie } from "./cookie";
-import axios, { AxiosInstance } from "axios";
+import { getCookie, removeCookie, setCookie } from "./cookie";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const useAxiosWithAuth = () => {
-  
- const access_token = getCookie("accesstoken")
- const refresh_token = getCookie("refreshtoken")
+  const access_token = getCookie("access_token");
+  const refresh_token = getCookie("refresh_token");
   const navigate = useNavigate();
 
   const createAxiosInstance = () => {
@@ -22,8 +21,9 @@ const useAxiosWithAuth = () => {
       const statusCode = error.response?.status;
       if (statusCode === 419 || statusCode === 401) {
         try {
-          const refreshResponse = await axios.post(
-            "/auth/reissue",refresh_token);
+          const refreshResponse = await axios.post("/auth/reissue", {
+            refresh_token: refresh_token,
+          });
           console.log(refreshResponse);
           const newToken = refreshResponse.data.access_token;
           setCookie("access_token", newToken);

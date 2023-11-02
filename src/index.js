@@ -8,16 +8,16 @@ import reportWebVitals from './reportWebVitals';
 import useAxiosWithAuth from './component/axiosInterseptor';
 
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+
   <React.StrictMode>
-    <useAxiosWithAuth>
-      <CookiesProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </CookiesProvider>
-    </useAxiosWithAuth>
+    <CookiesProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </CookiesProvider>
   </React.StrictMode>
 );
 

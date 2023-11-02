@@ -5,14 +5,14 @@ import Apiget from "../component/testapiget";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style/Mainhome.css";
-import { MEMBERLOCAL } from "../component/url";
+import { MEMBERLOCAL, NOTICELOCAL } from "../component/url";
 
 function Mainhome () {
 
-    const [userdata , setuserData] = useState([]);
+    const [userdata , setuserData] = useState([]); 
     const [currentPost, setCurrentPost] = useState([]);
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(10);
+    const [size, setSize] = useState(5);
     
     const indexOfLastPost = page * size
     const indexOfFirstPost = indexOfLastPost - size
@@ -23,14 +23,13 @@ function Mainhome () {
       setPage(page);
     };
     
-    useEffect(() => {
-        setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
-      }, [userdata, page])
+    
 
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`${MEMBERLOCAL}/notice`)
+                const response = await axios.get(`${NOTICELOCAL}/notice`)
+                setuserData([...response.data.result].reverse())
                 console.log("페이지 받음");
             }catch(error){
                 console.error(error);
@@ -38,6 +37,12 @@ function Mainhome () {
         };
         postedText()
     },[]);
+
+
+
+    useEffect(() => {
+        setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
+      }, [userdata, page])
 
 
     function time(a) { //a에는 UTC시간이 담겨져 있음. 
@@ -84,7 +89,7 @@ function Mainhome () {
                     </div>                                              
                 </div>             
             </div>
-            <Paging page={page} postPage={size} count={boardLength} setPage={handlePageChange}/>
+            <Paging page={page} postPage={size} count={userdata.length} setPage={handlePageChange}/>
         </div>
     );
 };
