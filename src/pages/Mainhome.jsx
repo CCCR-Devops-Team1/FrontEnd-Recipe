@@ -29,7 +29,7 @@ function Mainhome () {
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`http://localhost:8082/notice?page=${page}&size=${size}`) 
+                const response = await axios.get(`http://localhost:8082/notice`) 
                 setuserData(response.data.result);
                 console.log("페이지 받음");
             }catch(error){

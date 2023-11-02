@@ -5,6 +5,7 @@ import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
 import { setCookie,getCookie,removeCookie} from "../component/cookie";
 import { Cookies } from "react-cookie";
+import { MEMBERPROD } from "../component/url";
 
 const Login = () => {  
 
@@ -38,7 +39,7 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post("http://localhost:8081/user/login",logindata);
+            const response = await axios.post(`${MEMBERPROD}/user/login`,logindata);
             if(response.data.code===200){
             let accessToken = response.headers.authorization;
             let refreshToken = response.headers.refresh;

@@ -12,16 +12,13 @@ function Write(){
     const navigate = useNavigate();
 
     const access_token = getCookie("access_token");
-    const nickname = ApiGet();
-
-    const [file,setFile] = useState()
-    const [imageList, setImageList] = useState([]);
-  
+    const nickname = ApiGet();   
 
     const [userwrite,setUserwrite] = useState ({
         subject:'',
-        contents:''
+        content:''
     });
+    const [file,setFile] = useState();
 
     const onchange = (e) =>{
         const {value,name} = e.target;
@@ -31,53 +28,47 @@ function Write(){
         });
     };
 
+
     const onChangeImg = (e) => {
         e.preventDefault();
-        let photoList = new FormData();
+        const formData = new FormData();
         
         
         if(e.target.files){
-          photoList = e.target.files[0]
-        //   photoList.append('file',photoList)
-          setFile(photoList)
-          console.log(photoList)
+          const uploadFile = e.target.files[0]
+          formData.append('file',uploadFile)
+          setFile(uploadFile)
+          console.log(uploadFile)
           console.log('===useState===')
           console.log(file)
-          
         }
       }
 
-    const removeButton = (e) =>{
-        e.preventDefault();
-    }
-
 
     const {subject,content} = userwrite;
+         
 
-    // const [files, setFiles] = useState(null)
-    
-    // const [imageSrc, setImageSrc] = useState(null);
+    const saveBoard = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        console.log(userwrite.subject);
+        console.log(userwrite.content);
+        formData.append('subject',userwrite.subject)
+        formData.append('content',userwrite.content)
+        formData.append('photoList',file)
 
-    // const onUpload = (e) => {
-    //     setFiles(e.target.files[0])
-    //     const reader = new FileReader();
-    //     reader.readAsDataURL(files);
-
-    //     return new Promise((resolve) => { 
-    //         reader.onload = () => {	
-    //             setImageSrc(reader.result || null); // 파일의 컨텐츠
-    //             resolve();
-    //         };
-    //     });
-    // }                  
-
-    const saveBoard = () => {
-        axios.post('http://localhost:8082/notice',userwrite,{
+      
+        try{
+        const response = axios.post('http://localhost:8082/notice',formData,{
             headers:{
-                Authorization: `Bearer ${access_token}`
+                Authorization:`Bearer ${access_token}`,
+                "Content-Type": "multipart/form-data"
             }
-        }).then((res) => console.log("저장"),navigate('/'))
-        .catch((error) => console.error(error))
+        })
+        console.log(response.data);
+    }catch(err){
+        console.error(err);
+    }
     }
     
 
@@ -101,23 +92,23 @@ function Write(){
                 <div class="file-input">
                     <input 
                     id="upload"
-                    accept="image/*" 
+                    accept="image/*,png" 
                     type="file"
                     className="file-upload"
                     onChange={onChangeImg}
-                    onClick={(e)=> { 
-                        if (e.currentTarget.files?.[0]) {
-                            const file = e.currentTarget.files[0];
-                            const reader = new FileReader();
-                            reader.readAsDataURL(file);
-                            reader.onloadend = (event) => {
-                              setImageList((prev) => [
-                                ...prev,
-                                event.target?.result
-                              ]);
-                            };
-                          }
-                        }}
+                    // onClick={(e)=> { e.currentTarget.files[0]=null
+                    //     // if (e.currentTarget.files?.[0]) {
+                    //     //     const file = e.currentTarget.files[0];
+                    //     //     const reader = new FileReader();
+                    //     //     reader.readAsDataURL(file);
+                    //     //     reader.onloadend = (event) => {
+                    //     //       setImageList((prev) => [
+                    //     //         ...prev,
+                    //     //         event.target?.result
+                    //     //       ]);
+                    //     //     };
+                    //     //   }
+                    //     }}
                     />     
                     <span id="file-name">파일을 선택하세요.</span>
                 </div>

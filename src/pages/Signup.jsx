@@ -5,6 +5,7 @@ import axios from "axios"
 import "./style/Signup.css" 
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../component/cookie";
+import { MEMBERPROD } from "../component/url";
 
 function Signup(){
 
@@ -39,7 +40,7 @@ function Signup(){
 
   const handleSubmit = async () =>{
     try{
-    const response = await axios.post("http://localhost:8081/user/signup",formData);
+    const response = await axios.post(`${MEMBERPROD}/user/signup`,formData);
 
       if(response.data.code === 200){
         console.log(response.data);

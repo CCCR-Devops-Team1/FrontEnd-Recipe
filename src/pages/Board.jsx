@@ -1,37 +1,43 @@
 //글 상세보기 
 
 import React , {useState,useEffect } from "react";
-import { Route,Router } from "react-router-dom";
+import { Route,Router, useParams } from "react-router-dom";
 import { getCookie } from "../component/cookie";
 import axios from "axios";
 import ApiGet from "../component/testapiget";
+import { NOTICEPROD } from "../component/url";
 
 import './style/Board.css'
 
 
 const Board = () => {
     const nick = ApiGet();
-
+    const [article,setArticle] = useState([]);
     const [text , setText] =useState([]);
 
-    useEffect(()=> {
-        
-        const Bulletin= async() =>{
+    const param =useParams();
+    const {params} =useParams();
+
+
+    useEffect(() => {
+
+        const postPage = async (e) =>{
             try{
-                const response = await axios.get(`http://www.recipetips.net/notice:8082/${nick}`)   
-                setText(response.data.result)
+
+                const res = await axios.get(`${NOTICEPROD}/notice/${param.id}`)
                 
-                console.log("게시글");
-                console.log(response.data.result);
-            }catch(error){
-                console.error(error);
-
+                setText(res.data.result)
+                console.log(param.id);
             }
-
+            catch(err){
+                console.error(err);
+            }
         }
-        Bulletin();
+        postPage();
     },[])
     
+
+
     return(
         <div style={{display:'grid' , justifyItems:'center'}}>
             <div className="board">

@@ -10,6 +10,7 @@ import Dropdown from "../component/DropDown";
 import axios from "axios";
 import userinfo from "../component/testapiget";
 import ApiGet from "../component/testapiget";
+import { MEMBERLOCAL, MemberLocal } from "../component/url";
 
 function Nav() {
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ function Nav() {
 
         const logoutsubmit = async () =>{
             try{
-                const response = await axios.put('http://localhost:8081/user/logout',[],{
+                const response = await axios.put(`${MEMBERLOCAL}/user/logout`,[],{
                     headers:{
                         Authorization:`Bearer ${access_token}`   
                     },
@@ -77,11 +78,11 @@ function Nav() {
         </div>
 
         <div className="tap">
-            {access_token == undefined ?<Link to="Signup" className="Sig"><span className="material-icons">person_add</span>회원가입</Link> : false}
+            {access_token == undefined ?<Link to="Signup" className="Sig"><span className="material-icons">person_add</span>회원가입1</Link> : false}
 
             {access_token !== undefined ? <Link to={ access_token !== undefined ? 'Write' : 'Login' } className="Sig"><span className="material-icons">edit</span>게시글 작성</Link> : false}
 
-            {access_token !== undefined? <Link to='Update' className="Sig"><span className="material-icons">edit_note</span>게시글 수정</Link> : false}
+            {access_token !== undefined? <Link to='Update' className="Sig"><span className="material-icons">edit_note</span>게시글 수정2</Link> : false}
 
             <Link to="Recipes" className="Sig"><span className="material-icons">menu_book</span>레시피</Link>
         </div>
