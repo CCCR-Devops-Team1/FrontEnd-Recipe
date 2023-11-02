@@ -13,6 +13,7 @@ function Write(){
 
     const access_token = getCookie("access_token");
     const nickname = ApiGet();   
+    // const [imageSrc, setImageSrc] = useState('');
 
     const [userwrite,setUserwrite] = useState ({
         subject:'',
@@ -66,6 +67,17 @@ function Write(){
     }
     }
 
+    // const encodeFileToBase64 = (fileBlob) => {
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(fileBlob);
+    //     return new Promise((resolve) => {
+    //       reader.onload = () => {
+    //         setImageSrc(reader.result);
+    //         resolve();
+    //       };
+    //     });
+    //   };
+
     return (
         <div className="write-body">
             
@@ -89,11 +101,19 @@ function Write(){
                     accept="image/*,png " 
                     type="file"
                     className="file-upload"
-                    onChange={onChangeImg}
-                    />     
+                    onChange={(e) => {
+                        // encodeFileToBase64(e.target.files[0])
+                        onChangeImg()
+                    }} />
+        
                     <span id="file-name">파일을 선택하세요.</span>
                 </div>
                 <label for="upload" class="file-label">파일 선택</label>
+
+
+                <div style={{width:'10%'}} className="preview">
+                {imageSrc && <img src={imageSrc} alt="preview-img" />}
+                </div>
             </div>
 
                 <div className="content">

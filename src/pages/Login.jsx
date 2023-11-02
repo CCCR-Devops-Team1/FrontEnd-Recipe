@@ -39,7 +39,7 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post(`member:8081/user/login`,logindata);
+            const response = await axios.post(`${MEMBERPROD}/user/login`,logindata);
             if(response.data.code===200){
             let accessToken = response.headers.authorization;
             let refreshToken = response.headers.refrec;
@@ -51,7 +51,7 @@ const Login = () => {
             setCookie("access_token",response.data.result.access_token,{
             path:'/',
             secure:false,
-            maxAge:500
+            maxAge:5000
             });
             console.log(response.data.result.access_token);
             console.log(getCookie('access_token')); 
@@ -59,7 +59,7 @@ const Login = () => {
             setCookie("refresh_token",response.data.result.refresh_token,{
             path:'/',
             secure:false,
-            maxAge:1000
+            maxAge:10000
             });
             console.log(response.data.result.refresh_token);
             removeCookie("refresh_token")

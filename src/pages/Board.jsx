@@ -55,8 +55,6 @@ const Board = () => {
     }
 
 
-
-
     return(
         <div style={{display:'grid' , justifyItems:'center'}}>
             <div className="board">
@@ -68,7 +66,7 @@ const Board = () => {
 
                 <div className="board-body">
                     <span>{text.content}</span>
-                    <img src="" alt="이미지 공간"/>
+                    <img src={text} alt="이미지 공간"/>
                     <ul>
                         <li>
                         
