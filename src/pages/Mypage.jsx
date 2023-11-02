@@ -4,6 +4,7 @@ import ApiGet from "../component/testapiget";
 import ModalBasic from "../component/Modal";
 import "./style/Mypage.css"
 import { getCookie } from "../component/cookie";
+import { MEMBERLOCAL } from "../component/url";
 
 
 const Mypage = () => {
@@ -45,7 +46,7 @@ const Mypage = () => {
        
         console.log("안뇽");
         try{
-            const response = await axios.delete('http://www.recipetips.net/member:8081/user',{
+            const response = await axios.delete('u/user',{
                 headers:{
                     Authorization:`Bearer ${accessToken}`
                 }
@@ -60,7 +61,7 @@ const Mypage = () => {
 
     const changePW = async (e) =>{
         try{
-            const response = await axios.put('http://www.recipetips.net/member:8081/user',{})
+            const response = await axios.put(`${MEMBERLOCAL}/user`,{})
             console.log("skskks");
         }
         catch(error){

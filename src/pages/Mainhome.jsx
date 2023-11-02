@@ -5,6 +5,7 @@ import Apiget from "../component/testapiget";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style/Mainhome.css";
+import { MEMBERLOCAL } from "../component/url";
 
 function Mainhome () {
 
@@ -29,8 +30,7 @@ function Mainhome () {
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`http://localhost:8082/notice`) 
-                setuserData(response.data.result);
+                const response = await axios.get(`${MEMBERLOCAL}/notice`)
                 console.log("페이지 받음");
             }catch(error){
                 console.error(error);

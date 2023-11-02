@@ -28,11 +28,9 @@ function Write(){
         });
     };
 
-
     const onChangeImg = (e) => {
         e.preventDefault();
         const formData = new FormData();
-        
         
         if(e.target.files){
           const uploadFile = e.target.files[0]
@@ -44,10 +42,8 @@ function Write(){
         }
       }
 
-
     const {subject,content} = userwrite;
          
-
     const saveBoard = (e) => {
         e.preventDefault();
         const formData = new FormData();
@@ -57,7 +53,6 @@ function Write(){
         formData.append('content',userwrite.content)
         formData.append('photoList',file)
 
-      
         try{
         const response = axios.post('http://localhost:8082/notice',formData,{
             headers:{
@@ -70,7 +65,6 @@ function Write(){
         console.error(err);
     }
     }
-    
 
     return (
         <div className="write-body">
@@ -92,23 +86,10 @@ function Write(){
                 <div class="file-input">
                     <input 
                     id="upload"
-                    accept="image/*,png" 
+                    accept="image/*,png " 
                     type="file"
                     className="file-upload"
                     onChange={onChangeImg}
-                    // onClick={(e)=> { e.currentTarget.files[0]=null
-                    //     // if (e.currentTarget.files?.[0]) {
-                    //     //     const file = e.currentTarget.files[0];
-                    //     //     const reader = new FileReader();
-                    //     //     reader.readAsDataURL(file);
-                    //     //     reader.onloadend = (event) => {
-                    //     //       setImageList((prev) => [
-                    //     //         ...prev,
-                    //     //         event.target?.result
-                    //     //       ]);
-                    //     //     };
-                    //     //   }
-                    //     }}
                     />     
                     <span id="file-name">파일을 선택하세요.</span>
                 </div>

@@ -5,7 +5,7 @@ import axios from "axios"
 import "./style/Signup.css" 
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../component/cookie";
-import { MEMBERPROD } from "../component/url";
+import { MEMBERLOCAL, MEMBERPROD } from "../component/url";
 
 function Signup(){
 

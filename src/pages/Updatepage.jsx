@@ -4,6 +4,7 @@ import './style/Update.css';
 import ApiGet from "../component/testapiget";
 import axios from "axios";
 import Paging from "../component/Paging";
+import { NOTICELOCAL } from "../component/url";
 
 function Update() {
 
@@ -33,7 +34,7 @@ function Update() {
   useEffect(() => {
     const myPost = async () =>{
       try{
-        const response = await axios.get(`http://www.recipetips.net/notice:8082/`)
+        const response = await axios.get(`${NOTICELOCAL}/notice`)
         setuserData(response.data.result)
 
       }catch(error){

@@ -42,7 +42,7 @@ const Login = () => {
             const response = await axios.post(`${MEMBERPROD}/user/login`,logindata);
             if(response.data.code===200){
             let accessToken = response.headers.authorization;
-            let refreshToken = response.headers.refresh;
+            let refreshToken = response.headers.refrec;
             console.log('accessToken :',accessToken);
             console.log('refreshToken :',refreshToken);
 

@@ -12,12 +12,10 @@ import './style/Board.css'
 
 const Board = () => {
     const nick = ApiGet();
-    const [article,setArticle] = useState([]);
+
     const [text , setText] =useState([]);
 
     const param =useParams();
-    const {params} =useParams();
-
 
     useEffect(() => {
 
