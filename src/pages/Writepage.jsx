@@ -15,6 +15,7 @@ function Write(){
     const nickname = ApiGet();
 
     const [file,setFile] = useState()
+    const [imageList, setImageList] = useState([]);
   
 
     const [userwrite,setUserwrite] = useState ({
@@ -32,7 +33,7 @@ function Write(){
 
     const onChangeImg = (e) => {
         e.preventDefault();
-        const photoList = new FormData();
+        let photoList = new FormData();
         
         
         if(e.target.files){
@@ -95,7 +96,8 @@ function Write(){
                     ></input>
                 </div>
                
-                <div class="file-input-container">
+            <div class="file-input-container">
+
                 <div class="file-input">
                     <input 
                     id="upload"
@@ -103,13 +105,23 @@ function Write(){
                     type="file"
                     className="file-upload"
                     onChange={onChangeImg}
-                    onClick={(event)=> { 
-                        event.target.value = null
-                    }}
+                    onClick={(e)=> { 
+                        if (e.currentTarget.files?.[0]) {
+                            const file = e.currentTarget.files[0];
+                            const reader = new FileReader();
+                            reader.readAsDataURL(file);
+                            reader.onloadend = (event) => {
+                              setImageList((prev) => [
+                                ...prev,
+                                event.target?.result
+                              ]);
+                            };
+                          }
+                        }}
                     />     
-                <span id="file-name">파일을 선택하세요.</span>
+                    <span id="file-name">파일을 선택하세요.</span>
                 </div>
-            <label for="upload" class="file-label">파일 선택</label>
+                <label for="upload" class="file-label">파일 선택</label>
             </div>
 
                 <div className="content">

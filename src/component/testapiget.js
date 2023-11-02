@@ -15,7 +15,7 @@ const ApiGet = () => {
         }
       }).then((res) => setUserinfo(res.data.result.account))
       .catch((err) => console.error(err))
-  },[])
+  },[userinfo])
 
   return userinfo
    
