@@ -11,9 +11,16 @@
     display: grid;
 }
 
+.newpw{
+    padding: 7px;
+    border-radius: 1.25rem;
+}
+
 .infosubmit{
     align-items: flex-end;
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     margin: 20px;
     gap:30px
 }

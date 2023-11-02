@@ -83,7 +83,8 @@ const Mypage = () => {
                 
                     <button type="submit" onClick={escape}>회원탈퇴</button>  
 
-                    <input type="password" 
+                    <input type="password"
+                    className="newpw" 
                     name="changepw" 
                     value={changepw} 
                     placeholder="변경할 비밀번호"

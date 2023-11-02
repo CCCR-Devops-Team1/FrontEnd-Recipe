@@ -13,7 +13,7 @@ function Write(){
 
     const access_token = getCookie("access_token");
     const nickname = ApiGet();   
-    // const [imageSrc, setImageSrc] = useState('');
+    const [imageSrc, setImageSrc] = useState('');
 
     const [userwrite,setUserwrite] = useState ({
         subject:'',

@@ -45,7 +45,8 @@ function Nav() {
             try{
                 const response = await axios.put(`${MEMBERLOCAL}/user/logout`,[],{
                     headers:{
-                        Authorization:`Bearer ${access_token}`   
+                        Authorization:`Bearer ${access_token}`,
+                        "Content-Type": `application/json`  
                     },
                     data:{
                         refresh_token:refresh_token
