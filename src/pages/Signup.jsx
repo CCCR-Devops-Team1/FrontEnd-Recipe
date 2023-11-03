@@ -40,7 +40,7 @@ function Signup(){
 
   const handleSubmit = async () =>{
     try{
-    const response = await axios.post(`${MEMBERLOCAL}/member/user/signup`,formData);
+    const response = await axios.post(`${MEMBERPROD}/member/user/signup`,formData);
 
       if(response.data.code === 200){
         console.log(response.data);
