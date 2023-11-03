@@ -39,7 +39,6 @@ const Board = () => {
         postPage();
     },[])
 
-
     const handleSubmitcoment = async(e) => {
         e.preventDefault();
         try {
@@ -53,7 +52,6 @@ const Board = () => {
             console.error(err);
         }
     }
-
 
     return(
         <div style={{display:'grid' , justifyItems:'center'}}>
