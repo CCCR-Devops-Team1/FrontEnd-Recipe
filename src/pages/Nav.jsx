@@ -15,7 +15,7 @@ import { MEMBERLOCAL } from "../component/url";
 function Nav() {
     const navigate = useNavigate();
 
-    const userId = ApiGet();
+    const [userId,setUserId] = useState('');
     const access_token = getCookie('access_token');
     const refresh_token = getCookie('refresh_token');
 
@@ -28,44 +28,34 @@ function Nav() {
                 }
             })
             console.log(response.data.result.account);
-            
-
+            setUserId(response.data.result.account)
             }catch(error){
                 console.error(error);
             }
         }
         userid();
-    },[])
+    },[userId])
     
     // const modal = ModalBasic();
 
         const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
 
-        const logoutsubmit = async () =>{
-            try{
-                const response = await axios.put(`${MEMBERLOCAL}/user/logout`,[],{
-                    headers:{
-                        Authorization:`Bearer ${access_token}`   
-                    },
-                    data:{
-                        refresh_token:refresh_token
-                    }
-                    
-                })
-                if(response.data.code== 400){
-                    removeCookie('access_token')
-                    removeCookie('refresh_token')
-                    navigate('/');
-                    console.log("로그아웃 성공 code 400");
+        const logoutsubmit = () =>{
+            axios.post(`${MEMBERLOCAL}/user/logout`,[],{
+                data:{
+                    "refresh_token":refresh_token
+                },
+                headers:{
+                    Authorization:`Bearer ${access_token}`,
+                    "Content-Type": `application/json`
                 }
-                else{
-                    console.log('로그아웃 실패 code확인 통신O');
-                }
-        
-            }catch(err){
-                console.error(err);
-            }
-
+            }).then((res)=>{if(res.data.code == 200){
+                removeCookie("access_token")
+                removeCookie("refresh_token")
+                navigate('/');
+                console.log("로그아웃");
+                console.log(access_token);
+            }}).catch((error) => console.error(error))
         }
 
     return(
@@ -97,7 +87,7 @@ function Nav() {
             {access_token!==undefined ? <button class="material-symbols-outlined" onClick={e => setDropdownVisibility(!dropdownVisibility)}>
             more_vert</button> : false}
            
-            {access_token!==undefined ? <button type="submit" className="login-button" onClick={logoutsubmit}>로그아웃</button> : false }
+            {access_token!==undefined ?<button type="submit" className="login-button" onClick={logoutsubmit}>로그아웃</button> : false }
             
             {/*드롭다운 버튼*/}
         

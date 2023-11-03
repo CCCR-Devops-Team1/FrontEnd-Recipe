@@ -4,7 +4,6 @@ import React, { useEffect, useState,useRef} from "react"
 import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
 import { setCookie,getCookie,removeCookie} from "../component/cookie";
-import { Cookies } from "react-cookie";
 import { MEMBERLOCAL, MEMBERPROD } from "../component/url";
 
 const Login = () => {  
@@ -51,7 +50,7 @@ const Login = () => {
             setCookie("access_token",response.data.result.access_token,{
             path:'/',
             secure:false,
-            maxAge:5000
+            maxAge:3000
             });
             console.log(response.data.result.access_token);
             console.log(getCookie('access_token')); 
@@ -59,7 +58,7 @@ const Login = () => {
             setCookie("refresh_token",response.data.result.refresh_token,{
             path:'/',
             secure:false,
-            maxAge:10000
+            maxAge:5000
             });
             console.log(response.data.result.refresh_token);
             removeCookie("refresh_token")

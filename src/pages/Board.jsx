@@ -29,7 +29,7 @@ const Board = () => {
             try{
                 const res = await axios.get(`${NOTICELOCAL}/notice/${param.id}`)
                 setText(res.data.result)
-                console.log(res.data.result.photoList.uniqueName);
+                console.log(res.data.result.photoList[0].uniqueName);
                 console.log(param.id);
             }
             catch(err){
@@ -66,7 +66,7 @@ const Board = () => {
 
                 <div className="board-body">
                     <span>{text.content}</span>
-                    <img src={text} alt="이미지 공간"/>
+                    <img src="http://localhost:8082/notice/images/47406e36-118a-4a86-80f4-25e76d0365b6.png" alt="이미지 공간"/>
                     <ul>
                         <li>
                         
