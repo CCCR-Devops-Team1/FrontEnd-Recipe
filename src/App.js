@@ -17,7 +17,9 @@ import useAxiosWithAuth from './component/axiosInterseptor'
 /*react*/
 import React,{useState,useEffect} from 'react'
 import {BrowserRouter,Routes, Route,Outlet } from "react-router-dom"
-import { Axios } from 'axios'
+import axios, { Axios } from 'axios'
+
+axios.defaults.withCredentials = true;
 
 
 function App() {

@@ -1,4 +1,11 @@
 
+.searchPost{
+    font-size: x-large;
+    padding: 7px 7px 7px 20px;
+    border-radius: 1.5rem;
+    border: 1px solid #3883b9;
+}
+
 .common-list{
     display: flex;
     flex-direction: column;

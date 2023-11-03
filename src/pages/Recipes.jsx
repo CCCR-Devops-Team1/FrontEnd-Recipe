@@ -32,7 +32,7 @@ const Recipes = () => {
 
   }
 
-  const slide = SimpleSlider();
+  // const slide = SimpleSlider();
 
   return (
     <div className="recipe-body">

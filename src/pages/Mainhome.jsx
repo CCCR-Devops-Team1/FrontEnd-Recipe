@@ -5,32 +5,49 @@ import Apiget from "../component/testapiget";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style/Mainhome.css";
-import { MEMBERLOCAL, NOTICELOCAL } from "../component/url";
+import { MEMBERLOCAL, NOTICELOCAL, NOTICEPROD } from "../component/url";
 
 function Mainhome () {
 
     const [userdata , setuserData] = useState([]); 
     const [currentPost, setCurrentPost] = useState([]);
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(5);
+    const [size, setSize] = useState(10);
     
     const indexOfLastPost = page * size
     const indexOfFirstPost = indexOfLastPost - size
 
     const boardLength = userdata.length
 
+    const [searchPost,setSearchPost] = useState('');
+
+    const handleChangeSearch = (e) => {
+        setSearchPost(e.target.value)
+        
+    }
+
     const handlePageChange = (page) => {
-      setPage(page);
+        setPage(page);
+        const postedText = async() =>{
+            try{
+                const response = await axios.get(`${NOTICELOCAL}/notice?pageNum=${page}`)
+                setuserData([...response.data.result])
+                console.log("페이지 받음");
+                console.log(response.data.result);
+            }catch(error){
+                console.error(error);
+            };
+        };
+        postedText()
     };
-    
-    
 
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`${NOTICELOCAL}/notice`)
-                setuserData([...response.data.result].reverse())
+                const response = await axios.get(`${NOTICELOCAL}/notice?pageNum=${page}`)
+                setuserData([...response.data.result])
                 console.log("페이지 받음");
+                console.log(response.data.result);
             }catch(error){
                 console.error(error);
             };
@@ -38,12 +55,9 @@ function Mainhome () {
         postedText()
     },[]);
 
-
-
     useEffect(() => {
         setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
       }, [userdata, page])
-
 
     function time(a) { //a에는 UTC시간이 담겨져 있음. 
    
@@ -62,8 +76,21 @@ function Mainhome () {
                 <div className="common-list">
                 
                     <div className="board">
-                    <span style={{fontSize:28,fontWeight:"bold"}}> 최근 게시판 </span>
-                    <input type="text" placeholder="글찾기"></input>
+
+                        <div style={{display: "flex", justifyContent: 'space-between'}}>
+                            <span style={{fontSize:28,fontWeight:"bold"}}> 최근 게시글 </span>
+                            <input type="text" placeholder="글 찾기"
+                            className="searchPost"
+                            onChange={handleChangeSearch}
+                            value={searchPost}
+                            ></input>
+                        </div>
+
+                        <div>
+                            {userdata.id}
+                            {userdata.content}
+                            {userdata.subject}
+                        </div>
                         
                     {
                         userdata.map((board, index) => {

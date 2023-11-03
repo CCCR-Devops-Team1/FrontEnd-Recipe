@@ -6,22 +6,31 @@
 .board-head{
     display: grid;
     justify-items: start;
+    padding: 5px 0px 15px 30px;
     margin-top: 10px;
 }
 
 .board-body{
     display: grid;
-    padding: 5px 10px ;
-    margin: 9px 0px ; 
+    padding: 20px 30px;
+    font-size: larger;
+    gap: 10px;
     border-top:1px solid black ;
     border-bottom: 1px solid black;
+}
+.board-body > img {
+    width: auto;
+    height: auto;
+    max-width: 1000px;
+    max-height: 700px;
+    border: 1px solid;
 }
 
 .board-footer {
     height: auto;
     display: flex;
     justify-content:space-evenly;
-
+    margin-top: 20px ;
 }
 
 .board-footer > form >textarea{
@@ -30,12 +39,13 @@
     display: flex;
     justify-content:space-evenly;
     font-size: large;
-    padding: 5px;
-    height: 50px;  
+    padding: 5px 10px;
+    height: 70px; 
 }
 
 .board-footer > button{
-    padding: 0 15px;
+    width: 150px;
+    padding: 0 25px;
 }
 
 .comment{

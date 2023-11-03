@@ -15,7 +15,7 @@ import { MEMBERLOCAL } from "../component/url";
 function Nav() {
     const navigate = useNavigate();
 
-    const userId = ApiGet();
+    const [userId,setUserId] = useState('');
     const access_token = getCookie('access_token');
     const refresh_token = getCookie('refresh_token');
 
@@ -27,15 +27,13 @@ function Nav() {
                     Authorization:`Bearer ${access_token}`
                 }
             })
-            console.log(response.data.result.account);
-            
-
+            setUserId(response.data.result.account)
             }catch(error){
                 console.error(error);
             }
         }
         userid();
-    },[])
+    },[userId])
     
     // const modal = ModalBasic();
 
@@ -45,8 +43,7 @@ function Nav() {
             try{
                 const response = await axios.put(`${MEMBERLOCAL}/user/logout`,[],{
                     headers:{
-                        Authorization:`Bearer ${access_token}`,
-                        "Content-Type": `application/json`  
+                        Authorization:`Bearer ${access_token}`   
                     },
                     data:{
                         refresh_token:refresh_token
@@ -98,7 +95,7 @@ function Nav() {
             {access_token!==undefined ? <button class="material-symbols-outlined" onClick={e => setDropdownVisibility(!dropdownVisibility)}>
             more_vert</button> : false}
            
-            {access_token!==undefined ? <button type="submit" className="login-button" onClick={logoutsubmit}>로그아웃</button> : false }
+            {access_token!==undefined ?<button type="submit" className="login-button" onClick={logoutsubmit}>로그아웃</button> : false }
             
             {/*드롭다운 버튼*/}
         

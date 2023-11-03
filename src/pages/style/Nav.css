@@ -38,7 +38,8 @@ nav{
   text-align: center;
   display: grid;
   width: 200px;
-  border: 2px solid #686975;
+  border: 5px solid #686975;
+  border-radius: 1.1rem;
 }
 
 .material-symbols-outlined{
@@ -67,7 +68,7 @@ nav{
   color: #fff;
   background-color: #538CFF;
   margin: 0 5px;
-  border-radius: 4px;
+  border-radius: 10px;
   transition: none;
   display: grid;
   align-content: space-around;

@@ -47,6 +47,10 @@
   
 }
 
+.login-button{
+  cursor: pointer;
+}
+
 .login-footer{
   display:flex;
   justify-content: center;

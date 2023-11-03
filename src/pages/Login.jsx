@@ -4,7 +4,6 @@ import React, { useEffect, useState,useRef} from "react"
 import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
 import { setCookie,getCookie,removeCookie} from "../component/cookie";
-import { Cookies } from "react-cookie";
 import { MEMBERLOCAL, MEMBERPROD } from "../component/url";
 
 const Login = () => {  
@@ -39,41 +38,30 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post(`${MEMBERPROD}/user/login`,logindata);
+            const response = await axios.post(`${MEMBERPROD}/member/user/login`,logindata);
             if(response.data.code===200){
-            let accessToken = response.headers.authorization;
-            let refreshToken = response.headers.refrec;
-            console.log('accessToken :',accessToken);
-            console.log('refreshToken :',refreshToken);
-
-            axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
 
             setCookie("access_token",response.data.result.access_token,{
             path:'/',
             secure:false,
-            maxAge:5000
+            maxAge:3000
             });
-            console.log(response.data.result.access_token);
-            console.log(getCookie('access_token')); 
 
             setCookie("refresh_token",response.data.result.refresh_token,{
             path:'/',
             secure:false,
-            maxAge:10000
+            maxAge:5000
             });
-            console.log(response.data.result.refresh_token);
-            removeCookie("refresh_token")
-            console.log(getCookie("refresh_token"));
-            console.log('로그인 성공:', response.data);
+
             navigate('/');
+            alert("로그인 성공");
         }
+
         else{
             console.log({logindata});
-            console.log("로그인 실패");
-            
+            alert("로그인 실패");
         }
             
-
         } catch (error) {
           console.error(error);
           alert("로그인 실패");
