@@ -5,7 +5,7 @@ import Apiget from "../component/testapiget";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./style/Mainhome.css";
-import { MEMBERLOCAL, NOTICELOCAL } from "../component/url";
+import { MEMBERLOCAL, NOTICELOCAL, NOTICEPROD } from "../component/url";
 
 function Mainhome () {
 
@@ -26,7 +26,7 @@ function Mainhome () {
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`${NOTICELOCAL}/notice?pageNum=${page}`)
+                const response = await axios.get(`${NOTICEPROD}/notice?pageNum=${page}`)
                 setuserData([...response.data.result])
                 console.log("페이지 받음");
                 console.log(response.data.result);
@@ -100,7 +100,7 @@ function Mainhome () {
                     </div>                                              
                 </div>             
             </div>
-            <Paging page={page} postPage={size} count={5} setPage={handlePageChange}/>
+            <Paging page={page} postPage={size} count={200} setPage={handlePageChange}/>
         </div>
     );
 };
