@@ -53,13 +53,13 @@ const Login = () => {
             maxAge:5000
             });
 
-            console.log('로그인 성공:', response.data);
             navigate('/');
+            alert("로그인 성공");
         }
 
         else{
             console.log({logindata});
-            console.log("로그인 실패");
+            alert("로그인 실패");
         }
             
         } catch (error) {

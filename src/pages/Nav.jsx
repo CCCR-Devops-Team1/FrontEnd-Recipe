@@ -49,6 +49,7 @@ function Nav() {
             }).then((res)=>{if(res.data.code == 200){
                 removeCookie("access_token")
                 removeCookie("refresh_token")
+                alert('로그아웃 되었습니다')
                 navigate('/');
                 console.log("로그아웃");
             }else{

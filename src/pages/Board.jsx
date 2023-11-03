@@ -13,45 +13,73 @@ import './style/Board.css'
 const Board = () => {
 
     const [text , setText] =useState([]);
+    const [photo,setPhoto] = useState('');
 
     const access_token = getCookie('access_token')
     const param =useParams();
-    const [content ,setContent] = useState ([]);
+    const [loading, setLoading] = useState(true); // 데이터 로딩 상태를 추적
+    const [content ,setContent] = useState ('');
 
-    const onChangecontent = () =>{
-        setContent(content)
+    const onChangecontent = (e) =>{
+        setContent(e.target.value)
     }
-    
 
     useEffect(() => {
+        const postPage = async () => {
+          try {
+            const res = await axios.get(`${NOTICELOCAL}/notice/${param.id}`);
+            
+            console.log(res.data.result.photoList[0]);
+            const photoList = res.data.result.photoList;
+            const commentList = res.data.result.commentList;
+            setLoading(false);
 
-        const postPage = async (e) =>{
-            try{
-                const res = await axios.get(`${NOTICELOCAL}/notice/${param.id}`)
-                setText(res.data.result)
-                console.log(res.data.result.photoList[0].uniqueName);
-                console.log(param.id);
-            }
-            catch(err){
-                console.error(err);
-            }
-        }
+            setText(res.data.result);
+            setPhoto(photoList[0].uniqueName);
+            
+          } catch (err) {
+            console.error(err);
+          }
+        };
         postPage();
-    },[])
+      }, []);
+      
 
-    const handleSubmitcoment = async(e) => {
+    const handleSubmitcontent = async(e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${NOTICELOCAL}/notice/${param.id}`,content,{
+            const res = await axios.post(`${NOTICELOCAL}/notice/${param.id}`,{
+                content:content
+            },{
                 headers:{
                     Authorization:`Bearer ${access_token}`
                 }
             })
             console.log(res.data);
+            console.log(content);
+            setLoading(false);
+            
         }catch(err){
             console.error(err);
         }
     }
+
+    if(loading){
+    return(
+        <div>
+            loadin....g
+        </div>
+        )
+    }
+
+    const photoView = () => {
+        if(photo)
+        {
+            return <img src={`http://localhost:8082/notice/images/${photo}`} alt="" />;
+        }
+        return null;
+    }
+    
 
     return(
         <div style={{display:'grid' , justifyItems:'center'}}>
@@ -64,12 +92,7 @@ const Board = () => {
 
                 <div className="board-body">
                     <span>{text.content}</span>
-                    <img src="http://localhost:8082/notice/images/47406e36-118a-4a86-80f4-25e76d0365b6.png" alt="이미지 공간"/>
-                    <ul>
-                        <li>
-                        
-                        </li>
-                    </ul>
+                    {photoView()}
                 </div>
 
                 <div className="board-footer">
@@ -78,28 +101,31 @@ const Board = () => {
                         id="content"
                         value={content}
                         onChange={onChangecontent}
-                         placeholder="댓글을 작성하려면 로그인 해주세요">
-                        
+                        placeholder="댓글을 작성하려면 로그인 해주세요">
                         </textarea>
-                        
                     </form>
 
                     <button 
-                    onClick={handleSubmitcoment}
+                    onClick={handleSubmitcontent}
                     type="submit">
                         글 쓰기
                     </button>
                 </div>   
-        
+
                 <div className="comment">
-                    <div>
-                        <span>닉네임 user1</span>
+                {content.answerList ? (
+                    content.answerList.map((comment, index) => (
+                    <div className="comment" key={index}>
+                        <div>
+                        <span>{comment.id}</span>
+                        <span>{comment.content}</span>
+                        </div>
                     </div>
-                    <div>
-                        <span>user1 의 아무글</span>
-                    </div>
+                    ))
+                    ) : (
+                        <div>No comments available.</div>
+                    )}
                 </div>
-                
             </div>
         </div>  
     )

@@ -41,7 +41,7 @@ function Write(){
           console.log('===useState===')
           console.log(file)
         }
-      }
+    }
 
     const {subject,content} = userwrite;
          
@@ -52,10 +52,14 @@ function Write(){
         console.log(userwrite.content);
         formData.append('subject',userwrite.subject)
         formData.append('content',userwrite.content)
-        // formData.append('photoList',file)
+        if (file == null){
+            formData.append('phtoList',null)
+        }
+        else{formData.append('photoList',file)}
+
 
         try{
-        const response = axios.post(`${NOTICEPROD}/notice`,formData,{
+        const response = axios.post(`${NOTICELOCAL}/notice`,formData,{
             headers:{
                 Authorization:`Bearer ${access_token}`,
                 "Content-Type": "multipart/form-data"
@@ -66,8 +70,7 @@ function Write(){
         navigate('/');
     }catch(err){
         console.error(err);
-    }
-    }
+    }}
 
     return (
         <div className="write-body">
@@ -83,7 +86,7 @@ function Write(){
                     onChange={onchange}
                     ></input>
                 </div>
-               
+            
             <div class="file-input-container">
 
                 <div class="file-input">

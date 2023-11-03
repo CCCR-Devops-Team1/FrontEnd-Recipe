@@ -19,14 +19,32 @@ function Mainhome () {
 
     const boardLength = userdata.length
 
+    const [searchPost,setSearchPost] = useState('');
+
+    const handleChangeSearch = (e) => {
+        setSearchPost(e.target.value)
+        
+    }
 
     const handlePageChange = (page) => {
         setPage(page);
+        const postedText = async() =>{
+            try{
+                const response = await axios.get(`${NOTICELOCAL}/notice?pageNum=${page}`)
+                setuserData([...response.data.result])
+                console.log("페이지 받음");
+                console.log(response.data.result);
+            }catch(error){
+                console.error(error);
+            };
+        };
+        postedText()
     };
+
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`${NOTICEPROD}/notice?pageNum=${page}`)
+                const response = await axios.get(`${NOTICELOCAL}/notice?pageNum=${page}`)
                 setuserData([...response.data.result])
                 console.log("페이지 받음");
                 console.log(response.data.result);
@@ -36,16 +54,6 @@ function Mainhome () {
         };
         postedText()
     },[]);
-
-    
-
-    // const handleSearchPost = (e) => {
-        
-    //     const res = axios.get(`${NOTICELOCAL}/notice/${article_id}`)
-
-
-    // }
-
 
     useEffect(() => {
         setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
@@ -68,13 +76,21 @@ function Mainhome () {
                 <div className="common-list">
                 
                     <div className="board">
-                    <span style={{fontSize:28,fontWeight:"bold"}}> 최근 게시판 </span>
-                    <input type="text" placeholder="글찾기"></input>
-                    <div>
-                        {userdata.id}
-                        {userdata.content}
-                        {userdata.subject}
-                    </div>
+
+                        <div style={{display: "flex", justifyContent: 'space-between'}}>
+                            <span style={{fontSize:28,fontWeight:"bold"}}> 최근 게시글 </span>
+                            <input type="text" placeholder="글 찾기"
+                            className="searchPost"
+                            onChange={handleChangeSearch}
+                            value={searchPost}
+                            ></input>
+                        </div>
+
+                        <div>
+                            {userdata.id}
+                            {userdata.content}
+                            {userdata.subject}
+                        </div>
                         
                     {
                         userdata.map((board, index) => {
@@ -100,7 +116,7 @@ function Mainhome () {
                     </div>                                              
                 </div>             
             </div>
-            <Paging page={page} postPage={size} count={200} setPage={handlePageChange}/>
+            <Paging page={page} postPage={size} count={userdata.length} setPage={handlePageChange}/>
         </div>
     );
 };
