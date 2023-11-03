@@ -12,21 +12,21 @@ function Mainhome () {
     const [userdata , setuserData] = useState([]); 
     const [currentPost, setCurrentPost] = useState([]);
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(5);
+    const [size, setSize] = useState(10);
     
     const indexOfLastPost = page * size
     const indexOfFirstPost = indexOfLastPost - size
 
     const boardLength = userdata.length
 
-    const handlePageChange = (page) => {
-      setPage(page);
-    };
 
+    const handlePageChange = (page) => {
+        setPage(page);
+    };
     useEffect(() => {
         const postedText = async() =>{
             try{
-                const response = await axios.get(`${NOTICELOCAL}/notice`)
+                const response = await axios.get(`${NOTICELOCAL}/notice?pageNum=${page}`)
                 setuserData([...response.data.result])
                 console.log("페이지 받음");
                 console.log(response.data.result);
@@ -36,6 +36,16 @@ function Mainhome () {
         };
         postedText()
     },[]);
+
+    
+
+    // const handleSearchPost = (e) => {
+        
+    //     const res = axios.get(`${NOTICELOCAL}/notice/${article_id}`)
+
+
+    // }
+
 
     useEffect(() => {
         setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
@@ -90,7 +100,7 @@ function Mainhome () {
                     </div>                                              
                 </div>             
             </div>
-            <Paging page={page} postPage={size} count={userdata.length} setPage={handlePageChange}/>
+            <Paging page={page} postPage={size} count={5} setPage={handlePageChange}/>
         </div>
     );
 };

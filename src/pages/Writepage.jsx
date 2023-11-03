@@ -55,7 +55,7 @@ function Write(){
         // formData.append('photoList',file)
 
         try{
-        const response = axios.post(`${NOTICELOCAL}/notice`,formData,{
+        const response = axios.post(`${NOTICEPROD}/notice`,formData,{
             headers:{
                 Authorization:`Bearer ${access_token}`,
                 "Content-Type": "multipart/form-data"
