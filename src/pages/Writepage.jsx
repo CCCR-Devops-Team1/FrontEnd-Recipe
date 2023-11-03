@@ -6,6 +6,7 @@ import axios from "axios";
 import "./style/Writepage.css"
 import { getCookie } from "../component/cookie";
 import ApiGet from "../component/testapiget";
+import { NOTICELOCAL, NOTICEPROD } from "../component/url";
 
 function Write(){
 
@@ -51,16 +52,17 @@ function Write(){
         console.log(userwrite.content);
         formData.append('subject',userwrite.subject)
         formData.append('content',userwrite.content)
-        formData.append('photoList',file)
+        // formData.append('photoList',file)
 
         try{
-        const response = axios.post('http://localhost:8082/notice',formData,{
+        const response = axios.post(`${NOTICELOCAL}/notice`,formData,{
             headers:{
                 Authorization:`Bearer ${access_token}`,
                 "Content-Type": "multipart/form-data"
             }
         })
         console.log(response.data);
+        console.log("전송");
         navigate('/');
     }catch(err){
         console.error(err);

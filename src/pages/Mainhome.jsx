@@ -22,15 +22,14 @@ function Mainhome () {
     const handlePageChange = (page) => {
       setPage(page);
     };
-    
-    
 
     useEffect(() => {
         const postedText = async() =>{
             try{
                 const response = await axios.get(`${NOTICELOCAL}/notice`)
-                setuserData([...response.data.result].reverse())
+                setuserData([...response.data.result])
                 console.log("페이지 받음");
+                console.log(response.data.result);
             }catch(error){
                 console.error(error);
             };
@@ -38,12 +37,9 @@ function Mainhome () {
         postedText()
     },[]);
 
-
-
     useEffect(() => {
         setCurrentPost(userdata.slice(indexOfFirstPost, indexOfLastPost))
       }, [userdata, page])
-
 
     function time(a) { //a에는 UTC시간이 담겨져 있음. 
    
@@ -64,6 +60,11 @@ function Mainhome () {
                     <div className="board">
                     <span style={{fontSize:28,fontWeight:"bold"}}> 최근 게시판 </span>
                     <input type="text" placeholder="글찾기"></input>
+                    <div>
+                        {userdata.id}
+                        {userdata.content}
+                        {userdata.subject}
+                    </div>
                         
                     {
                         userdata.map((board, index) => {

@@ -27,7 +27,6 @@ function Nav() {
                     Authorization:`Bearer ${access_token}`
                 }
             })
-            console.log(response.data.result.account);
             setUserId(response.data.result.account)
             }catch(error){
                 console.error(error);
@@ -41,10 +40,8 @@ function Nav() {
         const [dropdownVisibility, setDropdownVisibility] = React.useState(false);
 
         const logoutsubmit = () =>{
-            axios.post(`${MEMBERLOCAL}/user/logout`,[],{
-                data:{
-                    "refresh_token":refresh_token
-                },
+            axios.post(`${MEMBERLOCAL}/user/logout`,{refresh_token:refresh_token},{
+
                 headers:{
                     Authorization:`Bearer ${access_token}`,
                     "Content-Type": `application/json`
@@ -54,8 +51,11 @@ function Nav() {
                 removeCookie("refresh_token")
                 navigate('/');
                 console.log("로그아웃");
-                console.log(access_token);
-            }}).catch((error) => console.error(error))
+            }else{
+                console.log("로그아웃 실패");
+                console.log('코드 400');
+            }    
+            }).catch((error) => console.error(error))
         }
 
     return(
