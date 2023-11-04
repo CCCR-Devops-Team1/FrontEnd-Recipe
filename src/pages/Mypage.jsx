@@ -78,7 +78,6 @@ const Mypage = () => {
                     <li>{myinfomaiton}</li>
                 </ul>
 
-
                 <form className="infosubmit" onSubmit={handleSubmit}> 
                 
                     <button type="submit" onClick={escape}>회원탈퇴</button>  
