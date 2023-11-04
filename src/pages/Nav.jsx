@@ -76,7 +76,7 @@ function Nav() {
         </div>
 
         <div className="tap">
-            {access_token == undefined ?<Link to="Signup" className="Sig"><span className="mterial-icons">person_add</span>상수 -x path설정</Link> : false}
+            {access_token == undefined ?<Link to="Signup" className="Sig"><span className="mterial-icons">person_add</span>setup = url path설정</Link> : false}
 
             {access_token !== undefined ? <Link to={ access_token !== undefined ? 'Write' : 'Login' } className="Sig"><span className="material-icons">edit</span>게시글 작성</Link> : false}
 
