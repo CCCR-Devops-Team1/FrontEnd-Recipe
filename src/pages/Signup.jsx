@@ -41,8 +41,14 @@ function Signup(){
   const handleSubmit = async () =>{
     try{
     const response = await axios.post(`${MEMBERPROD}/member/user/signup`,formData,{
+      headers:{
+        "Content-Type": "application/json",
+      }
+    },
+        {
       withCredentials: true
-    });
+    }
+    );
 
       if(response.data.code === 200){
         console.log(response.data);
