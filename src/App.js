@@ -16,7 +16,7 @@ import Mypage from './pages/Mypage'
 import useAxiosWithAuth from './component/axiosInterseptor'
 /*react*/
 import React,{useState,useEffect} from 'react'
-import {BrowserRouter,Routes, Route,Outlet } from "react-router-dom"
+import {BrowserRouter,Routes, Route } from "react-router-dom"
 import axios, { Axios } from 'axios'
 
 axios.defaults.withCredentials = true;

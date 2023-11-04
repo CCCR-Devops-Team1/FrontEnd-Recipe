@@ -38,7 +38,9 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post(`${MEMBERPROD}/member/user/login`,logindata);
+            const response = await axios.post(`${MEMBERPROD}/member/user/login`,logindata,{
+                withCredentials:true
+            });
             if(response.data.code===200){
 
             setCookie("access_token",response.data.result.access_token,{
