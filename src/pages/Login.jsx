@@ -38,7 +38,7 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post(`/member/user/login`,logindata,{
+            const response = await axios.post(`-member/member/user/login`,logindata,{
                 headers:{
                     "Content-Type": "application/json",
                 }
