@@ -53,11 +53,11 @@ function Write(){
         console.log(userwrite.content);
         formData.append('subject',userwrite.subject)
         formData.append('content',userwrite.content)
+        
         if (file == null){
             formData.append('phtoList',null)
         }
         else{formData.append('photoList',file)}
-
 
         try{
         const response = axios.post(`${NOTICELOCAL}/notice`,formData,{
