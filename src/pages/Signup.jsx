@@ -64,7 +64,8 @@ function Signup(){
     alert('회원가입 실패', error);
     }
   };
-
+  console.log(location.origin);
+  console.log(location.origin);
   return (
 
   <div className="Sign-body">
