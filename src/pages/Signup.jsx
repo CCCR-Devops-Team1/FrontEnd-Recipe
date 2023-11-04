@@ -40,7 +40,7 @@ function Signup(){
 
   const handleSubmit = async () =>{
     try{
-    const response = await axios.post(`https://www.recipetips/member/user/signup`,formData,{
+    const response = await axios.post(`https://www.recipetips-member/member/user/signup`,formData,{
       headers:{
         "Content-Type": "application/json",
       }
