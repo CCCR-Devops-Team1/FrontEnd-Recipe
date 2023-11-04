@@ -48,6 +48,7 @@ function Signup(){
         {
       withCredentials: true
     }
+    
     );
 
       if(response.data.code === 200){
@@ -58,14 +59,16 @@ function Signup(){
       else{
         alert('회원가입 실패');
       }
+      console.log(location.origin);
     
     }catch(error){
     console.error(error);
+    console.log(location.origin);
+    
     alert('회원가입 실패', error);
     }
   };
-  console.log(location.origin);
-  console.log(location.origin);
+  
   return (
 
   <div className="Sign-body">
