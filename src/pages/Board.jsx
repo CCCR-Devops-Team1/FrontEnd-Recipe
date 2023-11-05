@@ -43,7 +43,7 @@ const Board = () => {
           }
         };
         postPage();
-      }, [comment]);
+      }, []);
       
 
     const handleSubmitcontent = async(e) => {
@@ -55,7 +55,7 @@ const Board = () => {
 
                 headers:{
                     Authorization:`Bearer ${access_token}`,
-                    "Content-Type": "application/json"
+                    'Content-Type': 'application/json; charset=utf-8'
                 }
             })
             console.log(content);

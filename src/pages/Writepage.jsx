@@ -11,11 +11,10 @@ import { NOTICELOCAL, NOTICEPROD } from "../component/url";
 function Write(){
 
     const navigate = useNavigate();
-
+    var photo = document.getElementById('upload')
     const access_token = getCookie("access_token");
     const nickname = ApiGet();   
-    // const [imageSrc, setImageSrc] = useState('');
-
+    
 
     const fileInput=useRef();
  
@@ -49,20 +48,7 @@ function Write(){
         });
       };
 
-    const onChangeImg = (e) => {
-        
-        const formData = new FormData();
-        
-        if(e.target.files){
-          const uploadFile = e.target.files[0]
-          formData.append('file',uploadFile)
-          setFile(uploadFile)
-          console.log(uploadFile)
-          console.log('===useState===')
-          console.log(file)
-        }
-    }
-
+      
     const {subject,content} = userwrite;
          
     const saveBoard = (e) => {
@@ -73,18 +59,18 @@ function Write(){
         formData.append('subject',userwrite.subject)
         formData.append('content',userwrite.content)
         
-        if (file == null){
-            formData.append('phtoList',null)
-        }
-        else{formData.append('photoList',file)}
-
+        if (file) {
+            formData.append('photoList', photo.files[0]);
+          }
+        
         try{
         const response = axios.post(`${NOTICELOCAL}/notice`,formData,{
             headers:{
                 Authorization:`Bearer ${access_token}`,
-                "Content-Type": "multipart/form-data"
+                'Content-Type': 'multipart/form-data'
             }
         })
+        console.log(formData);
         console.log(response.data);
         console.log("전송");
         navigate('/');
@@ -95,7 +81,7 @@ function Write(){
     return (
         <div className="write-body">
             
-            <form className="write-form">
+            <form className="write-form" accept-charset="utf-8">
                
                 <div className="naming">
                     <span>작성자 : {nickname} </span>
@@ -119,8 +105,7 @@ function Write(){
                     onChange=
                     {(e) => {
                         encodeFileToBase64(e.target.files[0]);
-                        onChangeImg(e);
-                        
+                                               
                     }}
                     />
                 </div>
