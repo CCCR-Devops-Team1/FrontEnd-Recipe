@@ -41,8 +41,8 @@ function Nav() {
 
         const logoutsubmit = async () =>{
             try{
-                const response = await axios.put(`${MEMBERLOCAL}/user/logout`,[],{
-                    headers:{
+                const response = await axios.put(`${MEMBERLOCAL}/user/logout`,[],{                  
+                     headers:{
                         Authorization:`Bearer ${access_token}`   
                     },
                     data:{
@@ -50,7 +50,7 @@ function Nav() {
                     }
                     
                 })
-                if(response.data.code== 400){
+                if(response.data.code == 400){
                     removeCookie('access_token')
                     removeCookie('refresh_token')
                     navigate('/');
@@ -58,10 +58,13 @@ function Nav() {
                 }
                 else{
                     console.log('로그아웃 실패 code확인 통신O');
+                  
                 }
         
             }catch(err){
                 console.error(err);
+                removeCookie('access_token')
+                removeCookie('refresh_token')
             }
 
         }
@@ -76,7 +79,7 @@ function Nav() {
         </div>
 
         <div className="tap">
-            {access_token == undefined ?<Link to="Signup" className="Sig"><span className="mterial-icons">person_add</span> jenkins test origin설정</Link> : false}
+            {access_token == undefined ?<Link to="Signup" className="Sig"><span className="material-icons">person_add</span>회원가입</Link> : false}
 
             {access_token !== undefined ? <Link to={ access_token !== undefined ? 'Write' : 'Login' } className="Sig"><span className="material-icons">edit</span>게시글 작성</Link> : false}
 

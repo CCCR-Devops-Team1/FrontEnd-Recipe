@@ -50,7 +50,7 @@ function Write(){
       };
 
     const onChangeImg = (e) => {
-        e.preventDefault();
+        
         const formData = new FormData();
         
         if(e.target.files){
@@ -116,8 +116,11 @@ function Write(){
                     type="file"
                     className="file-upload"
                     ref={fileInput}
-                    onChange={(e) => {
-                        encodeFileToBase64(e.target.files[0])
+                    onChange=
+                    {(e) => {
+                        encodeFileToBase64(e.target.files[0]);
+                        onChangeImg(e);
+                        
                     }}
                     />
                 </div>

@@ -19,6 +19,7 @@ const Board = () => {
     const param =useParams();
     const [loading, setLoading] = useState(true); // 데이터 로딩 상태를 추적
     const [content ,setContent] = useState ('');
+    const [comment, setComment] = useState([])
 
     const onChangecontent = (e) =>{
         setContent(e.target.value)
@@ -31,7 +32,7 @@ const Board = () => {
             
             console.log(res.data.result.photoList[0]);
             const photoList = res.data.result.photoList;
-            const commentList = res.data.result.commentList;
+            setComment( res.data.result.answerList);
             setLoading(false);
 
             setText(res.data.result);
@@ -42,23 +43,24 @@ const Board = () => {
           }
         };
         postPage();
-      }, []);
+      }, [comment]);
       
 
     const handleSubmitcontent = async(e) => {
-        e.preventDefault();
+        
         try {
             const res = await axios.post(`${NOTICELOCAL}/notice/${param.id}`,{
-                content:content
+                "content": content
             },{
+
                 headers:{
-                    Authorization:`Bearer ${access_token}`
+                    Authorization:`Bearer ${access_token}`,
+                    "Content-Type": "application/json"
                 }
             })
-            console.log(res.data);
             console.log(content);
-            setLoading(false);
-            
+            console.log(res.data);
+                
         }catch(err){
             console.error(err);
         }
@@ -75,19 +77,27 @@ const Board = () => {
     const photoView = () => {
         if(photo)
         {
-            return <img src={`http://localhost:8082/notice/images/${photo}`} alt="" />;
+            return <img src={`${NOTICELOCAL}/notice/images/${photo}`} alt="" />;
         }
         return null;
     }
-    
+
+    function time(a) { //a에는 UTC시간이 담겨져 있음. 
+   
+        const kor = new Date(a);
+        
+        kor.setHours(kor.getHours()+9);
+        
+        return kor.toLocaleString();
+       }
 
     return(
         <div style={{display:'grid' , justifyItems:'center'}}>
             <div className="board">
 
                 <div className="board-head">
-                    <h1>{text.subject}</h1>
-                    <h4>{text.memberId}</h4>
+                    <h1>글 제목 : {text.subject}</h1>
+                    <h4>회원번호 : {text.memberId}</h4>
                 </div>
 
                 <div className="board-body">
@@ -113,12 +123,20 @@ const Board = () => {
                 </div>   
 
                 <div className="comment">
-                {content.answerList ? (
-                    content.answerList.map((comment, index) => (
+                {comment ? (
+                    comment.map((comment, index) => (
                     <div className="comment" key={index}>
                         <div>
-                        <span>{comment.id}</span>
-                        <span>{comment.content}</span>
+                        <span style={{
+
+                        }}>회원번호: {comment.memberId}</span>
+                        <h6 style={{
+                            color: "#999"
+                        }}>{time(comment.createDate)}</h6>
+                        <div style={{
+
+                        }}>{comment.content}</div>
+                        
                         </div>
                     </div>
                     ))
