@@ -8,59 +8,9 @@ import { getCookie } from "../component/cookie";
 
 function Updownpunk(){
 
-    const navigate = useNavigate();
 
-    const cookie = getCookie("Token");
-    const nickname = getCookie("info");
 
-    const [userwrite,setUserwrite] = useState ({
-        title:'',
-        contents:'',
-    });
 
-    const [imageSrc, setImageSrc]= useState(null);
-
-    const onUpload = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        return new Promise((resolve) => { 
-            reader.onload = () => {	
-                setImageSrc(reader.result || null); // 파일의 컨텐츠
-                resolve();
-            };
-        });
-    }
-
-    const {title,contents} = userwrite;
-
-    const onchange = (e) =>{
-        const {value,name} = e.target;
-        setUserwrite({
-            ...userwrite,
-            [name]:value,
-        });
-    };
-
-    const saveBoard = async (e) => {
-        e.preventDefault();
-        
-        try{
-            await axios.post(`/notice`,
-            {userwrite}
-            ,{  headers:{
-                    'Authorization': `Bearer ${cookie}`,
-                },
-            });
-            
-        }   
-        catch (err){
-            console.log("작성 실패",err);
-        
-        }
-    };
-    
     return (
         <div className="write-body">
             <form className="write-form">
@@ -76,12 +26,8 @@ function Updownpunk(){
                 <hr/>
 
                 <div>
-
+                   
                     <span>
-                        안녕하세여
-                    </span>
-                    <span>
-                        
                     <input 
                         accept="image/*" 
                         multiple type="file"
