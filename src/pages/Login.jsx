@@ -1,9 +1,10 @@
 //로그인
-import axios from "axios";
+
 import React, { useEffect, useState,useRef} from "react"
 import "./style/Login.css"
 import { useNavigate,Link } from "react-router-dom";
 import { setCookie,getCookie,removeCookie} from "../component/cookie";
+import axios from "axios";
 import { MEMBERLOCAL, MEMBERPROD } from "../component/url";
 
 const Login = () => {  
@@ -38,7 +39,7 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post(`https://www.recipetips-memeber/member/user/login`,logindata,{
+            const response = await axios.post(`${MEMBERPROD}/member/user/login`,logindata,{
                 headers:{
                     "Content-Type": "application/json",
                 }

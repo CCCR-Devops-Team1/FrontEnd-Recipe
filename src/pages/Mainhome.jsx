@@ -116,7 +116,7 @@ function Mainhome () {
                     </div>                                              
                 </div>             
             </div>
-            <Paging page={page} postPage={size} count={userdata.length} setPage={handlePageChange}/>
+            <Paging page={page} postPage={size} count={220} setPage={handlePageChange}/>
         </div>
     );
 };

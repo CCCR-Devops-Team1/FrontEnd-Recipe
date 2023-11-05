@@ -46,7 +46,7 @@
   
   .fileremover:after {
     display: inline-block;
-    content: "\00d7";
+    /* content: "\00d7"; */
     font-size: 20px;
     margin: 0 3px;
     padding: 1px;

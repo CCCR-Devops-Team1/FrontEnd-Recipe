@@ -40,7 +40,7 @@ function Signup(){
 
   const handleSubmit = async () =>{
     try{
-    const response = await axios.post(`https://www.recipetips-member/member/user/signup`,formData,{
+    const response = await axios.post(`${MEMBERLOCAL}/user/signup`,formData,{
       headers:{
         "Content-Type": "application/json",
       }
@@ -53,17 +53,17 @@ function Signup(){
 
       if(response.data.code === 200){
         console.log(response.data);
+     
         navigate('/login');
       }
       
       else{
         alert('회원가입 실패');
       }
-      console.log(location.origin);
     
     }catch(error){
     console.error(error);
-    console.log(location.origin);
+    console.log(window.location.host);
     
     alert('회원가입 실패', error);
     }
