@@ -8,9 +8,6 @@ import { getCookie } from "../component/cookie";
 
 function Updownpunk(){
 
-
-
-
     return (
         <div className="write-body">
             <form className="write-form">
