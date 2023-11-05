@@ -12,6 +12,7 @@ import Board from './pages/Board'
 import Myboard from './pages/Myboard'
 // import NotFound from './pages/NotFound'
 import Mypage from './pages/Mypage'
+import Foodtest from './pages/Foodtest'
 // import Updownpunk from './pages/updownpunk'
 import useAxiosWithAuth from './component/axiosInterseptor'
 /*react*/
@@ -48,6 +49,7 @@ function App() {
 
           <Route path='Board/:id' element={<Board/>}/> {/*글 유저마다 상세보기*/}
           <Route path='Myboard/:id' element={<Myboard/>}/>{/**내 정보보기 창 */}
+          <Route path='Foodtest/:id' element={<Myboard/>}/>{/**내 정보보기 창 */}
 
           <Route path='Update' element={<Update/>}/> {/*유저가 작성한 글 리스트*/}
 

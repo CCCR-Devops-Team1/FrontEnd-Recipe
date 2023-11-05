@@ -24,6 +24,7 @@
     color: azure;
     font-weight: bold;
     font-size: medium;
+    cursor: pointer;
 }
 
 
@@ -34,4 +35,10 @@
 .recipe-searchbutton:active{
     background-color: #212183;
     
+}
+
+.carrol{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
