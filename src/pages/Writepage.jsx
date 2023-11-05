@@ -1,6 +1,6 @@
 //글 쓰기 (개인) {로그인}
 
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style/Writepage.css"
@@ -15,6 +15,14 @@ function Write(){
     const access_token = getCookie("access_token");
     const nickname = ApiGet();   
     // const [imageSrc, setImageSrc] = useState('');
+
+
+    const fileInput=useRef();
+ 
+    const onClearAttachment=()=>{
+           
+           fileInput.current.value = "";
+       };
 
     const [userwrite,setUserwrite] = useState ({
         subject:'',
@@ -99,7 +107,7 @@ function Write(){
                     ></input>
                 </div>
             
-            <div class="file-input-container">
+            <div style = {{display:"grid"}}class="file-input-container">
 
                 <div class="file-input">
                     <input 
@@ -107,21 +115,24 @@ function Write(){
                     accept="image/*,png " 
                     type="file"
                     className="file-upload"
+                    ref={fileInput}
                     onChange={(e) => {
                         encodeFileToBase64(e.target.files[0])
                     }}
-                    />     
-                    <span id="file-name">파일을 선택하세요.</span>
+                    />
                 </div>
+                <button onClick={onClearAttachment}>취소</button>     
                 
-                <label for="upload" class="file-label">파일 선택</label>
-                <div contentEditable="true">{file && <img src={file} alt="preview-img" />}</div>
-            </div>
-
+                <label for="upload" class="file-label">사진 1장 선택</label>
+                <div style={{display: "block" , width: "100%", height: "auto",border:'3px solid black'}} contentEditable="true">{file && <img 
+                style={{width: "400px"}}
+                src={file} alt="preview-img" />}</div>
+                </div>
+                    <hr/>
                 <div className="content">
 
-                    <p style={{paddingBottom : "10px"}}>내용</p>
-                    <textarea placeholder="내용입력" style={{padding:"7px"}} rows="25"
+                    
+                    <textarea placeholder="내용입력" style={{padding:"7px",fontSize:'1.5em'}} rows="25"
                     name="content"
                     value={content}
                     onChange={onchange}

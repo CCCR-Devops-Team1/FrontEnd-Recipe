@@ -54,14 +54,14 @@
   
   .file-input-container {
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    justify-content: start;
     gap: 10px;
   }
   
   .file-input {
     position: relative;
-    display: inline-block;
+    display: none;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -83,12 +83,14 @@
   }
   
   .file-label {
-    padding: 10px;
+    padding: 30px;
     background-color: #007bff;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
     transition: background-color 0.3s ease;
+    box-shadow: 4px 4px black;
   }
   
   .file-label:hover {
