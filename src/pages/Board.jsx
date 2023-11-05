@@ -55,7 +55,7 @@ const Board = () => {
 
                 headers:{
                     Authorization:`Bearer ${access_token}`,
-                    'Content-Type': 'application/json; charset=utf-8'
+                    'Content-Type': 'application/json'
                 }
             })
             console.log(content);
