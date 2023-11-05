@@ -5,7 +5,7 @@ import axios from "axios"
 import "./style/Signup.css" 
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "../component/cookie";
-import { MEMBERLOCAL, MEMBERPROD } from "../component/url";
+import { MEMBERLOCAL, MEMBERPROD, NOTICEPROD } from "../component/url";
 
 function Signup(){
 
@@ -40,7 +40,7 @@ function Signup(){
 
   const handleSubmit = async () =>{
     try{
-    const response = await axios.post(`${MEMBERLOCAL}/user/signup`,formData,{
+    const response = await axios.post(`${MEMBERPROD}/member/user/signup`,formData,{
       headers:{
         "Content-Type": "application/json",
       }
