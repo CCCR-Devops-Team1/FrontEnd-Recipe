@@ -6,7 +6,6 @@ import "./style/Mypage.css"
 import { getCookie } from "../component/cookie";
 import { MEMBERLOCAL } from "../component/url";
 
-
 const Mypage = () => {
     
     const modal = ModalBasic('');
@@ -25,13 +24,10 @@ const Mypage = () => {
                 Authorization: `Bearer ${accessToken}`
             },
         })
-
         } catch(error){  
             
             console.log(error);
-
         }
-
     }
 
     const handleSubmit = (e) => {
@@ -39,8 +35,6 @@ const Mypage = () => {
     
         // 여기에 폼 데이터 처리 로직 작성
     }
-    
-
     const escape = async (e) =>{
         e.preventDefault();
        

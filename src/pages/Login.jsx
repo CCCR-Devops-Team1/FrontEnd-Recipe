@@ -39,14 +39,13 @@ const Login = () => {
     const handleSubmit = async () => {
     
         try {
-            const response = await axios.post(`${MEMBERLOCAL}/user/login`,logindata,{
-                headers:{
+            const response = await axios.post(`${MEMBERLOCAL}/user/login`, logindata, {
+                headers: {
                     "Content-Type": "application/json",
-                }
-            },
-            {
+                },
                 withCredentials: true
             });
+            
             if(response.data.code===200){
 
             setCookie("access_token",response.data.result.access_token,{
